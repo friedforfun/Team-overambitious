@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(mousePosition);
         if (Physics.Raycast(ray, out hit)) {
-            Debug.DrawRay(cam.transform.position, cam.transform.position - hit.point, Color.red);
+            Debug.DrawRay(cam.transform.position, hit.point - cam.transform.position, Color.red);
             transform.LookAt(hit.point);
             agent.destination = hit.point;
         }
