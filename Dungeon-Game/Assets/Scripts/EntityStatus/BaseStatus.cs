@@ -8,8 +8,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     // Upper bound on stats, value needs tuning
     private int _statLimiter = 5;
 
-    public int HP;
-    public int MaxHp;
+    public int HP; // current hp
+    public int MaxHp = 100; // max hp
 
     public int MoveSpeed // Movement speed modifier
     {
@@ -22,8 +22,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             _MoveSpeed = value;
         }
     }
-    private int _MoveSpeed;
-    private float moveSpeedPointValue = 0.1f;
+    [SerializeField] private int _MoveSpeed = 0;
+    private float moveSpeedPointValue = 0.1f; // The value of each point of MoveSpeed
 
 
     public int AttackPower // Outgoing damage modifier
@@ -37,8 +37,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             _AttackPower = value;
         }
     }
-    private int _AttackPower;
-    private float attackPointValue = 0.1f;
+    [SerializeField] private int _AttackPower = 0;
+    private float attackPointValue = 0.1f; // The value of each point of AttackPower
 
     public int Defense // Incoming damage modifier
     {
@@ -51,9 +51,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             _Defense = value;
         }
     }
-    private int _Defense;
-    private float defPointValue = 0.1f;
-    
+    [SerializeField] private int _Defense = 0;
+    private float defPointValue = 0.1f; // The value of each point of Defense
+
     public List<Debuff> Debuffs;
     public List<Buff> Buffs;
 
@@ -79,7 +79,28 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     }
 
     /// <summary>
-    /// Apply damage to entity, will be modified by defence stat, and triggers entity death
+    /// Add buff to entity
+    /// </summary>
+    /// <typeparam name="T">Type implementing Buff</typeparam>
+    /// <param name="buff">The buff being added</param>
+    public void AddBuff<T>(T buff) where T : Buff
+    {
+        if (!buff.Stackable())
+        {
+            // Debuff is not stackable, remove the current application of this buff
+            foreach (T d in Buffs.OfType<T>())
+            {
+                d.ClearStatus(this);
+                Buffs.Remove(d);
+            }
+        }
+        // Apply buff and add it to buffs on character
+        buff.ApplyStatus(this);
+        Buffs.Add(buff);
+    }
+
+    /// <summary>
+    /// Apply damage to this entity, will be modified by defence stat, and triggers entity death when hp reaches 0
     /// </summary>
     /// <param name="damageTaken"></param>
     public void Damage(int damageTaken)
@@ -118,6 +139,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     {
         StartCoroutine(checkStatusEffects());
         StartCoroutine(applyContinousEffects());
+        HP = MaxHp;
     }
 
     /// <summary>
