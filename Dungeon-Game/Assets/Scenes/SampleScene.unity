@@ -293,9 +293,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   MaxHp: 100
-  _MoveSpeed: 1
-  _AttackPower: 1
-  _Defense: 1
+  _MoveSpeed: 0
+  _AttackPower: 0
+  _Defense: 0
 --- !u!195 &769572325
 NavMeshAgent:
   m_ObjectHideFlags: 0

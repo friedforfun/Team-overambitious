@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
-    // Upper bound on stats, value needs tuning
+    // Upper/lower bound on stats, value needs tuning/removing
     private int _statLimiter = 5;
 
     public int HP; // current hp
@@ -56,6 +56,13 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 
     public List<Debuff> Debuffs;
     public List<Buff> Buffs;
+
+    void Start()
+    {
+        StartCoroutine(checkStatusEffects());
+        StartCoroutine(applyContinousEffects());
+        HP = MaxHp;
+    }
 
     /// <summary>
     /// Add debuff to entity
@@ -135,13 +142,6 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         Debug.Log("TODO: Kill this unit");
     }
 
-    void Start()
-    {
-        StartCoroutine(checkStatusEffects());
-        StartCoroutine(applyContinousEffects());
-        HP = MaxHp;
-    }
-
     /// <summary>
     /// Checks if a debuff/buff has expired and clears it
     /// </summary>
@@ -199,9 +199,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     /// <returns></returns>
     private int statLimiter(int stat)
     {
-        if (stat < 0)
+        if (stat < -_statLimiter)
         {
-            return 0;
+            return -_statLimiter;
         }
         else if (stat > _statLimiter)
         {
