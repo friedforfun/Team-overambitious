@@ -24,6 +24,11 @@ public abstract class StatusEffect
         return false;
     }
 
+    public bool Stackable()
+    {
+        return stackable;
+    }
+
     protected virtual void overwrite(List<StatusEffect> statuses) { }
 
     public virtual void ContinuousEffect(BaseStatus status) { }
@@ -102,15 +107,6 @@ public class WeakenStatus : Debuff
     public WeakenStatus(int attackReduction, float duration) : base(duration, false)
     {
         this.attackReduction = attackReduction;
-    }
-
-    protected override void overwrite(List<StatusEffect> statuses)
-    {
-        base.overwrite(statuses);
-        foreach (Debuff debuff in statuses)
-        {
-            // TODO implement overwrite
-        }
     }
 
     public override void ApplyStatus(BaseStatus status)
