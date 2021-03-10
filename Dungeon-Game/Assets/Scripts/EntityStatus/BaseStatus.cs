@@ -11,7 +11,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public int HP; // current hp
     public int MaxHp = 100; // max hp
 
-    public int MoveSpeed // Movement speed modifier
+    public int MoveSpeed // Actual movement speed stat points
     {
         get
         {
@@ -22,7 +22,12 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             _MoveSpeed = value;
         }
     }
-    [SerializeField] private int _MoveSpeed = 0;
+    public float MoveSpeedModifier() // Modifer to movespeed based on stat points
+    {
+        return 1.0f + (MoveSpeed * moveSpeedPointValue);
+    }
+
+    [SerializeField] private int _MoveSpeed = 0; // MoveSpeed backing field
     private float moveSpeedPointValue = 0.1f; // The value of each point of MoveSpeed
 
 
@@ -39,6 +44,12 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     }
     [SerializeField] private int _AttackPower = 0;
     private float attackPointValue = 0.1f; // The value of each point of AttackPower
+
+    public float AttackSpeed; // Number of basic attacks per second
+    public float AttackInterval()
+    {
+        return 1f / AttackSpeed;
+    }
 
     public int Defense // Incoming damage modifier
     {
@@ -150,23 +161,25 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     {
         for (; ; )
         {
-            foreach (Debuff debuff in Debuffs)
+            if (Debuffs != null)
             {
-                if (debuff.Expired())
+                foreach (Debuff debuff in Debuffs)
                 {
-                    debuff.ClearStatus(this);
-                    Debuffs.Remove(debuff);
+                    if (debuff.Expired())
+                    {
+                        debuff.ClearStatus(this);
+                        Debuffs.Remove(debuff);
+                    }
+                }
+                foreach (Buff buff in Buffs)
+                {
+                    if (buff.Expired())
+                    {
+                        buff.ClearStatus(this);
+                        Buffs.Remove(buff);
+                    }
                 }
             }
-            foreach (Buff buff in Buffs)
-            {
-                if (buff.Expired())
-                {
-                    buff.ClearStatus(this);
-                    Buffs.Remove(buff);
-                }
-            }
-
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -179,15 +192,17 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     {
         for (; ; )
         {
-            foreach (Buff buff in Buffs)
+            if (Buffs != null)
             {
-                buff.ContinuousEffect(this);
+                foreach (Buff buff in Buffs)
+                {
+                    buff.ContinuousEffect(this);
+                }
+                foreach (Debuff debuff in Debuffs)
+                {
+                    debuff.ContinuousEffect(this);
+                }
             }
-            foreach (Debuff debuff in Debuffs)
-            {
-                debuff.ContinuousEffect(this);               
-            }
-
             yield return new WaitForSeconds(1f); //Tick rate
         }
     }
