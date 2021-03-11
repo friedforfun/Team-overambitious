@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log($"x: {moveInput.x}, Y: {moveInput.y}");
     }
 
     public void OnOrientPlayer(InputAction.CallbackContext context)

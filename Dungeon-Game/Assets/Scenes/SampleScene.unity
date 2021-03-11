@@ -457,8 +457,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef6230ec0281c24798d1cc281152668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseMoveSpeed: 0
+  rotationSpeed: 0
   cam: {fileID: 1782846826}
-  agent: {fileID: 281759461}
+  controller: {fileID: 0}
+  playerStats: {fileID: 0}
 --- !u!114 &281759464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,8 +709,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef6230ec0281c24798d1cc281152668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseMoveSpeed: 5
+  rotationSpeed: 5
   cam: {fileID: 1687258584}
-  agent: {fileID: 769572325}
+  controller: {fileID: 769572323}
+  playerStats: {fileID: 769572322}
 --- !u!114 &769572321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,13 +741,24 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 769572320}
+        m_MethodName: OnMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 295a3c42-3f99-4799-942e-b14b5a219c65
     m_ActionName: Gameplay/Move
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 769572320}
-        m_MethodName: OnClickToMove
+        m_MethodName: OnBasicAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -751,12 +768,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 0437f1e0-35e9-48ef-b252-9f80ca9286ba
-    m_ActionName: Gameplay/ClickToMove[/Mouse/leftButton]
+    m_ActionId: 0c940699-3f86-49e3-9785-ec0c92cc160c
+    m_ActionName: Gameplay/BasicAttack[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 769572320}
-        m_MethodName: OnMouseMove
+        m_MethodName: OnOrientPlayer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -766,35 +783,56 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: de339470-f107-438f-aa03-3d0d8c74537a
-    m_ActionName: Gameplay/MouseMove[/Mouse/position]
+    m_ActionId: 3f76e5b3-1be0-48f1-859d-02d03e666a4a
+    m_ActionName: Gameplay/OrientPlayer[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a5ea26a8-5efe-4b4b-8e88-1390d8abb4a8
+    m_ActionName: Gameplay/CastAbility[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d0a89fcb-de01-42df-97e8-1661bb9a1b6c
+    m_ActionName: Gameplay/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!195 &769572325
-NavMeshAgent:
+--- !u!114 &769572322
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769572319}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.35
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b27655e637819498335d2aa26d62ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  MaxHp: 100
+  _MoveSpeed: 0
+  _AttackPower: 0
+  _Defense: 0
+--- !u!143 &769572323
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769572319}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
   m_Height: 0.82
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_Radius: 0.35
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &916424246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1652,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2319609585193303818, guid: 3de1b8e1d9f775542b6f1ffd983178b8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2319609585193303861, guid: 3de1b8e1d9f775542b6f1ffd983178b8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1669,5 +1712,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2319609585193303863, guid: 3de1b8e1d9f775542b6f1ffd983178b8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3de1b8e1d9f775542b6f1ffd983178b8, type: 3}
