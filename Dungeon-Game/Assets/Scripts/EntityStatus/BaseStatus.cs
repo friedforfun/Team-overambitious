@@ -11,7 +11,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public int HP; // current hp
     public int MaxHp = 100; // max hp
 
-    public int MoveSpeed // Actual movement speed stat points
+    public int MoveSpeed // Movement speed stat points
     {
         get
         {
@@ -22,16 +22,11 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             _MoveSpeed = value;
         }
     }
-    public float MoveSpeedModifier() // Modifer to movespeed based on stat points
-    {
-        return 1.0f + (MoveSpeed * moveSpeedPointValue);
-    }
-
     [SerializeField] private int _MoveSpeed = 0; // MoveSpeed backing field
     private float moveSpeedPointValue = 0.1f; // The value of each point of MoveSpeed
 
 
-    public int AttackPower // Outgoing damage modifier
+    public int AttackPower // Outgoing damage stat
     {
         get
         {
@@ -45,13 +40,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     [SerializeField] private int _AttackPower = 0;
     private float attackPointValue = 0.1f; // The value of each point of AttackPower
 
-    public float AttackSpeed; // Number of basic attacks per second
-    public float AttackInterval()
-    {
-        return 1f / AttackSpeed;
-    }
+    private float AttackSpeed; // Number of basic attacks per second (Not a stat but could be)
 
-    public int Defense // Incoming damage modifier
+    public int Defense // Incoming damage mitigation stat
     {
         get
         {
@@ -151,6 +142,33 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public void Kill()
     {
         Debug.Log("TODO: Kill this unit");
+    }
+
+    /// <summary>
+    /// Value to modify movespeed
+    /// </summary>
+    /// <returns></returns>
+    public float MoveSpeedModifier() 
+    {
+        return 1.0f + (MoveSpeed * moveSpeedPointValue);
+    }
+
+    /// <summary>
+    /// Value to modifier outgoing damage
+    /// </summary>
+    /// <returns></returns>
+    public float DamageModifier()
+    {
+        return 1.0f + (AttackPower * attackPointValue);
+    }
+
+    /// <summary>
+    /// The time in seconds between each attack
+    /// </summary>
+    /// <returns></returns>
+    public float AttackInterval()
+    {
+        return 1f / AttackSpeed;
     }
 
     /// <summary>
