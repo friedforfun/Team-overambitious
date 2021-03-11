@@ -7,6 +7,7 @@ using UnityEditor;
 public class ContextSteering : MonoBehaviour
 {
     [SerializeField] private float ChaseDistance;
+    [SerializeField] private float StopChaseDistance;
     [SerializeField] private float AvoidDistance;
 
     // These context maps represent the weights for movement in a worldspace direction -
@@ -18,11 +19,12 @@ public class ContextSteering : MonoBehaviour
     private float resolutionAngle = 360 / (float) contextMapResolution; // Each point is separeted by a 45 degrees rotation (360/len(chaseMap))
     private float dangerThreshold = 0.1f; // Allow steering towards a small amount of danger
 
+
     // Move towards things with these tags/layers
     private string[] targetTags = { "Player" };
     private LayerMask targetLayers;
 
-    // Avoid things with these tags/layers
+    // Avoid things with these tags/layers, tags avoid by transform center point, layer by closest point on collider
     private string[] avoidTags = { "Projectile", "Hostile" };
     private LayerMask avoidLayers;
 
@@ -77,7 +79,6 @@ public class ContextSteering : MonoBehaviour
         {
             if (avoidMap[i] > lowestDanger + dangerThreshold)
             {
-                Debug.Log("Masking value");
                 mask[i] = 0;
             }
             else
@@ -105,7 +106,8 @@ public class ContextSteering : MonoBehaviour
                 foreach (GameObject target in GameObject.FindGameObjectsWithTag(tag))
                 {
                     Vector3 direction = targetDirection(target);
-                    contextMap = computeWeights(contextMap, direction, ChaseDistance);
+                    if (direction.magnitude > StopChaseDistance)
+                        contextMap = computeWeights(contextMap, direction, ChaseDistance);
                 }
             }
         }
@@ -116,7 +118,8 @@ public class ContextSteering : MonoBehaviour
             foreach (Collider collision in checkLayers)
             {
                 Vector3 direction = collision.ClosestPoint(transform.position) - transform.position;
-                contextMap = computeWeights(contextMap, direction, ChaseDistance);
+                if (direction.magnitude > StopChaseDistance)
+                    contextMap = computeWeights(contextMap, direction, ChaseDistance);
             }
         }
 
@@ -138,7 +141,9 @@ public class ContextSteering : MonoBehaviour
                 foreach (GameObject target in GameObject.FindGameObjectsWithTag(tag))
                 {
                     Vector3 direction = targetDirection(target);
+                    
                     contextMap = computeWeights(contextMap, direction, AvoidDistance);
+                    
                 }
             }
         }
@@ -167,6 +172,7 @@ public class ContextSteering : MonoBehaviour
 
     private float[] normalizeMap(float[] contextMap)
     {
+        //float[] normMap = new float[contextMapResolution];
         float minVal = contextMap.Min();
         float maxVal = contextMap.Max();
         for (int i = 0; i < contextMap.Length; i++)
@@ -175,7 +181,6 @@ public class ContextSteering : MonoBehaviour
         }
         return contextMap;
     }
-
 
     private float[] computeWeights(float[] contextMap, Vector3 direction, float range)
     {
@@ -195,7 +200,6 @@ public class ContextSteering : MonoBehaviour
         }
         return contextMap;
     }
-
 
     private Vector3 targetDirection(GameObject target)
     {
