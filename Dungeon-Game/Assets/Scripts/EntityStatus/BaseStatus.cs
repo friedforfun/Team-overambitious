@@ -216,6 +216,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
                 {
                     buff.ContinuousEffect(this);
                 }
+
+
                 foreach (Debuff debuff in Debuffs)
                 {
                     debuff.ContinuousEffect(this);
