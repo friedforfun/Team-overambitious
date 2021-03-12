@@ -18,7 +18,7 @@ public class BasicAttackShooter : BasicAttack
     public float shootSpeed;
 
     // child classes should override this method to define attack behaviour (melee, shoot projectile ect)
-    public override void PerformAttack(Vector3 direction, int attackPower)
+    public override void PerformAttack(Vector3 direction, float attackPower)
     {
         MuzzleFlash.Play();
         GameObject currentBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
@@ -30,22 +30,19 @@ public class BasicAttackShooter : BasicAttack
         Destroy(currentBullet, 5f);
     } 
 
+    public void SetDetected(bool d, GameObject other)
+    {
+        detected = d;
+        target = other;
+    }
+
     private void Update()
     {
         if (detected)
         {
             enemy.LookAt(target.transform);
+            // only rotate on y
             Attack(transform.forward);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            // transition to enterCombat
-            detected = true;
-            target = other.gameObject;
         }
     }
 }
