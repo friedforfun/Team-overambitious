@@ -120,6 +120,21 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 437401628416300744}
+    - target: {fileID: 2319609585025541107, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319609585025541107, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.09661572
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319609585025541107, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2319609585193303818, guid: 2f2407ee5d1a8964ca49c2ac37740927,
         type: 3}
       propertyPath: m_Name
@@ -260,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758589088692577243, guid: 7d97acb7fdd2e42468d9485c07fb3a12,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 823
       objectReference: {fileID: 0}
     - target: {fileID: 3758589088692577245, guid: 7d97acb7fdd2e42468d9485c07fb3a12,
         type: 3}
