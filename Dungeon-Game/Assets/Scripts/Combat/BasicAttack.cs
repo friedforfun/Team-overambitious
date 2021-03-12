@@ -11,10 +11,9 @@ public abstract class BasicAttack : MonoBehaviour
     [SerializeField] protected BaseStatus stats; // for damage/fire-rate ect
 
     // child classes should override this method to define attack behaviour (melee, shoot projectile ect)
-    public virtual void PerformAttack(Vector3 direction, int attackPower)
-    {
-        Debug.LogWarning("Attack not implemented");
-    } 
+    public abstract void PerformAttack(Vector3 direction, int attackPower);
+
+
 
     private bool canAttack = true;
 
