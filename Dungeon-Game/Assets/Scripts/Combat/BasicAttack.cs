@@ -5,16 +5,15 @@ using UnityEngine;
 /// <summary>
 /// Handles frequency of attacks and damage
 /// </summary>
-public class BasicAttack : MonoBehaviour
+public abstract class BasicAttack : MonoBehaviour
 {
 
-    [SerializeField] private BaseStatus stats; // for damage/fire-rate ect
+    [SerializeField] protected BaseStatus stats; // for damage/fire-rate ect
 
     // child classes should override this method to define attack behaviour (melee, shoot projectile ect)
-    public virtual void PerformAttack(Vector3 direction, int attackPower)
-    {
-        Debug.LogWarning("Attack not implemented");
-    } 
+    public abstract void PerformAttack(Vector3 direction, float attackPower);
+
+
 
     private bool canAttack = true;
 
@@ -25,7 +24,7 @@ public class BasicAttack : MonoBehaviour
         {
             canAttack = false;
 
-            PerformAttack(direction, stats.AttackPower);
+            PerformAttack(direction, stats.DamageModifier());
 
             StartCoroutine(enableAttack());
         }
