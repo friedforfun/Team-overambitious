@@ -21,15 +21,20 @@ public class ContextSteering : MonoBehaviour
 
 
     // Move towards things with these tags/layers
-    private string[] targetTags = { "Player" };
+    private List<string> targetTags;
     private LayerMask targetLayers;
 
     // Avoid things with these tags/layers, tags avoid by transform center point, layer by closest point on collider
-    private string[] avoidTags = { "Projectile", "Hostile" };
+    private List<string> avoidTags;
     private LayerMask avoidLayers;
+
+    public GameObject Waypoint = null;
 
     void Start()
     {
+        targetTags.Add("Player");
+        avoidTags.Add("Projectile");
+        avoidTags.Add("Hostile");
         targetLayers = LayerMask.GetMask("NPCmoveTarget");
         avoidLayers = LayerMask.GetMask("Wall");
     }
@@ -121,6 +126,12 @@ public class ContextSteering : MonoBehaviour
                 if (direction.magnitude > StopChaseDistance)
                     contextMap = computeWeights(contextMap, direction, ChaseDistance);
             }
+        }
+
+        if (Waypoint != null) // may need to check if no other chase data is set
+        {
+            Vector3 direction = targetDirection(Waypoint);
+            contextMap = computeWeights(contextMap, direction, ChaseDistance);
         }
 
         return contextMap;
