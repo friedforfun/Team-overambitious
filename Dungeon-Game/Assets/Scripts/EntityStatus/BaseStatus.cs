@@ -132,7 +132,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public void Heal(int healAmount)
     {
         HP += healAmount;
-        if (HP < MaxHp)
+        if (HP > MaxHp)
             HP = MaxHp;
     }
 
