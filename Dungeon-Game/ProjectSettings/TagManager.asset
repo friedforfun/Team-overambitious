@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Projectile
-  - Hostile
   layers:
   - Default
   - TransparentFX
@@ -17,7 +16,7 @@ TagManager:
   - 
   - Ground
   - Wall
-  - NPCmoveTarget
+  - Minimap
   - 
   - 
   - 
