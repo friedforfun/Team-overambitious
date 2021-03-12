@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomSpawn : MonoBehaviour
 {
@@ -45,6 +46,10 @@ public class RoomSpawn : MonoBehaviour
             }
 
             Templates.RoomCount += 1;
+            if(Templates.RoomCount > Templates.MaximumRooms)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
             spawned = true;
         }
     }

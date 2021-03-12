@@ -390,6 +390,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01042d1ccbf351c498052569d9ac072c, type: 3}
+--- !u!1001 &2134741122
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4103268104179783514, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4103268104179783525, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
 --- !u!1001 &1973085342685828058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -460,12 +529,12 @@ PrefabInstance:
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: MaximumRooms
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: MinimumRooms
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
@@ -475,24 +544,22 @@ PrefabInstance:
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: LeftRooms.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: RightRooms.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: LeftRooms.Array.data[4]
       value: 
-      objectReference: {fileID: 736023425265063616, guid: 472a4d72f5af19045a904efd660e88bd,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: RightRooms.Array.data[4]
       value: 
-      objectReference: {fileID: 736023425265063616, guid: 472a4d72f5af19045a904efd660e88bd,
-        type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40bf149804f5db845a467d1701657c7d, type: 3}
