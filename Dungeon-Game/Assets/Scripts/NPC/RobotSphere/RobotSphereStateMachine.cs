@@ -9,6 +9,11 @@ public class RobotSphereStateMachine : MonoBehaviour, IHaveState
 {
     private NPCBaseState CurrentState;
 
+    void Start()
+    {
+        CurrentState = new NPCIdle(gameObject);
+    }
+
     public BaseState GetState()
     {
         return CurrentState;
