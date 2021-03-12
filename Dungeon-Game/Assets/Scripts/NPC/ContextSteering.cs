@@ -28,6 +28,8 @@ public class ContextSteering : MonoBehaviour
     private List<string> avoidTags;
     private LayerMask avoidLayers;
 
+    public GameObject Waypoint = null;
+
     void Start()
     {
         targetTags.Add("Player");
@@ -124,6 +126,12 @@ public class ContextSteering : MonoBehaviour
                 if (direction.magnitude > StopChaseDistance)
                     contextMap = computeWeights(contextMap, direction, ChaseDistance);
             }
+        }
+
+        if (Waypoint != null) // may need to check if no other chase data is set
+        {
+            Vector3 direction = targetDirection(Waypoint);
+            contextMap = computeWeights(contextMap, direction, ChaseDistance);
         }
 
         return contextMap;
