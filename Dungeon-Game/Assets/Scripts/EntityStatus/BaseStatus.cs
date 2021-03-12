@@ -6,7 +6,7 @@ using UnityEngine;
 public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
     // Upper/lower bound on stats, value needs tuning/removing
-    private int _statLimiter = 5;
+    private int _statLimiter = 8;
 
     public int HP; // current hp
     public int MaxHp = 100; // max hp
@@ -23,7 +23,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         }
     }
     [SerializeField] private int _MoveSpeed = 0; // MoveSpeed backing field
-    private float moveSpeedPointValue = 0.1f; // The value of each point of MoveSpeed
+    private float moveSpeedPointValue = 0.2f; // The value of each point of MoveSpeed
 
 
     public int AttackPower // Outgoing damage stat
