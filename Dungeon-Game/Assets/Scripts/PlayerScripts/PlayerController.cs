@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void applyMove()
     {
-        controller.Move(new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * baseMoveSpeed * playerStats.MoveSpeedModifier());
+        controller.Move((new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * baseMoveSpeed) * Mathf.Abs(playerStats.MoveSpeedModifier()));
     }
 
     /// <summary>
