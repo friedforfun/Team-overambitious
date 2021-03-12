@@ -21,15 +21,18 @@ public class ContextSteering : MonoBehaviour
 
 
     // Move towards things with these tags/layers
-    private string[] targetTags = { "Player" };
+    private List<string> targetTags;
     private LayerMask targetLayers;
 
     // Avoid things with these tags/layers, tags avoid by transform center point, layer by closest point on collider
-    private string[] avoidTags = { "Projectile", "Hostile" };
+    private List<string> avoidTags;
     private LayerMask avoidLayers;
 
     void Start()
     {
+        targetTags.Add("Player");
+        avoidTags.Add("Projectile");
+        avoidTags.Add("Hostile");
         targetLayers = LayerMask.GetMask("NPCmoveTarget");
         avoidLayers = LayerMask.GetMask("Wall");
     }
