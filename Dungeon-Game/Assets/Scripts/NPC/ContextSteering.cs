@@ -21,11 +21,11 @@ public class ContextSteering : MonoBehaviour
 
 
     // Move towards things with these tags/layers
-    private List<string> targetTags;
+    private List<string> targetTags = new List<string>();
     private LayerMask targetLayers;
 
     // Avoid things with these tags/layers, tags avoid by transform center point, layer by closest point on collider
-    private List<string> avoidTags;
+    private List<string> avoidTags = new List<string>();
     private LayerMask avoidLayers;
 
     public GameObject Waypoint = null;
