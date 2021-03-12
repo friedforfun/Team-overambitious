@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LRFB
       objectReference: {fileID: 0}
+    - target: {fileID: 4567858132370797805, guid: 2314c5773605fc549a703364ce6296a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2314c5773605fc549a703364ce6296a6, type: 3}
 --- !u!4 &926781582 stripped
@@ -454,8 +459,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
-      propertyPath: MinimumRooms
-      value: 190
+      propertyPath: MaximumRooms
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
+        type: 3}
+      propertyPath: MinimumRooms
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
+        type: 3}
+      propertyPath: MaxFramesNoRooms
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
+        type: 3}
+      propertyPath: LeftRooms.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
+        type: 3}
+      propertyPath: RightRooms.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
+        type: 3}
+      propertyPath: LeftRooms.Array.data[4]
+      value: 
+      objectReference: {fileID: 736023425265063616, guid: 472a4d72f5af19045a904efd660e88bd,
+        type: 3}
+    - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
+        type: 3}
+      propertyPath: RightRooms.Array.data[4]
+      value: 
+      objectReference: {fileID: 736023425265063616, guid: 472a4d72f5af19045a904efd660e88bd,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40bf149804f5db845a467d1701657c7d, type: 3}

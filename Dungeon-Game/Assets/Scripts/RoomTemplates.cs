@@ -16,6 +16,12 @@ public class RoomTemplates : MonoBehaviour
     private int RoomCountTemp = 0;
     public int MaxFramesNoRooms;
     private int FramesNoRooms = 0;
+    public bool GenerationComplete = false;
+    public float FurthestPoint = 0;
+
+    public float BossRoomX;
+    public float BossRoomZ;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,14 +32,17 @@ public class RoomTemplates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(RoomCount);
-       if(RoomCountTemp == RoomCount)
+        //Debug.Log(RoomCount);
+        if (RoomCountTemp == RoomCount)
         {
             FramesNoRooms += 1;
-            if(FramesNoRooms >= MaxFramesNoRooms && (RoomCount < MinimumRooms || RoomCount > MaximumRooms))
+            if (FramesNoRooms >= MaxFramesNoRooms) {
+                GenerationComplete = true;
+                if (RoomCount < MinimumRooms || RoomCount > MaximumRooms)
             {
-           
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
             }
         }
         RoomCountTemp = RoomCount;
