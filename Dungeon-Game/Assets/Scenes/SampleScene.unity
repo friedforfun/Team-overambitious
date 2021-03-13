@@ -390,21 +390,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 619076140}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &414513439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414513438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df19735e2b76fe845b9cbdd4bc9c8a04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChaseDistance: 0
-  StopChaseDistance: 0
-  AvoidDistance: 0
 --- !u!114 &414513440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +407,34 @@ MonoBehaviour:
   _MoveSpeed: 0
   _AttackPower: 0
   _Defense: 0
+--- !u!114 &414513441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414513438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ac520e45fbead43af0f3650b0e16eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &414513443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414513438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df19735e2b76fe845b9cbdd4bc9c8a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChaseDistance: 5
+  StopChaseDistance: 1.5
+  AvoidDistance: 1.5
+  Waypoint: {fileID: 0}
 --- !u!1 &513487470
 GameObject:
   m_ObjectHideFlags: 0
