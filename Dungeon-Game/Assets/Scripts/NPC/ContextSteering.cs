@@ -8,14 +8,15 @@ using UnityEditor;
 public class ContextSteering : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
-    [SerializeField] private NPCStatus stats;
     [SerializeField] private NavMeshAgent agent;
 
-    [SerializeField] private bool UseNavMesh;
+    [SerializeField] public bool UseNavMesh;
     [SerializeField] private float ChaseDistance;
-    [SerializeField] private float StopChaseDistance;
+    [SerializeField] public float StopChaseDistance;
     [SerializeField] private float AvoidDistance;
+    [SerializeField] private float rotationSpeed;
     [SerializeField] private GameObject WaypointObject;
+
     // These context maps represent the weights for movement in a worldspace direction -
     // contextMap[0] is North, contextMap[2] is East, contextMap[4] is South, contextMap[6] is West, others are in between those points
     private static int contextMapResolution = 12;
@@ -38,7 +39,7 @@ public class ContextSteering : MonoBehaviour
 
     void Start()
     {
-        targetTags.Add("Player");
+        //targetTags.Add("Player");
         avoidTags.Add("Projectile");
         avoidTags.Add("Hostile");
         targetLayers = LayerMask.GetMask("NPCmoveTarget");
@@ -48,31 +49,49 @@ public class ContextSteering : MonoBehaviour
 
     void Update()
     {
-        chaseMap = buildChaseMap();
-        avoidMap = buildAvoidMap();
-        contextMap = combineContext(chaseMap, avoidMap);
-
-        if (UseNavMesh)
+        if (!UseNavMesh)
         {
-            SetWaypoint(agent.steeringTarget);
-            Vector3 moveDir = GetMoveDirection().normalized;
-            moveDir = new Vector3(moveDir.x, 0, moveDir.z); // Remove any movement in y axis
-            controller.SimpleMove(moveDir * stats.MoveSpeedModifier());
-            agent.velocity = controller.velocity;
+            chaseMap = buildChaseMap();
+            avoidMap = buildAvoidMap();
+            contextMap = combineContext(chaseMap, avoidMap);
         }
     }
 
-    public void SetNavMeshTarget(Vector3 position)
+    /// <summary>
+    /// Call this method to move the character, with the movement speed modifier
+    /// </summary>
+    /// <param name="moveSpeedModifier"></param>
+    public void Move(float moveSpeedModifier)
     {
-        agent.SetDestination(position);
+        if (UseNavMesh)
+        {
+            //SetWaypoint(agent.steeringTarget);
+            //agent.velocity = controller.velocity;
+            if (Waypoint != null)
+            {
+                agent.speed = moveSpeedModifier;
+                agent.SetDestination(Waypoint.transform.position);
+            }
+        } 
+        else
+        {
+            Vector3 moveDir = GetMoveDirection().normalized;
+            //Vector3 lookDir = new Vector3(0, moveDir.y, 0);
+            Quaternion rotationToDirection = Quaternion.LookRotation(moveDir, Vector3.up);
+
+            moveDir = new Vector3(moveDir.x, 0, moveDir.z); // Remove any movement in y axis
+            controller.SimpleMove(moveDir * moveSpeedModifier);
+            float rate = rotationSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.RotateTowards(rotationToDirection, transform.rotation, rate);
+
+        }
     }
 
 
-    public void SetNavMeshTarget(GameObject targetObject)
-    {
-        agent.SetDestination(targetObject.transform.position);
-    }
-
+    /// <summary>
+    /// Set a waypoint with a position in world space
+    /// </summary>
+    /// <param name="position"></param>
     public void SetWaypoint(Vector3 position)
     {
         if (Waypoint == null)
@@ -81,9 +100,35 @@ public class ContextSteering : MonoBehaviour
             Waypoint.transform.position = position;
     }
 
+    /// <summary>
+    /// Set a waypoint on a target gameObject (could move)
+    /// </summary>
+    /// <param name="targetObject"></param>
     public void SetWaypoint(GameObject targetObject)
     {
         Waypoint = targetObject;
+    }
+
+    /// <summary>
+    /// Clear the current waypoint
+    /// </summary>
+    public void ClearWaypoint()
+    {
+        Waypoint = null;
+    }
+
+    /// <summary>
+    /// Add a tag to the list
+    /// </summary>
+    /// <param name="tag"></param>
+    public void AddTargetTag(string tag)
+    {
+        targetTags.Add(tag);
+    }
+
+    public void RemoveTargetTag(string tag)
+    {
+        targetTags.Remove(tag);
     }
 
     /// <summary>
@@ -99,11 +144,15 @@ public class ContextSteering : MonoBehaviour
         {
             if (contextMap[i] > maxValue)
             {
+
                 maxValue = contextMap[i];
                 maxIndex = i;
             }
         }
-
+        if (maxValue == 0f)
+        {
+            return Vector3.zero; // Dont move if all directions are 0
+        }
         Vector3 direction = Vector3.forward;
         return Quaternion.Euler(0, resolutionAngle * maxIndex, 0) * direction;
     }
@@ -171,8 +220,8 @@ public class ContextSteering : MonoBehaviour
         {
             Vector3 direction = targetDirection(Waypoint);
             contextMap = computeWeights(contextMap, direction, ChaseDistance);
-            if (direction.magnitude < 1f)
-                Destroy(Waypoint);
+            //if (direction.magnitude < 1f) // do this inside waypoint prefab
+                //Destroy(Waypoint);
         }
 
         return contextMap;
@@ -213,7 +262,7 @@ public class ContextSteering : MonoBehaviour
         // Zero out negative weights for avoid map
         for (int i = 0; i < contextMapResolution; i++)
         {
-            if (contextMap[i] < 0f)
+            if (contextMap[i] <= 0f)
             {
                 contextMap[i] = 0f;
             }

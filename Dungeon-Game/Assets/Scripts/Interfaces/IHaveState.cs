@@ -8,4 +8,10 @@ public interface IHaveState
     void SetState(BaseState state);
 
     BaseState GetState();
+
+    float GetDetectRange();
+
+    float GetAttackRange();
+
+    float GetMoveSpeedModifier();
 }
