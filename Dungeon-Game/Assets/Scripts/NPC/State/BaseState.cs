@@ -21,10 +21,22 @@ public abstract class BaseState
 public abstract class NPCBaseState : BaseState
 {
     protected GameObject npc;
+    protected ContextSteering steer;
+    protected IHaveState stateController;
 
     public NPCBaseState(GameObject npc)
     {
         this.npc = npc;
+        steer = npc.GetComponent<ContextSteering>();
+        if (steer is null)
+        {
+            throw new UnassignedReferenceException("NPC must have a ContextSteering component");
+        }
+        stateController = npc.GetComponent<IHaveState>();
+        if (stateController is null)
+        {
+            throw new UnassignedReferenceException("NPC must have component implementing IHaveState");
+        }
     }
 }
 

@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEditor;
 
 public class ContextSteering : MonoBehaviour
 {
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private NPCStatus stats;
+    [SerializeField] private NavMeshAgent agent;
+
+    [SerializeField] private bool UseNavMesh;
     [SerializeField] private float ChaseDistance;
     [SerializeField] private float StopChaseDistance;
     [SerializeField] private float AvoidDistance;
-
+    [SerializeField] private GameObject WaypointObject;
     // These context maps represent the weights for movement in a worldspace direction -
     // contextMap[0] is North, contextMap[2] is East, contextMap[4] is South, contextMap[6] is West, others are in between those points
     private static int contextMapResolution = 12;
@@ -21,15 +27,20 @@ public class ContextSteering : MonoBehaviour
 
 
     // Move towards things with these tags/layers
-    private string[] targetTags = { "Player" };
+    private List<string> targetTags = new List<string>();
     private LayerMask targetLayers;
 
     // Avoid things with these tags/layers, tags avoid by transform center point, layer by closest point on collider
-    private string[] avoidTags = { "Projectile", "Hostile" };
+    private List<string> avoidTags = new List<string>();
     private LayerMask avoidLayers;
+
+    private GameObject Waypoint = null;
 
     void Start()
     {
+        targetTags.Add("Player");
+        avoidTags.Add("Projectile");
+        avoidTags.Add("Hostile");
         targetLayers = LayerMask.GetMask("NPCmoveTarget");
         avoidLayers = LayerMask.GetMask("Wall");
     }
@@ -40,6 +51,39 @@ public class ContextSteering : MonoBehaviour
         chaseMap = buildChaseMap();
         avoidMap = buildAvoidMap();
         contextMap = combineContext(chaseMap, avoidMap);
+
+        if (UseNavMesh)
+        {
+            SetWaypoint(agent.steeringTarget);
+            Vector3 moveDir = GetMoveDirection().normalized;
+            moveDir = new Vector3(moveDir.x, 0, moveDir.z); // Remove any movement in y axis
+            controller.SimpleMove(moveDir * stats.MoveSpeedModifier());
+            agent.velocity = controller.velocity;
+        }
+    }
+
+    public void SetNavMeshTarget(Vector3 position)
+    {
+        agent.SetDestination(position);
+    }
+
+
+    public void SetNavMeshTarget(GameObject targetObject)
+    {
+        agent.SetDestination(targetObject.transform.position);
+    }
+
+    public void SetWaypoint(Vector3 position)
+    {
+        if (Waypoint == null)
+            Waypoint = Instantiate(WaypointObject, position, Quaternion.identity);
+        else
+            Waypoint.transform.position = position;
+    }
+
+    public void SetWaypoint(GameObject targetObject)
+    {
+        Waypoint = targetObject;
     }
 
     /// <summary>
@@ -121,6 +165,14 @@ public class ContextSteering : MonoBehaviour
                 if (direction.magnitude > StopChaseDistance)
                     contextMap = computeWeights(contextMap, direction, ChaseDistance);
             }
+        }
+
+        if (Waypoint != null) // may need to check if no other chase data is set
+        {
+            Vector3 direction = targetDirection(Waypoint);
+            contextMap = computeWeights(contextMap, direction, ChaseDistance);
+            if (direction.magnitude < 1f)
+                Destroy(Waypoint);
         }
 
         return contextMap;
