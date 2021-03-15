@@ -21,6 +21,11 @@ public class RobotSphereStateMachine : MonoBehaviour, IHaveState
 
     void Update()
     {
+        
+    }
+
+    void FixedUpdate()
+    {
         CurrentState.UpdateState();
     }
 

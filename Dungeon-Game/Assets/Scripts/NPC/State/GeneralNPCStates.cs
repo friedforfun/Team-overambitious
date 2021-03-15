@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 public abstract class NPCOutOfCombat : NPCBaseState
 {
-    protected ExampleStateMachine exampleState;
+
     private float startTime;
     private float duration;
     public NPCOutOfCombat(GameObject npc) : base(npc)
     {
         startTime = Time.time;
         duration = Random.Range(2f, 8f);
-        exampleState = npc.GetComponent<ExampleStateMachine>();
     }
 
     protected bool stateExpired()
@@ -28,15 +27,21 @@ public abstract class NPCOutOfCombat : NPCBaseState
 /// </summary>
 public class NPCWander : NPCOutOfCombat
 {
+    private float WanderDistance = 10f;
+    private Vector3 WanderPosition;
+
     public NPCWander(GameObject npc) : base(npc)
     {
-
+        WanderPosition = Random.insideUnitSphere * WanderDistance;
+        WanderPosition = new Vector3(WanderPosition.x, 0f, WanderPosition.z);
+        steer.SetNavMeshTarget(WanderPosition);
     }
 
     public override void UpdateState()
     {
         if (stateExpired())
-            exampleState.SetState(new NPCIdle(npc));
+            stateController.SetState(new NPCIdle(npc));
+
     }
 }
 
@@ -53,7 +58,7 @@ public class NPCIdle : NPCOutOfCombat
     public override void UpdateState()
     {
         if (stateExpired())
-            exampleState.SetState(new NPCWander(npc));
+            stateController.SetState(new NPCWander(npc));
     }
 }
 
