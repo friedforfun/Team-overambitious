@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 2028051484439885997}
   - component: {fileID: 107782426394243808}
   - component: {fileID: 208018297337527339}
+  - component: {fileID: 4705492193567831940}
   m_Layer: 5
   m_Name: HealthBarPanel
   m_TagString: Untagged
@@ -541,6 +542,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4705492193567831940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771529996971532822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b503deb67401e4c8e0f4285a3cd7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 172588799627847989}
+  healthBar: {fileID: 8737314098535191579}
+  damageAmount: {fileID: 1458096112753979982}
+  defenseAmount: {fileID: 1236455835250576125}
+  speedAmount: {fileID: 4227278397637147093}
 --- !u!1 &5738851953854933631
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +792,6 @@ GameObject:
   - component: {fileID: 4933226101064392513}
   - component: {fileID: 1618711259059149961}
   - component: {fileID: 2350262292218070687}
-  - component: {fileID: 6952400632104237592}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -838,19 +855,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6952400632104237592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8737314098535191579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b503deb67401e4c8e0f4285a3cd7e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 172588799627847989}
 --- !u!1 &9157223029291980735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,15 +1218,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61a05648278c0bf4d95c42c89aba6bfe, type: 3}
---- !u!4 &1377303360376005815 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7540616592442687308, guid: 61a05648278c0bf4d95c42c89aba6bfe,
-    type: 3}
-  m_PrefabInstance: {fileID: 8915030275094715387}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1377303360376005819 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7540616592442687296, guid: 61a05648278c0bf4d95c42c89aba6bfe,
+    type: 3}
+  m_PrefabInstance: {fileID: 8915030275094715387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1377303360376005815 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7540616592442687308, guid: 61a05648278c0bf4d95c42c89aba6bfe,
     type: 3}
   m_PrefabInstance: {fileID: 8915030275094715387}
   m_PrefabAsset: {fileID: 0}

@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4587092136864441020}
   - component: {fileID: 7723927853760961195}
   - component: {fileID: 4685702388927377633}
+  - component: {fileID: 2039132826911881424}
   m_Layer: 5
   m_Name: HealthBarPanel
   m_TagString: Untagged
@@ -118,6 +119,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2039132826911881424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2413483867723916099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b503deb67401e4c8e0f4285a3cd7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 172588799627847989}
+  healthBar: {fileID: 4886530103305245806}
+  damageAmount: {fileID: 7527797118132721349}
+  defenseAmount: {fileID: 3169350374824959591}
+  speedAmount: {fileID: 8292986943492938190}
 --- !u!1 &3169350374824959591
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +227,6 @@ GameObject:
   - component: {fileID: 6456105659984126478}
   - component: {fileID: 1128129017299398307}
   - component: {fileID: 2664846511903053579}
-  - component: {fileID: 3037249173840469017}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -273,19 +290,6 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3037249173840469017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4886530103305245806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b503deb67401e4c8e0f4285a3cd7e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 172588799627847989}
 --- !u!1 &6089695148503283797
 GameObject:
   m_ObjectHideFlags: 0
