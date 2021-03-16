@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
+    public GameObject bullet;
+    public Transform shootPoint;
+    /*    BaseStatus stats = new BaseStatus();*/
+    public BaseStatus stats;
+    
+    
 
-    void Fire() { }
+    public float shootSpeed;
+    public void Fire(Vector3 direction) 
+    {
+        GameObject currentBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
 
-    // Update is called once per frame
+        Rigidbody rig = currentBullet.GetComponent<Rigidbody>();
+        rig.AddForce(direction * shootSpeed, ForceMode.VelocityChange);
+        Destroy(currentBullet, 5f);
+    }
+
     void Update()
     {
         

@@ -658,6 +658,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8482048697331898776, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -197.60999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44de3e2e9ee6b6d42a21b49d786464c8, type: 3}
 --- !u!1 &653260035
@@ -732,6 +737,7 @@ MonoBehaviour:
   shootPoint: {fileID: 858641386}
   MuzzleFlash: {fileID: 1775643741}
   shootSpeed: 10
+  timeToShoot: 1.3
 --- !u!4 &712037954 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 974859389540314427, guid: cb479ccf14f9a0f46b509ddb0d15353f,
@@ -773,7 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da99cceddde89544a6ffa33571b4d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b: {fileID: 712037946}
+  BAS: {fileID: 712037946}
 --- !u!4 &858641386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4560280670902442395, guid: cb479ccf14f9a0f46b509ddb0d15353f,
@@ -983,6 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4560280669564573163, guid: cb479ccf14f9a0f46b509ddb0d15353f, type: 3}
+    - {fileID: 4560280669996866892, guid: cb479ccf14f9a0f46b509ddb0d15353f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cb479ccf14f9a0f46b509ddb0d15353f, type: 3}
 --- !u!1 &1481369145
 GameObject:
@@ -1081,7 +1088,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-189970
+  m_Name: pb_Mesh-25182
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
