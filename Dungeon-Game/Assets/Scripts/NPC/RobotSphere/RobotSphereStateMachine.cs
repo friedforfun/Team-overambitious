@@ -21,6 +21,11 @@ public class RobotSphereStateMachine : MonoBehaviour, IHaveState
 
     void Update()
     {
+        
+    }
+
+    void FixedUpdate()
+    {
         CurrentState.UpdateState();
     }
 
@@ -39,6 +44,20 @@ public class RobotSphereStateMachine : MonoBehaviour, IHaveState
         }
     }
 
+    public float GetDetectRange()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public float GetAttackRange()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public float GetMoveSpeedModifier()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 
