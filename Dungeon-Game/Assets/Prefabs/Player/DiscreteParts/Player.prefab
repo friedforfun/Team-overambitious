@@ -4779,9 +4779,10 @@ GameObject:
   - component: {fileID: 2319609585193303861}
   - component: {fileID: 2319609585193303860}
   - component: {fileID: 769572323}
-  - component: {fileID: 769572320}
   - component: {fileID: 769572321}
+  - component: {fileID: 769572320}
   - component: {fileID: 769572322}
+  - component: {fileID: 4065376206464920371}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4836,23 +4837,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &769572320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2319609585193303818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef6230ec0281c24798d1cc281152668, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseMoveSpeed: 5
-  rotationSpeed: 5
-  cam: {fileID: 0}
-  controller: {fileID: 769572323}
-  playerStats: {fileID: 769572322}
 --- !u!114 &769572321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4937,6 +4921,24 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &769572320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2319609585193303818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef6230ec0281c24798d1cc281152668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMoveSpeed: 5
+  rotationSpeed: 5
+  cam: {fileID: 0}
+  controller: {fileID: 769572323}
+  playerStats: {fileID: 769572322}
+  playerAttack: {fileID: 0}
 --- !u!114 &769572322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4954,3 +4956,20 @@ MonoBehaviour:
   _MoveSpeed: 0
   _AttackPower: 0
   _Defense: 0
+--- !u!114 &4065376206464920371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2319609585193303818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeda9ca649b3dd4db78119c7bb20d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 769572322}
+  AttackHeld: 0
+  AttackDirection: {x: 0, y: 0, z: 0}
+  projectile: {fileID: 0}
+  launchPoint: {x: 0, y: 0, z: 0}

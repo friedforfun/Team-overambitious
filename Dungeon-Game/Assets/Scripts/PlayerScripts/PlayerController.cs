@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private CharacterController controller;
     [SerializeField] private PlayerStatus playerStats;
-
+    [SerializeField] private PlayerAttack playerAttack;
 
     private Vector2 orientDirection;
     private Vector2 moveInput;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         applyMove();
         if (AttackButtonDown)
         {
-            // Call Attack here
+            playerAttack.Attack(new Vector3(orientDirection.x, 0, orientDirection.y));
         }
     }
 
