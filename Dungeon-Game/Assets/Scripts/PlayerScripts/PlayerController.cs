@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 tempDir = context.ReadValue<Vector2>();
         if (tempDir.x != 0 || tempDir.y != 0)
-            orientDirection = tempDir;
+            orientDirection = tempDir.normalized;
     }
 
     public void OnBasicAttack(InputAction.CallbackContext context)

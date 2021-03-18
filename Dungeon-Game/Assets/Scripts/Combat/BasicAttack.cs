@@ -10,6 +10,7 @@ public abstract class BasicAttack : MonoBehaviour
 
     [SerializeField] protected BaseStatus stats; // for damage/fire-rate ect
 
+
     // child classes should override this method to define attack behaviour (melee, shoot projectile ect)
     public abstract void PerformAttack(Vector3 direction, float attackPower);
 
@@ -39,3 +40,6 @@ public abstract class BasicAttack : MonoBehaviour
         canAttack = true;
     }
 }
+
+public delegate Debuff AttackDebuffs(); // Debuffs applied by attacks
+
