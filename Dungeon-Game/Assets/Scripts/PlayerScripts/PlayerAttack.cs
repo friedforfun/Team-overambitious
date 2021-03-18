@@ -10,7 +10,7 @@ public class PlayerAttack : BasicAttack
     public override void PerformAttack(Vector3 direction, float attackPower)
     {
         GameObject newProjectile = Instantiate(projectile, launchPoint.position, Quaternion.LookRotation(direction, Vector3.up));
-        newProjectile.GetComponent<IProjectile>().Fire(direction, attackPower);
+        newProjectile.GetComponent<IProjectile>().Fire(direction, attackPower, gameObject);
     }
 
 }

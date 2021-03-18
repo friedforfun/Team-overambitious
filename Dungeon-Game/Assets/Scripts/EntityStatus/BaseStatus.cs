@@ -40,7 +40,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     [SerializeField] private int _AttackPower = 0;
     private float attackPointValue = 0.1f; // The value of each point of AttackPower
 
-    private float AttackSpeed; // Number of basic attacks per second (Not a stat but could be)
+    [SerializeField] private float AttackSpeed; // Number of basic attacks per second (Not a stat but could be)
 
     public int Defense // Incoming damage mitigation stat
     {
