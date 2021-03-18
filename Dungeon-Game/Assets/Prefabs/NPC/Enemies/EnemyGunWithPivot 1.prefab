@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1598549434576428354
+--- !u!1 &5010224823660799478
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9096183341562063295}
-  - component: {fileID: 1767853989425974502}
-  - component: {fileID: 1767853989425974507}
-  - component: {fileID: 1767853989425974506}
-  - component: {fileID: 1767853989425974501}
-  - component: {fileID: 1767853989425974500}
-  - component: {fileID: 1767853989425974503}
+  - component: {fileID: 3284520909654774027}
+  - component: {fileID: 5413459816470230098}
+  - component: {fileID: 5413459816470230111}
+  - component: {fileID: 5413459816470230110}
+  - component: {fileID: 5413459816470230097}
+  - component: {fileID: 5413459816470230096}
+  - component: {fileID: 5413459816470230099}
   m_Layer: 0
   m_Name: EnemyGunWithPivot 1
   m_TagString: Untagged
@@ -22,28 +22,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9096183341562063295
+--- !u!4 &3284520909654774027
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598549434576428354}
+  m_GameObject: {fileID: 5010224823660799478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.86, y: 0, z: 11.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4564376757887960243}
+  - {fileID: 7854058574228962311}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &1767853989425974502
+--- !u!143 &5413459816470230098
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598549434576428354}
+  m_GameObject: {fileID: 5010224823660799478}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -55,33 +55,33 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1767853989425974507
+--- !u!114 &5413459816470230111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598549434576428354}
+  m_GameObject: {fileID: 5010224823660799478}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dcc1880eb8912148aedcdef6b6e55c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 1767853989425974501}
---- !u!114 &1767853989425974506
+  stats: {fileID: 5413459816470230097}
+--- !u!114 &5413459816470230110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598549434576428354}
+  m_GameObject: {fileID: 5010224823660799478}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df19735e2b76fe845b9cbdd4bc9c8a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1767853989425974502}
-  agent: {fileID: 1767853989425974503}
+  controller: {fileID: 5413459816470230098}
+  agent: {fileID: 5413459816470230099}
   UseNavMesh: 0
   ChaseDistance: 10
   StopChaseDistance: 2
@@ -89,13 +89,13 @@ MonoBehaviour:
   rotationSpeed: 0.05
   WaypointObject: {fileID: 4959129530293713088, guid: 821e368745a21f646a9ff1b6a2d2de3c,
     type: 3}
---- !u!114 &1767853989425974501
+--- !u!114 &5413459816470230097
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598549434576428354}
+  m_GameObject: {fileID: 5010224823660799478}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83129b9baa6a09947930decc97776a3a, type: 3}
@@ -105,27 +105,28 @@ MonoBehaviour:
   MaxHp: 100
   _MoveSpeed: 0
   _AttackPower: 0
+  AttackSpeed: 0
   _Defense: 0
---- !u!114 &1767853989425974500
+--- !u!114 &5413459816470230096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598549434576428354}
+  m_GameObject: {fileID: 5010224823660799478}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df06462e83f2cf14e8f1c2926ee9cdee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxDistance: 500
---- !u!195 &1767853989425974503
+--- !u!195 &5413459816470230099
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1598549434576428354}
+  m_GameObject: {fileID: 5010224823660799478}
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
@@ -141,12 +142,12 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!1001 &3661577170032470408
+--- !u!1001 &7023466809794105660
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 9096183341562063295}
+    m_TransformParent: {fileID: 3284520909654774027}
     m_Modifications:
     - target: {fileID: 974859389540314427, guid: cb479ccf14f9a0f46b509ddb0d15353f,
         type: 3}
@@ -232,9 +233,9 @@ PrefabInstance:
     - {fileID: 4560280669996866892, guid: cb479ccf14f9a0f46b509ddb0d15353f, type: 3}
     - {fileID: 4560280669564573163, guid: cb479ccf14f9a0f46b509ddb0d15353f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cb479ccf14f9a0f46b509ddb0d15353f, type: 3}
---- !u!4 &4564376757887960243 stripped
+--- !u!4 &7854058574228962311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 974859389540314427, guid: cb479ccf14f9a0f46b509ddb0d15353f,
     type: 3}
-  m_PrefabInstance: {fileID: 3661577170032470408}
+  m_PrefabInstance: {fileID: 7023466809794105660}
   m_PrefabAsset: {fileID: 0}
