@@ -8,7 +8,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
     // Upper/lower bound on stats, value needs tuning/removing
     private int _statLimiter = 8;
-    private GameObject damageText;
+    private GameObject damageText, miniBar;
+    private GameObject myMiniBar = null;
     public int HP; // current hp
     public int MaxHp = 100; // max hp
 
@@ -66,6 +67,12 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         StartCoroutine(applyContinousEffects());
         HP = MaxHp;
         damageText = (GameObject)Resources.Load("Prefabs/DamageText", typeof(GameObject));
+        miniBar = (GameObject)Resources.Load("Prefabs/MiniHealthBar", typeof(GameObject));
+    }
+
+    void Update()
+    {
+        if(myMiniBar != null) myMiniBar.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f);
     }
 
     /// <summary>
@@ -121,12 +128,17 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             modifiedDamage = 0f;
         
         HP -= (int) modifiedDamage;
-        GameObject newDamageText = Instantiate(damageText, new Vector3(transform.position.x + 0.5f, transform.position.y + 1f, transform.position.z + 0.5f), Quaternion.identity);
+        GameObject newDamageText = Instantiate(damageText, transform.position, Quaternion.identity);
         newDamageText.GetComponent<TextMesh>().text = "-" + ((int)modifiedDamage).ToString();
-        newDamageText.transform.Rotate(90, 0, 0);
         if (HP <= 0)
         {
             Kill();
+        }
+        else
+        {
+            if (myMiniBar != null) Destroy(myMiniBar);
+            myMiniBar = Instantiate(miniBar, transform.position, Quaternion.identity);
+            myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
         }
     }
 
@@ -137,11 +149,13 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public void Heal(int healAmount)
     {
         HP += healAmount;
-        GameObject newHealText = Instantiate(damageText, new Vector3(transform.position.x + 0.5f, transform.position.y + 1f, transform.position.z + 0.5f), Quaternion.identity);
+        GameObject newHealText = Instantiate(damageText, transform.position, Quaternion.identity);
         newHealText.GetComponent<TextMesh>().text = "+" + healAmount.ToString();
-        newHealText.transform.Rotate(90, 0, 0);
         if (HP > MaxHp)
             HP = MaxHp;
+        if (myMiniBar != null) Destroy(myMiniBar);
+        myMiniBar = Instantiate(miniBar, transform.position, Quaternion.identity);
+        myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
     }
 
     /// <summary>
