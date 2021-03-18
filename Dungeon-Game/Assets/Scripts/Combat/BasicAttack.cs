@@ -17,7 +17,10 @@ public abstract class BasicAttack : MonoBehaviour
 
     private bool canAttack = true;
 
-
+    /// <summary>
+    /// Try and attack
+    /// </summary>
+    /// <param name="direction"></param>
     public void Attack(Vector3 direction)
     {
         if (canAttack)
