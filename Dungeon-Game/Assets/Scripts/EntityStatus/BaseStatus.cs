@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
     // Upper/lower bound on stats, value needs tuning/removing
     private int _statLimiter = 8;
-
+    private GameObject damageText;
     public int HP; // current hp
     public int MaxHp = 100; // max hp
 
@@ -64,6 +65,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         StartCoroutine(checkStatusEffects());
         StartCoroutine(applyContinousEffects());
         HP = MaxHp;
+        damageText = (GameObject)Resources.Load("Prefabs/DamageText", typeof(GameObject));
     }
 
     /// <summary>
@@ -119,6 +121,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             modifiedDamage = 0f;
         
         HP -= (int) modifiedDamage;
+        GameObject newDamageText = Instantiate(damageText, new Vector3(transform.position.x + 0.5f, transform.position.y + 1f, transform.position.z + 0.5f), Quaternion.identity);
+        newDamageText.GetComponent<TextMesh>().text = "-" + ((int)modifiedDamage).ToString();
+        newDamageText.transform.Rotate(90, 0, 0);
         if (HP <= 0)
         {
             Kill();
@@ -132,6 +137,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public void Heal(int healAmount)
     {
         HP += healAmount;
+        GameObject newHealText = Instantiate(damageText, new Vector3(transform.position.x + 0.5f, transform.position.y + 1f, transform.position.z + 0.5f), Quaternion.identity);
+        newHealText.GetComponent<TextMesh>().text = "+" + healAmount.ToString();
+        newHealText.transform.Rotate(90, 0, 0);
         if (HP > MaxHp)
             HP = MaxHp;
     }

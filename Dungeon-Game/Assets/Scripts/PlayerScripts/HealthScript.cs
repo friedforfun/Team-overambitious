@@ -18,4 +18,5 @@ public class HealthScript : MonoBehaviour
         defenseAmount.GetComponent<Text>().text = player.GetComponent<PlayerStatus>().Defense.ToString();
         speedAmount.GetComponent<Text>().text = player.GetComponent<PlayerStatus>().MoveSpeed.ToString();
     }
+
 }
