@@ -36,7 +36,7 @@ public abstract class NPCOutOfCombat : NPCBaseState
         /*if (coin < 0.2f)
         {
             return new NPCIdle(npc);
-        }
+        }   
         else
         {
             return new NPCWander(npc);
@@ -48,9 +48,19 @@ public abstract class NPCOutOfCombat : NPCBaseState
         }
         else
         {
-            OOCState[] states = (OOCState[]) OOCTransition.GetInvocationList();
-            int index = Random.Range(0, states.Length);
-            return states[index](npc);
+            //int index = Random.Range(0, OOCTransition.GetInvocationList().Length);
+            //System.Delegate x = OOCTransition.GetInvocationList()[index];
+
+            foreach (OOCState state in OOCTransition.GetInvocationList())
+            {
+                float die = Random.value;
+                if (die < 0.35f)
+                {
+                    return state(npc);
+                }
+            }
+
+            return OOCTransition(npc);
         }
     }
 

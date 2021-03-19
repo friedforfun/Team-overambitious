@@ -9,7 +9,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
     private float AttackRange = 3f;
-    CapsuleAttack CA;
+   [SerializeField] CapsuleAttack CA;
 
 
 
@@ -82,16 +82,13 @@ public class CapsuleIdle : NPCIdle
     {
         CombatTransition = (GameObject capsule, GameObject player) => { return new NPCMoveToShootingRange(capsule, player); };
 
-        OOCTransition = (GameObject capsule) => { return new CapsuleWander(capsule); };
-        OOCTransition += (GameObject capsule) => { return new CapsuleIdle(capsule); };
-
+        OOCTransition = (GameObject capsule) => { return new CapsuleIdle(capsule); };
+        OOCTransition += (GameObject capsule) => { return new CapsuleWander(capsule); };
     }
 
     public override void UpdateState()
     {
-
         base.UpdateState();
-
     }
 }
 
@@ -101,15 +98,13 @@ public class CapsuleWander : NPCWander
     {
         CombatTransition = (GameObject capsule, GameObject player) => { return new NPCMoveToShootingRange(capsule, player); };
 
-        OOCTransition = (GameObject capsule) => { return new CapsuleWander(capsule); };
-        OOCTransition += (GameObject capsule) => { return new CapsuleIdle(capsule); };
+        OOCTransition = (GameObject capsule) => { return new CapsuleIdle(capsule); };
+        OOCTransition += (GameObject capsule) => { return new CapsuleWander(capsule); };
     }
 
     public override void UpdateState()
     {
-        
         base.UpdateState();
-
     }
 }
 
@@ -124,26 +119,20 @@ public class NPCMoveToShootingRange : NPCMoveToPlayer
         if (CloseToPlayer())
             stateController.SetState(new RangedAttack(npc, player));
     }
-
 }
 
 public class RangedAttack : NPCInCombat
 {
-
     public RangedAttack(GameObject npc, GameObject player) : base(npc, player)
     {
-
     }
     public override void UpdateState()
     {
-
         stateController.CallAttack(player);
         if (!CloseToPlayer())
         {
             stateController.SetState(new NPCMoveToShootingRange(npc, player));
-
         }
-
     }
 }
 
