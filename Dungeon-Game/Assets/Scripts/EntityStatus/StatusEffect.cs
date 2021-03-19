@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,6 +64,7 @@ public abstract class Buff : StatusEffect
 
     }
 }
+
 
 /// <summary>
 /// Reduce player movespeed for duration, stackable
