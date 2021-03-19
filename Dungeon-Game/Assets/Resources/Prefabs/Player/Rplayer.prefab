@@ -216,6 +216,20 @@ MonoBehaviour:
   m_Text: ':
 
 '
+--- !u!114 &2005087703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3740303946064350186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58bca27d5a4cca49899d12b91303130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 172588799627847989}
+  distance: 41.91
 --- !u!1 &4886530103305245806
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +963,7 @@ PrefabInstance:
     - target: {fileID: 4218505519576263870, guid: c317589ec06558e469c3476d607f3488,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4218505519576263870, guid: c317589ec06558e469c3476d607f3488,
         type: 3}
@@ -959,7 +973,7 @@ PrefabInstance:
     - target: {fileID: 4218505519576263870, guid: c317589ec06558e469c3476d607f3488,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4218505519576263870, guid: c317589ec06558e469c3476d607f3488,
         type: 3}
@@ -999,7 +1013,32 @@ PrefabInstance:
     - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
         type: 3}
       propertyPath: m_ClearFlags
-      value: 4
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1792
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1792
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c317589ec06558e469c3476d607f3488, type: 3}
@@ -1196,6 +1235,11 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 172588799627847989}
+    - target: {fileID: 3758589088692577245, guid: 7d97acb7fdd2e42468d9485c07fb3a12,
+        type: 3}
+      propertyPath: distance
+      value: 9.87
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d97acb7fdd2e42468d9485c07fb3a12, type: 3}
 --- !u!20 &437401628416300744 stripped
@@ -1222,6 +1266,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 437401628416300744}
+    - target: {fileID: 1652275704375916673, guid: ada9f0e36e820e94193f083b606d933b,
+        type: 3}
+      propertyPath: m_PlaneDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1652275704375916674, guid: ada9f0e36e820e94193f083b606d933b,
         type: 3}
       propertyPath: m_Name
@@ -1331,6 +1380,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652275704470740651, guid: ada9f0e36e820e94193f083b606d933b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -197.61002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ada9f0e36e820e94193f083b606d933b, type: 3}
