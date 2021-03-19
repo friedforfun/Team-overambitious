@@ -227,21 +227,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lplayer
       objectReference: {fileID: 0}
-    - target: {fileID: 2028051484439885997, guid: fec78edd0fdb72e49977498b24e1fb3e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2028051484439885997, guid: fec78edd0fdb72e49977498b24e1fb3e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2474094925060271069, guid: fec78edd0fdb72e49977498b24e1fb3e,
-        type: 3}
-      propertyPath: _MoveSpeed
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5358294174328883980, guid: fec78edd0fdb72e49977498b24e1fb3e,
         type: 3}
       propertyPath: m_RootOrder
@@ -500,26 +485,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rplayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 2474094925060271069, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
-        type: 3}
-      propertyPath: _MoveSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2474094925060271070, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4587092136864441020, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4587092136864441020, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5358294174328883980, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
         type: 3}

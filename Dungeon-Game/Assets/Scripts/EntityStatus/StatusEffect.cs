@@ -46,6 +46,8 @@ public abstract class StatusEffect
 /// </summary>
 public abstract class Debuff : StatusEffect
 {
+    public Sprite icon;
+
     public Debuff(float duration, bool stackable) : base(duration, stackable)
     {
 
@@ -73,6 +75,7 @@ public class SlowStatus: Debuff
     public SlowStatus(int slowAmount, float duration) : base(duration, true)
     {
         this.slowAmount = slowAmount;
+        icon = (Sprite)Resources.Load("Images/SlowIcon", typeof(Sprite));
     }
 
     public override void ApplyStatus(BaseStatus status)
@@ -96,6 +99,7 @@ public class PoisonedStatus : Debuff
     public PoisonedStatus(int damageTick, float duration) : base(duration, false)
     {
         this.damageTick = damageTick;
+        icon = (Sprite)Resources.Load("Images/PoisonIcon", typeof(Sprite));
     }
 
     public override void ContinuousEffect(BaseStatus status)

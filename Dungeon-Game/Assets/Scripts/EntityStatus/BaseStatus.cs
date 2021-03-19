@@ -8,8 +8,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
     // Upper/lower bound on stats, value needs tuning/removing
     private int _statLimiter = 8;
-    private GameObject damageText, miniBar;
-    private GameObject myMiniBar = null;
+    private GameObject damageText, miniBar, statusIcon, myMiniBar = null;
+    private GameObject[] myStatusIcons = new GameObject[] { null, null };
     public int HP; // current hp
     public int MaxHp = 100; // max hp
 
@@ -58,8 +58,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     [SerializeField] private int _Defense = 0;
     private float defPointValue = 0.1f; // The value of each point of Defense
 
-    public List<Debuff> Debuffs;
-    public List<Buff> Buffs;
+    public List<Debuff> Debuffs = new List<Debuff>();
+    public List<Buff> Buffs = new List<Buff>();
 
     void Start()
     {
@@ -68,11 +68,16 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         HP = MaxHp;
         damageText = (GameObject)Resources.Load("Prefabs/DamageText", typeof(GameObject));
         miniBar = (GameObject)Resources.Load("Prefabs/MiniHealthBar", typeof(GameObject));
+        statusIcon = (GameObject)Resources.Load("Prefabs/StatusIcon", typeof(GameObject));
     }
 
     void Update()
     {
         if(myMiniBar != null) myMiniBar.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f);
+        foreach(GameObject icon in myStatusIcons)
+        {
+            if (icon != null) icon.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, transform.position.z + 1f);
+        }
     }
 
     /// <summary>
@@ -94,6 +99,10 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         // Apply debuff and add it to debuffs on character
         debuff.ApplyStatus(this);
         Debuffs.Add(debuff);
+        if (myStatusIcons[0] != null) Destroy(myStatusIcons[0]);
+        myStatusIcons[0] = Instantiate(statusIcon, transform.position, Quaternion.identity);
+        myStatusIcons[0].GetComponent<SpriteRenderer>().sprite = debuff.icon;
+        myStatusIcons[0].transform.Rotate(90, 0, 0);
     }
 
     /// <summary>
@@ -137,7 +146,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         else
         {
             if (myMiniBar != null) Destroy(myMiniBar);
-            myMiniBar = Instantiate(miniBar, transform.position, Quaternion.identity);
+            myMiniBar = Instantiate(miniBar, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
             myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
         }
     }
@@ -209,6 +218,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
                     {
                         debuff.ClearStatus(this);
                         Debuffs.Remove(debuff);
+                        Destroy(myStatusIcons[0]);
                     }
                 }
                 foreach (Buff buff in Buffs)
