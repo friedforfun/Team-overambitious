@@ -19,7 +19,7 @@ public class ContextSteering : MonoBehaviour
 
     // These context maps represent the weights for movement in a worldspace direction -
     // contextMap[0] is North, contextMap[2] is East, contextMap[4] is South, contextMap[6] is West, others are in between those points
-    private static int contextMapResolution = 12;
+    private static int contextMapResolution = 18;
     private float[] contextMap = new float[contextMapResolution];
     private float[] chaseMap = new float[contextMapResolution];
     private float[] avoidMap = new float[contextMapResolution];
