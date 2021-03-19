@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate NPCInCombat CombatState(GameObject npc, GameObject player);
+public delegate NPCOutOfCombat OOCState(GameObject npc);
+
 public abstract class NPCOutOfCombat : NPCBaseState
 {
     private float detectRange;
@@ -11,6 +13,7 @@ public abstract class NPCOutOfCombat : NPCBaseState
     private GameObject[] players;
 
     protected CombatState CombatTransition;
+    protected OOCState OOCTransition;
 
     public NPCOutOfCombat(GameObject npc) : base(npc)
     {
@@ -30,15 +33,24 @@ public abstract class NPCOutOfCombat : NPCBaseState
     }
     protected NPCOutOfCombat nextState()
     {
-        float coin = Random.value;
-
-        if (coin < 0.2f)
+        /*if (coin < 0.2f)
         {
             return new NPCIdle(npc);
         }
         else
         {
             return new NPCWander(npc);
+        }*/
+
+        if (OOCTransition == null)
+        {
+            throw new UnassignedReferenceException("Out of combat transition unassigned in heirarchy");
+        }
+        else
+        {
+            OOCState[] states = (OOCState[]) OOCTransition.GetInvocationList();
+            int index = Random.Range(0, states.Length);
+            return states[index](npc);
         }
     }
 
