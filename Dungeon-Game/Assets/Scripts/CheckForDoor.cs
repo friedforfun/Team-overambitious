@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckForWall : MonoBehaviour
+public class CheckForDoor : MonoBehaviour
 {
 
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.CompareTag("Door"))
         {
-            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
         }
     }

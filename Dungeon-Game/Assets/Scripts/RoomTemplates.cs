@@ -18,12 +18,9 @@ public class RoomTemplates : MonoBehaviour
     private int FramesNoRooms = 0;
     public bool GenerationComplete = false;
     public float FurthestPoint = 0;
-    public GameObject LeftScene;
-    public bool BossSpawned = false;
 
     public float BossRoomX;
     public float BossRoomZ;
-
 
 
     // Start is called before the first frame update

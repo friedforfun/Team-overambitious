@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private CharacterController controller;
     [SerializeField] private PlayerStatus playerStats;
-    [SerializeField] private PlayerAttack playerAttack;
+
 
     private Vector2 orientDirection;
     private Vector2 moveInput;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         applyMove();
         if (AttackButtonDown)
         {
-            playerAttack.Attack(new Vector3(orientDirection.x, 0, orientDirection.y));
+            // Call Attack here
         }
     }
 
@@ -40,9 +40,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnOrientPlayer(InputAction.CallbackContext context)
     {
-        Vector2 tempDir = context.ReadValue<Vector2>();
-        if (tempDir.x != 0 || tempDir.y != 0)
-            orientDirection = tempDir.normalized;
+        orientDirection = context.ReadValue<Vector2>();
     }
 
     public void OnBasicAttack(InputAction.CallbackContext context)
@@ -62,7 +60,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void applyMove()
     {
-        controller.SimpleMove((new Vector3(moveInput.x, 0, moveInput.y) /* * Time.deltaTime */ * baseMoveSpeed) * Mathf.Abs(playerStats.MoveSpeedModifier()));
+        controller.Move((new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * baseMoveSpeed) * Mathf.Abs(playerStats.MoveSpeedModifier()));
     }
 
     /// <summary>
@@ -74,7 +72,7 @@ public class PlayerController : MonoBehaviour
         Vector3 desiredDirection = new Vector3(orientDirection.x, 0, orientDirection.y);
 
         // Only look in the direction of movement
-        if (desiredDirection.x != 0f || desiredDirection.z != 0f)
+        if (desiredDirection.x != 0f && desiredDirection.z != 0f)
         {
             Quaternion rotationToDirection = Quaternion.LookRotation(desiredDirection, Vector3.up);
 

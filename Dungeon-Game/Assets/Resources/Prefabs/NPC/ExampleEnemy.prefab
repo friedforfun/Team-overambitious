@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3660927768457119478}
   - component: {fileID: 3660927768457119479}
   m_Layer: 0
-  m_Name: ExampleEnemy
+  m_Name: Capsule
   m_TagString: Hostile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,10 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChaseDistance: 10
-  StopChaseDistance: 5
-  AvoidDistance: 2
-  WaypointObject: {fileID: 4959129530293713088, guid: 821e368745a21f646a9ff1b6a2d2de3c,
-    type: 3}
+  StopChaseDistance: 1.5
+  AvoidDistance: 1.3
 --- !u!143 &3660927768457119241
 CharacterController:
   m_ObjectHideFlags: 0
@@ -128,8 +126,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 0
-  m_StepOffset: 0
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -148,8 +146,6 @@ MonoBehaviour:
   steer: {fileID: 3660927768457119472}
   controller: {fileID: 3660927768457119241}
   stats: {fileID: 3660927768457119479}
-  agent: {fileID: 0}
-  target: {fileID: 0}
 --- !u!114 &3660927768457119479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   MaxHp: 100
-  _MoveSpeed: 8
+  _MoveSpeed: 5
   _AttackPower: 0
   _Defense: 0
