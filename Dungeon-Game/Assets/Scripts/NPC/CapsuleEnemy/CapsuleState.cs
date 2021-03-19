@@ -75,6 +75,24 @@ public class CapsuleState : MonoBehaviour, IHaveState
 
 }
 
+public class CapsuleWander : NPCWander
+{
+    public CapsuleWander(GameObject npc) : base(npc)
+    {
+        CombatTransition += (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
+            
+        
+            
+    }
+
+    public override void UpdateState()
+    {
+        
+        base.UpdateState();
+
+    }
+}
+
 public class NPCMoveToShootingRange : NPCMoveToPlayer
 {
     public NPCMoveToShootingRange(GameObject npc, GameObject player) : base(npc, player)
