@@ -36,7 +36,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     // Start is called before the first frame update
     void Start()
     {
-        CurrentState = new NPCIdle(gameObject);
+        CurrentState = new CapsuleIdle(gameObject);
     }
 
     // Update is called once per frame
@@ -75,6 +75,24 @@ public class CapsuleState : MonoBehaviour, IHaveState
 
 }
 
+
+public class CapsuleIdle : NPCIdle
+{
+    public CapsuleIdle(GameObject npc) : base(npc)
+    {
+        CombatTransition += (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
+
+
+    }
+
+    public override void UpdateState()
+    {
+
+        base.UpdateState();
+
+    }
+}
+
 public class CapsuleWander : NPCWander
 {
     public CapsuleWander(GameObject npc) : base(npc)
@@ -82,7 +100,6 @@ public class CapsuleWander : NPCWander
         CombatTransition += (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
             
         
-            
     }
 
     public override void UpdateState()
