@@ -48,8 +48,13 @@ public class BulletBehaviour : MonoBehaviour, IProjectile
             applyDamage.Damage(damage);
             if (debuffs != null)
             {
+                //applyDamage.AddDebuff(debuffs());
                 foreach (AttackDebuffs debuff in debuffs.GetInvocationList())
-                    applyDamage.AddDebuff(debuff());
+                {
+                    Debuff d = debuff();
+                    applyDamage.AddDebuff(d);
+                    Debug.Log($"Added Debuff {d}");
+                }
             }
 
         }
