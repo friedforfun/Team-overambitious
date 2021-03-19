@@ -42,7 +42,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     [SerializeField] private int _AttackPower = 0;
     private float attackPointValue = 0.1f; // The value of each point of AttackPower
 
-    private float AttackSpeed; // Number of basic attacks per second (Not a stat but could be)
+    [SerializeField] private float AttackSpeed; // Number of basic attacks per second (Not a stat but could be)
 
     public int Defense // Incoming damage mitigation stat
     {
@@ -61,6 +61,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public List<Debuff> Debuffs = new List<Debuff>();
     public List<Buff> Buffs = new List<Buff>();
 
+    private bool isDead = false;
     void Start()
     {
         StartCoroutine(checkStatusEffects());
@@ -87,14 +88,21 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     /// <param name="debuff">The debuff being added</param>
     public void AddDebuff<T>(T debuff) where T : Debuff
     {
+        if (isDead)
+            return;
+
         if (!debuff.Stackable())
         {
             // Debuff is not stackable, remove the current application of this debuff
-            foreach (T d in Debuffs.OfType<T>())
+            if (Debuffs != null)
             {
-                d.ClearStatus(this);
-                Debuffs.Remove(d);
+                foreach (T d in Debuffs.OfType<T>())
+                {
+                    d.ClearStatus(this);
+                    Debuffs.Remove(d);
+                }
             }
+            
         }
         // Apply debuff and add it to debuffs on character
         debuff.ApplyStatus(this);
@@ -172,6 +180,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     /// </summary>
     public void Kill()
     {
+        isDead = true;
         Debug.Log("TODO: Kill this unit");
     }
 
@@ -210,6 +219,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     {
         for (; ; )
         {
+            if (isDead)
+                break;
+
             if (Debuffs != null)
             {
                 foreach (Debuff debuff in Debuffs)
@@ -242,6 +254,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     {
         for (; ; )
         {
+            if (isDead)
+                break;
+
             if (Buffs != null)
             {
                 foreach (Buff buff in Buffs)
