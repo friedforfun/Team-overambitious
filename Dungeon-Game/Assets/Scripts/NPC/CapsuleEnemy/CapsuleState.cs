@@ -80,8 +80,10 @@ public class CapsuleIdle : NPCIdle
 {
     public CapsuleIdle(GameObject npc) : base(npc)
     {
-        CombatTransition += (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
+        CombatTransition = (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
 
+        OOCTransition = (GameObject capsule) => { return new CapsuleWander(capsule); };
+        OOCTransition += (GameObject capsule) => { return new CapsuleIdle(capsule); };
 
     }
 
@@ -97,9 +99,10 @@ public class CapsuleWander : NPCWander
 {
     public CapsuleWander(GameObject npc) : base(npc)
     {
-        CombatTransition += (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
-            
-        
+        CombatTransition = (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
+
+        OOCTransition = (GameObject capsule) => { return new CapsuleWander(capsule); };
+        OOCTransition += (GameObject capsule) => { return new CapsuleIdle(capsule); };
     }
 
     public override void UpdateState()
