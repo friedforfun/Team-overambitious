@@ -9,6 +9,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
     private float AttackRange = 3f;
+    CapsuleAttack CA;
 
 
 
@@ -63,4 +64,48 @@ public class CapsuleState : MonoBehaviour, IHaveState
     {
         return stats.MoveSpeedModifier();
     }
+
+    public void CallAttack(GameObject target)
+    {
+
+        CA.Attack(target.transform.position-transform.position);
+    }
+
+
+
 }
+
+public class NPCMoveToShootingRange : NPCMoveToPlayer
+{
+    public NPCMoveToShootingRange(GameObject npc, GameObject player) : base(npc, player)
+    {
+    }
+    public override void UpdateState()
+    {
+        base.UpdateState();
+        if (CloseToPlayer())
+            stateController.SetState(new RangedAttack(npc, player));
+    }
+
+}
+
+public class RangedAttack : NPCInCombat
+{
+
+    public RangedAttack(GameObject npc, GameObject player) : base(npc, player)
+    {
+
+    }
+    public override void UpdateState()
+    {
+
+        stateController.CallAttack(player);
+        if (!CloseToPlayer())
+        {
+            stateController.SetState(new NPCMoveToShootingRange(npc, player));
+
+        }
+
+    }
+}
+

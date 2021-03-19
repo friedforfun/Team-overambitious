@@ -149,6 +149,14 @@ public abstract class NPCInCombat : NPCBaseState
         base.OnStateLeave();
         steer.RemoveTargetTag("Player");
     }
+
+    protected bool CloseToPlayer()
+    {
+        if (directionToTarget(player).magnitude < 5)
+            return true;
+        else
+            return false;
+    }
 }
 
 
@@ -175,4 +183,6 @@ public class NPCMoveToPlayer : NPCInCombat
         steer.Move(stateController.GetMoveSpeedModifier());
 
     }
+
 }
+
