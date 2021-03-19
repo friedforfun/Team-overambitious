@@ -14,4 +14,6 @@ public interface IHaveState
     float GetAttackRange();
 
     float GetMoveSpeedModifier();
+
+    void CallAttack(GameObject target);
 }

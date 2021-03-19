@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate NPCInCombat CombatState(GameObject npc, GameObject player);
+public delegate NPCOutOfCombat OOCState(GameObject npc);
+
 public abstract class NPCOutOfCombat : NPCBaseState
 {
     private float detectRange;
@@ -11,6 +13,7 @@ public abstract class NPCOutOfCombat : NPCBaseState
     private GameObject[] players;
 
     protected CombatState CombatTransition;
+    protected OOCState OOCTransition;
 
     public NPCOutOfCombat(GameObject npc) : base(npc)
     {
@@ -30,15 +33,34 @@ public abstract class NPCOutOfCombat : NPCBaseState
     }
     protected NPCOutOfCombat nextState()
     {
-        float coin = Random.value;
-
-        if (coin < 0.2f)
+        /*if (coin < 0.2f)
         {
             return new NPCIdle(npc);
-        }
+        }   
         else
         {
             return new NPCWander(npc);
+        }*/
+
+        if (OOCTransition == null)
+        {
+            throw new UnassignedReferenceException("Out of combat transition unassigned in heirarchy");
+        }
+        else
+        {
+            //int index = Random.Range(0, OOCTransition.GetInvocationList().Length);
+            //System.Delegate x = OOCTransition.GetInvocationList()[index];
+
+            foreach (OOCState state in OOCTransition.GetInvocationList())
+            {
+                float die = Random.value;
+                if (die < 0.35f)
+                {
+                    return state(npc);
+                }
+            }
+
+            return OOCTransition(npc);
         }
     }
 
@@ -161,6 +183,14 @@ public abstract class NPCInCombat : NPCBaseState
         base.OnStateLeave();
         steer.RemoveTargetTag("Player");
     }
+
+    protected bool CloseToPlayer()
+    {
+        if (directionToTarget(player).magnitude < 5)
+            return true;
+        else
+            return false;
+    }
 }
 
 
@@ -187,4 +217,6 @@ public class NPCMoveToPlayer : NPCInCombat
         steer.Move(stateController.GetMoveSpeedModifier());
 
     }
+
 }
+
