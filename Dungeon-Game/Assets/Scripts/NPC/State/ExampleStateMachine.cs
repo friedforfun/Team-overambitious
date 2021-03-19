@@ -48,4 +48,9 @@ public class ExampleStateMachine : MonoBehaviour, IHaveState
     {
         throw new System.NotImplementedException();
     }
+
+    public void CallAttack(GameObject target)
+    {
+        throw new System.NotImplementedException();
+    }
 }
