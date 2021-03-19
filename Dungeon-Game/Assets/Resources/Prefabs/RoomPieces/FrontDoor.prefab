@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4930450768596586781}
   - component: {fileID: 5325658752267597369}
   - component: {fileID: 883052053432093445}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Section1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3383479360079376034}
   - component: {fileID: 5245309390702145616}
   - component: {fileID: 4038616865326104718}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FrontDoor
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 453767479377308610}
   - component: {fileID: 7844210867905888367}
   - component: {fileID: 3654799756527496749}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Section2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
