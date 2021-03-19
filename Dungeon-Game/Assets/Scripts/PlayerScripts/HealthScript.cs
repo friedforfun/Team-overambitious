@@ -17,7 +17,7 @@ public class HealthScript : MonoBehaviour
         if(player.transform.position.z > 5f && !tested)
         {
             tested = true;
-            player.GetComponent<PlayerStatus>().AddDebuff(new PoisonedStatus(1,10f));
+            player.GetComponent<PlayerStatus>().AddDebuff(new PoisonedStatus(1,5f));
             player.GetComponent<PlayerStatus>().AddDebuff(new SlowStatus(1, 10f));
         }
         healthBar.GetComponent<Image>().fillAmount = (float)player.GetComponent<PlayerStatus>().HP/ player.GetComponent<PlayerStatus>().MaxHp;

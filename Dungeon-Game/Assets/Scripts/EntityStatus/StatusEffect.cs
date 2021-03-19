@@ -47,6 +47,7 @@ public abstract class StatusEffect
 public abstract class Debuff : StatusEffect
 {
     public Sprite icon;
+    public GameObject iconObject;
 
     public Debuff(float duration, bool stackable) : base(duration, stackable)
     {

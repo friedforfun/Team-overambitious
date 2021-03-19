@@ -9,7 +9,6 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     // Upper/lower bound on stats, value needs tuning/removing
     private int _statLimiter = 8;
     private GameObject damageText, miniBar, statusIcon, myMiniBar = null;
-    private GameObject[] myStatusIcons = new GameObject[] { null, null };
     public int HP; // current hp
     public int MaxHp = 100; // max hp
 
@@ -74,10 +73,12 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 
     void Update()
     {
-        if(myMiniBar != null) myMiniBar.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f);
-        foreach(GameObject icon in myStatusIcons)
+        float zModifier = transform.position.z + 1f;
+        if (myMiniBar != null) myMiniBar.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, zModifier);
+        foreach (Debuff d in Debuffs)
         {
-            if (icon != null) icon.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, transform.position.z + 1f);
+            d.iconObject.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, zModifier);
+            zModifier -= 0.65f;
         }
     }
 
@@ -98,6 +99,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             {
                 foreach (T d in Debuffs.OfType<T>())
                 {
+                    Destroy(d.iconObject);
                     d.ClearStatus(this);
                     Debuffs.Remove(d);
                 }
@@ -107,10 +109,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         // Apply debuff and add it to debuffs on character
         debuff.ApplyStatus(this);
         Debuffs.Add(debuff);
-        if (myStatusIcons[0] != null) Destroy(myStatusIcons[0]);
-        myStatusIcons[0] = Instantiate(statusIcon, transform.position, Quaternion.identity);
-        myStatusIcons[0].GetComponent<SpriteRenderer>().sprite = debuff.icon;
-        myStatusIcons[0].transform.Rotate(90, 0, 0);
+        debuff.iconObject = Instantiate(statusIcon, new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
+        debuff.iconObject.GetComponent<SpriteRenderer>().sprite = debuff.icon;
+        debuff.iconObject.transform.Rotate(90, 0, 0);
     }
 
     /// <summary>
@@ -224,22 +225,32 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 
             if (Debuffs != null)
             {
-                foreach (Debuff debuff in Debuffs)
+                List<Debuff> debuffsToRemove = new List<Debuff>();
+                for(int i=0; i<Debuffs.Count; i++)
                 {
-                    if (debuff.Expired())
+                    if (Debuffs.ElementAt(i).Expired())
                     {
-                        debuff.ClearStatus(this);
-                        Debuffs.Remove(debuff);
-                        Destroy(myStatusIcons[0]);
+                        Destroy(Debuffs.ElementAt(i).iconObject);
+                        Debuffs.ElementAt(i).ClearStatus(this);
+                        debuffsToRemove.Add(Debuffs.ElementAt(i));
                     }
                 }
-                foreach (Buff buff in Buffs)
+                foreach (Debuff debuff in debuffsToRemove)
                 {
-                    if (buff.Expired())
+                    Debuffs.Remove(debuff);
+                }
+                List<Buff> buffsToRemove = new List<Buff>();
+                for (int i = 0; i < Buffs.Count; i++)
+                {
+                    if (Buffs.ElementAt(i).Expired())
                     {
-                        buff.ClearStatus(this);
-                        Buffs.Remove(buff);
+                        Buffs.ElementAt(i).ClearStatus(this);
+                        buffsToRemove.Add(Buffs.ElementAt(i));
                     }
+                }
+                foreach (Buff buff in buffsToRemove)
+                {
+                    Buffs.Remove(buff);
                 }
             }
             yield return new WaitForSeconds(0.1f);
