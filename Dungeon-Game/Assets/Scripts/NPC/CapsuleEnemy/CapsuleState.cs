@@ -9,7 +9,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
     private float AttackRange = 3f;
-    CapsuleAttack CA;
+    [SerializeField] CapsuleAttack CA;
 
 
 
@@ -80,7 +80,7 @@ public class CapsuleIdle : NPCIdle
 {
     public CapsuleIdle(GameObject npc) : base(npc)
     {
-        CombatTransition += (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
+        CombatTransition = (GameObject capsule, GameObject player) => { return new NPCMoveToShootingRange(capsule, player); };
 
 
     }
@@ -97,7 +97,7 @@ public class CapsuleWander : NPCWander
 {
     public CapsuleWander(GameObject npc) : base(npc)
     {
-        CombatTransition += (GameObject npc, GameObject player) => { return new NPCMoveToShootingRange(npc, player); };
+        CombatTransition = (GameObject capsule, GameObject player) => { return new NPCMoveToShootingRange(capsule, player); };
             
         
     }
