@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6695003496662017949}
   - component: {fileID: 3728333413778342771}
   - component: {fileID: 7561664383047983877}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightDoor
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 3952170987564608119}
   - component: {fileID: 3837894160054194800}
   - component: {fileID: 9101301429959748546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Section2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 8212517149708754740}
   - component: {fileID: 7815513244426330751}
   - component: {fileID: 2012626721145531680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Section1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
