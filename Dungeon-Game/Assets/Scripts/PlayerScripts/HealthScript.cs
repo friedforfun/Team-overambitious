@@ -5,18 +5,27 @@ using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject healthBar;
-    public GameObject damageAmount;
-    public GameObject defenseAmount;
-    public GameObject speedAmount;
+    public GameObject player, healthBar, damageAmount, defenseAmount, speedAmount;
+    private PlayerStatus playerStatus;
+    private Image healthImage;
+    private Text damageText, defenseText, speedText;
+
+
+    void Start()
+    {
+        playerStatus = player.GetComponent<PlayerStatus>();
+        healthImage = healthBar.GetComponent<Image>();
+        damageText = damageAmount.GetComponent<Text>();
+        defenseText = defenseAmount.GetComponent<Text>();
+        speedText = speedAmount.GetComponent<Text>();
+    }
 
     void Update()
     {
-        healthBar.GetComponent<Image>().fillAmount = (float)player.GetComponent<PlayerStatus>().HP/ player.GetComponent<PlayerStatus>().MaxHp;
-        damageAmount.GetComponent<Text>().text = player.GetComponent<PlayerStatus>().AttackPower.ToString();
-        defenseAmount.GetComponent<Text>().text = player.GetComponent<PlayerStatus>().Defense.ToString();
-        speedAmount.GetComponent<Text>().text = player.GetComponent<PlayerStatus>().MoveSpeed.ToString();
+        healthImage.fillAmount = (float)playerStatus.HP/ playerStatus.MaxHp;
+        damageText.text = playerStatus.AttackPower.ToString();
+        defenseText.text = playerStatus.Defense.ToString();
+        speedText.text = playerStatus.MoveSpeed.ToString();
     }
 
 }
