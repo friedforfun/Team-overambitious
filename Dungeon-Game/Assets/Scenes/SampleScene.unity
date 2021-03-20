@@ -800,7 +800,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-25372
+  m_Name: pb_Mesh-7234
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1235,6 +1235,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4268230383274311432, guid: 5e4825b1c0769204096ae933fec53c10,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268230383274311432, guid: 5e4825b1c0769204096ae933fec53c10,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268230383274311433, guid: 5e4825b1c0769204096ae933fec53c10,
+        type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6219322155482034757, guid: 5e4825b1c0769204096ae933fec53c10,
         type: 3}
       propertyPath: m_Name
