@@ -4,13 +4,17 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+public delegate void DamageTakenEvent();
+
 public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
     // Upper/lower bound on stats, value needs tuning/removing
     private int _statLimiter = 8;
-    private GameObject damageText, miniBar, statusIcon, myMiniBar = null;
+    protected GameObject damageText, miniBar, statusIcon, myMiniBar = null;
     public int HP; // current hp
     public int MaxHp = 100; // max hp
+
+    protected DamageTakenEvent OnDamageTaken;
 
     public int MoveSpeed // Movement speed stat points
     {
@@ -154,10 +158,15 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         }
         else
         {
+            if (OnDamageTaken != null)
+                OnDamageTaken();
+            /*
             if (myMiniBar != null) Destroy(myMiniBar);
             myMiniBar = Instantiate(miniBar, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
             myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
+            */
         }
+        
     }
 
     /// <summary>
