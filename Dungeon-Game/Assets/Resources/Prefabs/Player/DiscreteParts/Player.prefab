@@ -4910,7 +4910,18 @@ MonoBehaviour:
     m_ActionId: 3f76e5b3-1be0-48f1-859d-02d03e666a4a
     m_ActionName: Gameplay/OrientPlayer[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 769572320}
+        m_MethodName: OnCastAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a5ea26a8-5efe-4b4b-8e88-1390d8abb4a8
     m_ActionName: Gameplay/CastAbility[/Mouse/rightButton]
   - m_PersistentCalls:
