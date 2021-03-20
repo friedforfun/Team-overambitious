@@ -16,4 +16,6 @@ public interface IHaveState
     float GetMoveSpeedModifier();
 
     void CallAttack(GameObject target);
+
+    void GetAnimationState(bool active);
 }

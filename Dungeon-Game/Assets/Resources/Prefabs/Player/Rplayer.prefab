@@ -1035,6 +1035,11 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 1792
       objectReference: {fileID: 0}
+    - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1792
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c317589ec06558e469c3476d607f3488, type: 3}
 --- !u!1 &3740303946064350186 stripped
@@ -1375,6 +1380,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652275704470740651, guid: ada9f0e36e820e94193f083b606d933b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -197.61002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ada9f0e36e820e94193f083b606d933b, type: 3}
