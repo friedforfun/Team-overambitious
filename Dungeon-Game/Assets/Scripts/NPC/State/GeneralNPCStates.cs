@@ -186,14 +186,12 @@ public abstract class NPCInCombat : NPCBaseState
 
     protected bool CloseToPlayer()
     {
-        if (directionToTarget(player).magnitude < 5)
+        if (directionToTarget(player).magnitude < 1)
             return true;
         else
             return false;
     }
 }
-
-
 public class NPCMoveToPlayer : NPCInCombat
 {
     public NPCMoveToPlayer(GameObject npc, GameObject player) : base(npc, player)

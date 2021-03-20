@@ -8,6 +8,8 @@ TagManager:
   - Door
   - SpawnTag
   - Hostile
+  - Wall
+  - Spikes
   layers:
   - Default
   - TransparentFX
