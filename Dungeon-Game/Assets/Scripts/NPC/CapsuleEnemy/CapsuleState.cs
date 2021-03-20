@@ -67,12 +67,13 @@ public class CapsuleState : MonoBehaviour, IHaveState
 
     public void CallAttack(GameObject target)
     {
-
         CA.Attack(target.transform.position-transform.position);
     }
 
-
-
+    public void GetAnimationState(bool active)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 

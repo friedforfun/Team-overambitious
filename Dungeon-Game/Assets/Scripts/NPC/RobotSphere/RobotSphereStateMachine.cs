@@ -63,6 +63,11 @@ public class RobotSphereStateMachine : MonoBehaviour, IHaveState
     {
         throw new System.NotImplementedException();
     }
+
+    public void GetAnimationState(bool active)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 
