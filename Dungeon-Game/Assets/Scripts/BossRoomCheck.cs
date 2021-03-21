@@ -33,7 +33,7 @@ public class BossRoomCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("SceneFlipped == " + MirrorScript.SceneFlipped);
+        //Debug.Log("SceneFlipped == " + MirrorScript.SceneFlipped);
         if (MirrorScript.SceneFlipped == false)
         {
 

@@ -26,6 +26,9 @@ public class MirrorRoom : MonoBehaviour
             GameObject SceneRight = Instantiate(SceneLeft, spawnPoint, Quaternion.identity);
             GameObject playerR = Instantiate(PlayerR, spawnPoint, Quaternion.identity);
             SceneFlipped = true;
+
+            // Emit procedural gen finished event
+            EventManager.TriggerEvent("GenerationComplete");
         }
     }
 }

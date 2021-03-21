@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973085342617645442}
+  - component: {fileID: 8147970591133302942}
+  - component: {fileID: 5711716908165600957}
   - component: {fileID: 1973085342617645453}
   m_Layer: 0
   m_Name: ScriptHolder
@@ -31,6 +33,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8147970591133302942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973085342617645452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fce68ed5274c8c4db226ae95ecad71e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5711716908165600957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973085342617645452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1853fabcfc255cd44b554527ba5782e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surface: {fileID: 0}
 --- !u!114 &1973085342617645453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,3 +96,9 @@ MonoBehaviour:
   MinimumRooms: 10
   MaximumRooms: 200
   MaxFramesNoRooms: 100
+  GenerationComplete: 0
+  FurthestPoint: 0
+  LeftScene: {fileID: 0}
+  BossSpawned: 0
+  BossRoomX: 0
+  BossRoomZ: 0
