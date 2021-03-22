@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class TrapAttack : BasicAttack
 {
-    [SerializeField] public SpikeCollided spikeCollider;
-
-    
-
+    private SpikeCollided spikeCollider;
     public override void PerformAttack(Vector3 direction, float attackPower)
     {
         spikeCollider.MeleeAttack(attackPower, null);
