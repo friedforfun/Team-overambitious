@@ -24,6 +24,7 @@ public class GenerateContents : MonoBehaviour
     {
         framecount = 0;
         Templates = GameObject.Find("ScriptHolder").GetComponent<RoomTemplates>();
+        EnemyRoomMax = (int) Mathf.Ceil(Templates.AverageRoomScore * Random.Range(0.6f, 1.4f));
     }
 
     // Update is called once per frame
@@ -76,7 +77,7 @@ public class GenerateContents : MonoBehaviour
 
             var Obstacle = Obstacles[ObstacleIndex];
             ObstacleValue += 1;
-            Instantiate(Obstacles[ObstacleIndex], ObstacleSpawn.transform.position, Quaternion.identity, transform.parent.gameObject.transform);
+            Instantiate(Obstacles[ObstacleIndex], ObstacleSpawn.transform.position, Quaternion.identity, transform.gameObject.transform);
             ObstacleSpawns.Remove(ObstacleSpawn);
 
         }
