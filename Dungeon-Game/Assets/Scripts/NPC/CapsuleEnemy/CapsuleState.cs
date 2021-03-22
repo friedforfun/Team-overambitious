@@ -9,6 +9,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
     private float AttackRange = 3f;
+   [SerializeField] CapsuleAttack CA;
 
 
 
@@ -35,7 +36,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     // Start is called before the first frame update
     void Start()
     {
-        CurrentState = new NPCIdle(gameObject);
+        CurrentState = new CapsuleIdle(gameObject);
     }
 
     // Update is called once per frame
@@ -63,4 +64,76 @@ public class CapsuleState : MonoBehaviour, IHaveState
     {
         return stats.MoveSpeedModifier();
     }
+
+    public void CallAttack(GameObject target)
+    {
+        CA.Attack(target.transform.position-transform.position);
+    }
+
+    public void GetAnimationState(bool active)
+    {
+        throw new System.NotImplementedException();
+    }
 }
+
+
+public class CapsuleIdle : NPCIdle
+{
+    public CapsuleIdle(GameObject npc) : base(npc)
+    {
+        CombatTransition = (GameObject capsule, GameObject player) => { return new NPCMoveToShootingRange(capsule, player); };
+
+        OOCTransition = (GameObject capsule) => { return new CapsuleIdle(capsule); };
+        OOCTransition += (GameObject capsule) => { return new CapsuleWander(capsule); };
+    }
+
+    public override void UpdateState()
+    {
+        base.UpdateState();
+    }
+}
+
+public class CapsuleWander : NPCWander
+{
+    public CapsuleWander(GameObject npc) : base(npc)
+    {
+        CombatTransition = (GameObject capsule, GameObject player) => { return new NPCMoveToShootingRange(capsule, player); };
+
+        OOCTransition = (GameObject capsule) => { return new CapsuleIdle(capsule); };
+        OOCTransition += (GameObject capsule) => { return new CapsuleWander(capsule); };
+    }
+
+    public override void UpdateState()
+    {
+        base.UpdateState();
+    }
+}
+
+public class NPCMoveToShootingRange : NPCMoveToPlayer
+{
+    public NPCMoveToShootingRange(GameObject npc, GameObject player) : base(npc, player)
+    {
+    }
+    public override void UpdateState()
+    {
+        base.UpdateState();
+        if (CloseToPlayer())
+            stateController.SetState(new RangedAttack(npc, player));
+    }
+}
+
+public class RangedAttack : NPCInCombat
+{
+    public RangedAttack(GameObject npc, GameObject player) : base(npc, player)
+    {
+    }
+    public override void UpdateState()
+    {
+        stateController.CallAttack(player);
+        if (!CloseToPlayer())
+        {
+            stateController.SetState(new NPCMoveToShootingRange(npc, player));
+        }
+    }
+}
+

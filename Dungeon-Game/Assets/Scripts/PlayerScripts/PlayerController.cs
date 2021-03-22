@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 orientDirection;
     private Vector2 moveInput;
     private bool AttackButtonDown = false;
+    private bool AbilityButtonDown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 tempDir = context.ReadValue<Vector2>();
         if (tempDir.x != 0 || tempDir.y != 0)
-            orientDirection = tempDir;
+            orientDirection = tempDir.normalized;
     }
 
     public void OnBasicAttack(InputAction.CallbackContext context)
@@ -54,6 +55,18 @@ public class PlayerController : MonoBehaviour
         if (context.canceled)
         {
             AttackButtonDown = false;
+        }
+    }
+
+    public void OnCastAbility(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AbilityButtonDown = true;
+        }
+        if (context.canceled)
+        {
+            AbilityButtonDown = false;
         }
     }
 
