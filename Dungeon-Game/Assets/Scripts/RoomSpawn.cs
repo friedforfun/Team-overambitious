@@ -30,29 +30,36 @@ public class RoomSpawn : MonoBehaviour
     void Spawn()
     {
         if (spawned == false) {
+            
+            string roomname = Templates.RoomCount.ToString();
             if (openingDirection == 1)
             {
                 rand = Random.Range(0, Templates.BottomRooms.Length);
-                Instantiate(Templates.BottomRooms[rand], transform.position, Quaternion.identity, Scene.transform);      //Quaternion.Identity could be changed to allow for different rotations of rooms.
+                var room = Instantiate(Templates.BottomRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                room.name = roomname;
+                //Quaternion.Identity could be changed to allow for different rotations of rooms.
         }
             else if (openingDirection == 2)
             {
                 rand = Random.Range(0, Templates.FrontRooms.Length);
-                Instantiate(Templates.FrontRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                var room = Instantiate(Templates.FrontRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                room.name = roomname;
             }
             else if (openingDirection == 3)
             {
                 rand = Random.Range(0, Templates.LeftRooms.Length);
-                Instantiate(Templates.LeftRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                var room = Instantiate(Templates.LeftRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                room.name = roomname;
             }
             else if (openingDirection == 4)
             {
                 rand = Random.Range(0, Templates.RightRooms.Length);
-                Instantiate(Templates.RightRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                var room = Instantiate(Templates.RightRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                room.name = roomname;
             }
 
             Templates.RoomCount += 1;
-            if(Templates.RoomCount > Templates.MaximumRooms)
+            if (Templates.RoomCount > Templates.MaximumRooms)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
@@ -66,7 +73,6 @@ public class RoomSpawn : MonoBehaviour
         if(other.CompareTag("SpawnTag") && other.GetComponent<RoomSpawn>().spawned == true)
         {
             Destroy(gameObject);
-
         }
     }
 }

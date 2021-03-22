@@ -21,6 +21,8 @@ public class MirrorRoom : MonoBehaviour
         {
             Templates.MaximumRooms = Templates.MaximumRooms * 2;
             GameObject SceneRight = Instantiate(SceneLeft, new Vector3(100, 0, 0), Quaternion.identity);
+            SceneRight.name = "SceneRight";
+            SceneRight.transform.parent = GameObject.Find("Scenes").transform;
             SceneFlipped = true;
         }
     }
