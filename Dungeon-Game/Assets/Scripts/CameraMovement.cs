@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         if(distance == 9.87f) GetComponent<Camera>().cullingMask = ~(1 << LayerMask.NameToLayer("Minimap")); // Shows everything but items on the Minimap layer
-        else GetComponent<Camera>().cullingMask = 1 << LayerMask.NameToLayer("Minimap") | LayerMask.NameToLayer("Wall") | LayerMask.NameToLayer("Ground"); // Shows only the Minimap, Wall and Ground layers
+        else GetComponent<Camera>().cullingMask = 1792; // Shows only the Minimap, Wall and Ground layers
     }
 
     void LateUpdate()

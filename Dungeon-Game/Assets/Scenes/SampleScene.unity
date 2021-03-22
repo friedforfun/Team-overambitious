@@ -227,6 +227,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lplayer
       objectReference: {fileID: 0}
+    - target: {fileID: 1377303360376005814, guid: fec78edd0fdb72e49977498b24e1fb3e,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2474094925060271068, guid: fec78edd0fdb72e49977498b24e1fb3e,
         type: 3}
       propertyPath: m_SlopeLimit
@@ -291,6 +296,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990281324440941511, guid: fec78edd0fdb72e49977498b24e1fb3e,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fec78edd0fdb72e49977498b24e1fb3e, type: 3}
@@ -644,10 +654,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 437401628416300744, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 540286054409116470, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
         type: 3}
       propertyPath: m_Name
       value: Rplayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3740303946064350191, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5358294174328883980, guid: 44de3e2e9ee6b6d42a21b49d786464c8,
         type: 3}
