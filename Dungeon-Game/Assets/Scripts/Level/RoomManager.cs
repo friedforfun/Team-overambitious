@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     private float spawnAreaSize = 5f;
+    [SerializeField] bool AllowSpawn = true;
 
     /// <summary>
     /// Spawn (spawnCount) minions in this room, with an offset on the y axis
@@ -14,17 +15,21 @@ public class RoomManager : MonoBehaviour
     /// <param name="minionOffset"></param>
     public void Spawn(GameObject minion, int spawnCount, float minionOffset)
     {
-        for (int i = 0; i < spawnCount; i++)
+        if (AllowSpawn)
         {
-            Vector3 spawnPosition = GetSpawnPosition(minionOffset);
-
-            Quaternion spawnRotation = new Quaternion();
-            spawnRotation.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f));
-            if (spawnPosition != Vector3.zero)
+            for (int i = 0; i < spawnCount; i++)
             {
-                Instantiate(minion, spawnPosition, spawnRotation);
+                Vector3 spawnPosition = GetSpawnPosition(minionOffset);
+
+                Quaternion spawnRotation = new Quaternion();
+                spawnRotation.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f));
+                if (spawnPosition != Vector3.zero)
+                {
+                    Instantiate(minion, spawnPosition, spawnRotation);
+                }
             }
         }
+        
     }
 
     Vector3 GetSpawnPosition(float minionOffset)

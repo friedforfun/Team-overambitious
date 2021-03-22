@@ -24,7 +24,11 @@ public class GameplayManager : MonoBehaviour
     {
         Debug.Log("Generating navmesh");
         surface.BuildNavMesh();
+        EventManager.TriggerEvent("NavMeshReady");
         GameReady = true;
+        EventManager.TriggerEvent("GameReady");
     }
+
+
 
 }

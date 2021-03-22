@@ -7,6 +7,8 @@ public class DungeonManager : MonoBehaviour
     // Will need a mapping for cost of each enemy
     [SerializeField] GameObject[] Enemies;
 
+
+
     RoomManager[] rooms; // Each room on this dungeon (for a given player)
 
     int AvaliablePoints; // How many points we have avaliable to spend
@@ -14,10 +16,15 @@ public class DungeonManager : MonoBehaviour
 
     void spawnNPC(RoomManager room)
     {
-        int index = Random.Range(0, Enemies.Length);
-        GameObject minion = Enemies[index];
+        if (Enemies.Length > 0)
+        {
+            int index = Random.Range(0, Enemies.Length);
 
-        room.Spawn(minion, 2, 1f);
+            GameObject minion = Enemies[index];
+
+            room.Spawn(minion, 2, 1f);
+        }
+
     }
 
     void BuildRoomRef()
@@ -34,12 +41,12 @@ public class DungeonManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartListening("GenerationComplete", BuildRoomRef);
+        EventManager.StartListening("NavMeshReady", BuildRoomRef);
     }
 
     private void OnDisable()
     {
-        EventManager.StopListening("GenerationComplete", BuildRoomRef);
+        EventManager.StopListening("NavMeshReady", BuildRoomRef);
     }
 
     
