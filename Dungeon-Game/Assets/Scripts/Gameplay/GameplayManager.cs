@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public class GameplayManager : MonoBehaviour
 {
-
     [SerializeField] private NavMeshSurface surface;
+
+    
+    bool GameReady = false; // will set to true when all generation and spawning is complete
 
     private void OnEnable()
     {
@@ -22,6 +24,7 @@ public class GameplayManager : MonoBehaviour
     {
         Debug.Log("Generating navmesh");
         surface.BuildNavMesh();
+        GameReady = true;
     }
 
 }

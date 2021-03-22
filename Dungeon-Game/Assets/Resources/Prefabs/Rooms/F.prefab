@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1714130470895105371}
   - component: {fileID: -2857709183983898397}
+  - component: {fileID: 5216551654993863186}
   m_Layer: 0
   m_Name: F
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +52,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBossRoom: 0
   BossRoom: {fileID: 554237721992658913, guid: 17d4fa27cceac2e44872a33ab402b260, type: 3}
+--- !u!114 &5216551654993863186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045026751815385188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735fbf5ddd0de9743815e18607e8c996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &376285263652991592
 PrefabInstance:
   m_ObjectHideFlags: 0
