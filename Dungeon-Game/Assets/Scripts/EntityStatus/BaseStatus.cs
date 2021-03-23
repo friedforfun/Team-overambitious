@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+
+public delegate void DamageTakenEvent();
 
 public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
     // Upper/lower bound on stats, value needs tuning/removing
-    private int _statLimiter = 5;
-
+    private int _statLimiter = 8;
+    protected GameObject damageText, miniBar, statusIcon, myMiniBar = null;
     public int HP; // current hp
     public int MaxHp = 100; // max hp
+
+    protected DamageTakenEvent OnDamageTaken;
 
     public int MoveSpeed // Movement speed stat points
     {
@@ -23,7 +28,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         }
     }
     [SerializeField] private int _MoveSpeed = 0; // MoveSpeed backing field
-    private float moveSpeedPointValue = 0.1f; // The value of each point of MoveSpeed
+    private float moveSpeedPointValue = 0.2f; // The value of each point of MoveSpeed
 
 
     public int AttackPower // Outgoing damage stat
@@ -40,7 +45,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     [SerializeField] private int _AttackPower = 0;
     private float attackPointValue = 0.1f; // The value of each point of AttackPower
 
-    private float AttackSpeed; // Number of basic attacks per second (Not a stat but could be)
+    [SerializeField] private float AttackSpeed = 1f; // Number of basic attacks per second (Not a stat but could be)
 
     public int Defense // Incoming damage mitigation stat
     {
@@ -56,14 +61,29 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     [SerializeField] private int _Defense = 0;
     private float defPointValue = 0.1f; // The value of each point of Defense
 
-    public List<Debuff> Debuffs;
-    public List<Buff> Buffs;
+    public List<Debuff> Debuffs = new List<Debuff>();
+    public List<Buff> Buffs = new List<Buff>();
 
+    private bool isDead = false;
     void Start()
     {
         StartCoroutine(checkStatusEffects());
         StartCoroutine(applyContinousEffects());
         HP = MaxHp;
+        damageText = (GameObject)Resources.Load("Prefabs/DamageText", typeof(GameObject));
+        miniBar = (GameObject)Resources.Load("Prefabs/MiniHealthBar", typeof(GameObject));
+        statusIcon = (GameObject)Resources.Load("Prefabs/StatusIcon", typeof(GameObject));
+    }
+
+    void Update()
+    {
+        float zModifier = transform.position.z + 1f;
+        if (myMiniBar != null) myMiniBar.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, zModifier);
+        foreach (Debuff d in Debuffs)
+        {
+            d.iconObject.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, zModifier);
+            zModifier -= 0.65f;
+        }
     }
 
     /// <summary>
@@ -73,18 +93,29 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     /// <param name="debuff">The debuff being added</param>
     public void AddDebuff<T>(T debuff) where T : Debuff
     {
+        if (isDead)
+            return;
+
         if (!debuff.Stackable())
         {
             // Debuff is not stackable, remove the current application of this debuff
-            foreach (T d in Debuffs.OfType<T>())
+            if (Debuffs != null)
             {
-                d.ClearStatus(this);
-                Debuffs.Remove(d);
+                foreach (T d in Debuffs.OfType<T>())
+                {
+                    Destroy(d.iconObject);
+                    d.ClearStatus(this);
+                    Debuffs.Remove(d);
+                }
             }
+            
         }
         // Apply debuff and add it to debuffs on character
         debuff.ApplyStatus(this);
         Debuffs.Add(debuff);
+        debuff.iconObject = Instantiate(statusIcon, new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
+        debuff.iconObject.GetComponent<SpriteRenderer>().sprite = debuff.icon;
+        debuff.iconObject.transform.Rotate(90, 0, 0);
     }
 
     /// <summary>
@@ -119,10 +150,23 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             modifiedDamage = 0f;
         
         HP -= (int) modifiedDamage;
+        GameObject newDamageText = Instantiate(damageText, transform.position, Quaternion.identity);
+        newDamageText.GetComponent<TextMesh>().text = "-" + ((int)modifiedDamage).ToString();
         if (HP <= 0)
         {
             Kill();
         }
+        else
+        {
+            if (OnDamageTaken != null)
+                OnDamageTaken();
+            /*
+            if (myMiniBar != null) Destroy(myMiniBar);
+            myMiniBar = Instantiate(miniBar, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
+            myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
+            */
+        }
+        
     }
 
     /// <summary>
@@ -132,8 +176,13 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public void Heal(int healAmount)
     {
         HP += healAmount;
-        if (HP < MaxHp)
+        GameObject newHealText = Instantiate(damageText, transform.position, Quaternion.identity);
+        newHealText.GetComponent<TextMesh>().text = "+" + healAmount.ToString();
+        if (HP > MaxHp)
             HP = MaxHp;
+        if (myMiniBar != null) Destroy(myMiniBar);
+        myMiniBar = Instantiate(miniBar, transform.position, Quaternion.identity);
+        myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
     }
 
     /// <summary>
@@ -141,6 +190,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     /// </summary>
     public void Kill()
     {
+        isDead = true;
         Debug.Log("TODO: Kill this unit");
     }
 
@@ -179,23 +229,37 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     {
         for (; ; )
         {
+            if (isDead)
+                break;
+
             if (Debuffs != null)
             {
-                foreach (Debuff debuff in Debuffs)
+                List<Debuff> debuffsToRemove = new List<Debuff>();
+                for(int i=0; i<Debuffs.Count; i++)
                 {
-                    if (debuff.Expired())
+                    if (Debuffs.ElementAt(i).Expired())
                     {
-                        debuff.ClearStatus(this);
-                        Debuffs.Remove(debuff);
+                        Destroy(Debuffs.ElementAt(i).iconObject);
+                        Debuffs.ElementAt(i).ClearStatus(this);
+                        debuffsToRemove.Add(Debuffs.ElementAt(i));
                     }
                 }
-                foreach (Buff buff in Buffs)
+                foreach (Debuff debuff in debuffsToRemove)
                 {
-                    if (buff.Expired())
+                    Debuffs.Remove(debuff);
+                }
+                List<Buff> buffsToRemove = new List<Buff>();
+                for (int i = 0; i < Buffs.Count; i++)
+                {
+                    if (Buffs.ElementAt(i).Expired())
                     {
-                        buff.ClearStatus(this);
-                        Buffs.Remove(buff);
+                        Buffs.ElementAt(i).ClearStatus(this);
+                        buffsToRemove.Add(Buffs.ElementAt(i));
                     }
+                }
+                foreach (Buff buff in buffsToRemove)
+                {
+                    Buffs.Remove(buff);
                 }
             }
             yield return new WaitForSeconds(0.1f);
@@ -210,6 +274,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     {
         for (; ; )
         {
+            if (isDead)
+                break;
+
             if (Buffs != null)
             {
                 foreach (Buff buff in Buffs)
