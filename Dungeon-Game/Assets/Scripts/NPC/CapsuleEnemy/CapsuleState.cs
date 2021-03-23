@@ -105,7 +105,7 @@ public class CapsuleMoveToShootingRange : NPCInCombat
 {
     public CapsuleMoveToShootingRange(GameObject npc, GameObject player) : base(npc, player)
     {
-        steer.EvadeDistance = stateController.GetAttackRange();
+
     }
 
     public override void OnStateEnter()
