@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1248317616}
     m_Modifications:
+    - target: {fileID: 3694447964333645763, guid: 2314c5773605fc549a703364ce6296a6,
+        type: 3}
+      propertyPath: openingDirection
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4567858132370797804, guid: 2314c5773605fc549a703364ce6296a6,
         type: 3}
       propertyPath: m_RootOrder
@@ -192,6 +197,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027717284881879153, guid: 2314c5773605fc549a703364ce6296a6,
+        type: 3}
+      propertyPath: openingDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256164456259902092, guid: 2314c5773605fc549a703364ce6296a6,
+        type: 3}
+      propertyPath: openingDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778940324074994918, guid: 2314c5773605fc549a703364ce6296a6,
+        type: 3}
+      propertyPath: openingDirection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2314c5773605fc549a703364ce6296a6, type: 3}
@@ -479,6 +499,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2319609585193303861, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4103268104179783514, guid: 2f2407ee5d1a8964ca49c2ac37740927,
         type: 3}
       propertyPath: m_Name
@@ -616,12 +641,17 @@ PrefabInstance:
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: MaximumRooms
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: MinimumRooms
-      value: 99
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
+        type: 3}
+      propertyPath: AverageRoomScore
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
