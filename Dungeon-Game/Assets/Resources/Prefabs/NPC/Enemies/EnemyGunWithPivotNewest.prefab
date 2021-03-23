@@ -168,7 +168,7 @@ MonoBehaviour:
   agent: {fileID: 3386637578821349174}
   UseNavMesh: 0
   ChaseDistance: 50
-  EvadeDistance: 4
+  EvadeDistance: 3
   AvoidDistance: 2
   rotationSpeed: 1
   WaypointObject: {fileID: 4959129530293713088, guid: 821e368745a21f646a9ff1b6a2d2de3c,

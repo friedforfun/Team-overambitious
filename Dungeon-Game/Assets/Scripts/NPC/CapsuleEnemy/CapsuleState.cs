@@ -124,7 +124,7 @@ public class CapsuleMoveToShootingRange : NPCInCombat
 
     public override void UpdateState()
     {
-        if (!LineOfSightCheck(player))
+        if (!LineOfSightCheck(player)) // When player line of sight blocked
         {
             steer.SetNavMeshTarget(player);
             steer.UseNavMesh = true;
@@ -133,6 +133,8 @@ public class CapsuleMoveToShootingRange : NPCInCombat
         {
             steer.ClearNavMeshTarget();
             steer.UseNavMesh = false;
+            steer.transform.LookAt(player.transform);
+
         }
         steer.Move(stateController.GetMoveSpeedModifier());
         if (CloseToPlayer())
@@ -165,6 +167,7 @@ public class RangedAttack : NPCInCombat
     {
         steer.Move(stateController.GetMoveSpeedModifier());
         stateController.CallAttack(player);
+        steer.transform.LookAt(player.transform);
         if (!CloseToPlayer())
         {
             stateController.SetState(new CapsuleMoveToShootingRange(npc, player));
