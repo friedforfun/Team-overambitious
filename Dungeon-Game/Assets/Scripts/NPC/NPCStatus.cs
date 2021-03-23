@@ -5,10 +5,6 @@ using UnityEngine;
 public class NPCStatus : BaseStatus
 {
     // NPC unique status stuff here
-    private void Start()
-    {
-        OnDamageTaken += () => npcDamage();
-    }
 
     private void npcDamage()
     {
