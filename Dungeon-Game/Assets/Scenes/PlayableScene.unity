@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.65080994, g: 0.666729, b: 0.7075472, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0, g: 1, b: 0.96143866, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -317,6 +317,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3583197874682199671, guid: 2314c5773605fc549a703364ce6296a6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4567858132370797804, guid: 2314c5773605fc549a703364ce6296a6,
         type: 3}
       propertyPath: m_RootOrder
@@ -464,13 +469,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248317615}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 926781582}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1926295000}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1248317617
 MonoBehaviour:
@@ -504,7 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a55517808e3c047842eb26e9347da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerR: {fileID: 540286054409116470, guid: 44de3e2e9ee6b6d42a21b49d786464c8, type: 3}
   SceneLeft: {fileID: 1248317615}
   SceneFlipped: 0
 --- !u!1001 &1331064999
@@ -522,7 +526,7 @@ PrefabInstance:
     - target: {fileID: 4620441791831077191, guid: 01042d1ccbf351c498052569d9ac072c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4620441791831077191, guid: 01042d1ccbf351c498052569d9ac072c,
         type: 3}
@@ -581,6 +585,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01042d1ccbf351c498052569d9ac072c, type: 3}
+--- !u!1 &1926294999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1926295000}
+  m_Layer: 0
+  m_Name: Scenes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1926295000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926294999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1248317616}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1973085342685828058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -661,7 +696,12 @@ PrefabInstance:
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: MinimumRooms
-      value: 10
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
+        type: 3}
+      propertyPath: AverageRoomScore
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
