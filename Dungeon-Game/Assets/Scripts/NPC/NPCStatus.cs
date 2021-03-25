@@ -23,6 +23,7 @@ public class NPCStatus : BaseStatus
     {
         if (myMiniBar != null) Destroy(myMiniBar);
         myMiniBar = Instantiate(miniBar, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
-        myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
+        if (HP > 0) myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
+        else myMiniBar.GetComponent<MiniBar>().multiplier = 0f;
     }
 }
