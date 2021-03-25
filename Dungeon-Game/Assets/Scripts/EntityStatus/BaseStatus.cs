@@ -11,12 +11,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
     // Upper/lower bound on stats, value needs tuning/removing
     private int _statLimiter = 8;
-    protected GameObject damageText, miniBar, statusIcon, myMiniBar = null;
+    protected GameObject damageText, statusIcon;
     public int HP; // current hp
     public int MaxHp = 100; // max hp
-
-    protected DamageTakenEvent OnDamageTaken;
-    public OnDeathEvent OnDeath;
 
     public int MoveSpeed // Movement speed stat points
     {
@@ -74,15 +71,28 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         StartCoroutine(checkStatusEffects());
         StartCoroutine(applyContinousEffects());
         HP = MaxHp;
+        SetUp();
+    }
+
+    protected virtual void SetUp()
+    {
         damageText = (GameObject)Resources.Load("Prefabs/DamageText", typeof(GameObject));
-        miniBar = (GameObject)Resources.Load("Prefabs/MiniHealthBar", typeof(GameObject));
         statusIcon = (GameObject)Resources.Load("Prefabs/StatusIcon", typeof(GameObject));
+    }
+
+    protected virtual void DamageUpdate()
+    {
+
     }
 
     void Update()
     {
+        UIUpdate();
+    }
+
+    protected virtual void UIUpdate()
+    {
         float zModifier = transform.position.z + 1f;
-        if (myMiniBar != null) myMiniBar.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, zModifier);
         foreach (Debuff d in Debuffs)
         {
             d.iconObject.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, zModifier);
@@ -165,13 +175,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         }
         else
         {
-            if (OnDamageTaken != null)
-                OnDamageTaken();
-            /*
-            if (myMiniBar != null) Destroy(myMiniBar);
-            myMiniBar = Instantiate(miniBar, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
-            myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
-            */
+            DamageUpdate();
         }
         
     }
@@ -187,9 +191,6 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         newHealText.GetComponent<TextMesh>().text = "+" + healAmount.ToString();
         if (HP > MaxHp)
             HP = MaxHp;
-        if (myMiniBar != null) Destroy(myMiniBar);
-        myMiniBar = Instantiate(miniBar, transform.position, Quaternion.identity);
-        myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
     }
 
     /// <summary>
