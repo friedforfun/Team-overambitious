@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class LoadingScreen : MonoBehaviour
 {
-    void Start()
+    private void OnEnable()
     {
-        Invoke("Show", 5f);
+        EventManager.StartListening("GameReady", Show);
     }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("GameReady", Show);
+    }
+
 
     void Show()
     {
         GetComponent<Camera>().rect = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
     }
+
 
 }
