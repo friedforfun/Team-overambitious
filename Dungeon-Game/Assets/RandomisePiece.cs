@@ -8,7 +8,7 @@ public class RandomisePiece : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("placed");
+        //Debug.Log("placed");
         int PieceIndex = Random.Range(0, PieceSelections.Count);
         Instantiate(PieceSelections[PieceIndex], transform.position, Quaternion.identity, transform.gameObject.transform);
     }

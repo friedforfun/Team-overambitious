@@ -2187,6 +2187,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7982320221114919800}
     m_Modifications:
+    - target: {fileID: 899418726670090490, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804563776474747607, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578834803259725142, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 3580309821402966053, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2247,6 +2262,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VentWall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8576285587759475923, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b0872dd0dee2440b4f58060f0b2c2b, type: 3}
 --- !u!4 &6914964009526916684 stripped
@@ -2262,6 +2282,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7982320221114919800}
     m_Modifications:
+    - target: {fileID: 899418726670090490, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804563776474747607, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578834803259725142, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 3580309821402966053, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2322,6 +2357,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VentWall
       objectReference: {fileID: 0}
+    - target: {fileID: 8576285587759475923, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b0872dd0dee2440b4f58060f0b2c2b, type: 3}
 --- !u!4 &6807438389378505121 stripped
@@ -2337,6 +2377,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7982320221114919800}
     m_Modifications:
+    - target: {fileID: 899418726670090490, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804563776474747607, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578834803259725142, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 3580309821402966053, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2396,6 +2451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VentWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8576285587759475923, guid: b6b0872dd0dee2440b4f58060f0b2c2b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b0872dd0dee2440b4f58060f0b2c2b, type: 3}

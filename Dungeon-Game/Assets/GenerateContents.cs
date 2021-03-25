@@ -18,8 +18,6 @@ public class GenerateContents : MonoBehaviour
     public int ObsticalRoomMax;
 
     private RoomTemplates Templates;
-    public int EnemyValue = 0;
-
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +44,7 @@ public class GenerateContents : MonoBehaviour
 
     void SpawnEnemies()
     {
-        
+        int EnemyValue = 0;
         while (EnemyValue < EnemyRoomMax && EnemySpawns.Count > 0)
         {
             int EnemySpawnLocation = Random.Range(0, EnemySpawns.Count);
@@ -60,7 +58,7 @@ public class GenerateContents : MonoBehaviour
                 var Enemy = Enemies[EnemyIndex];
                 EnemyValue = EnemyValue + EnemyCosts[EnemyIndex];
                 Instantiate(Enemies[EnemyIndex], EnemySpawn.transform.position, Quaternion.identity, transform.gameObject.transform);
-                Debug.Log(transform.gameObject.transform.name);
+                //Debug.Log(transform.gameObject.transform.name);
                 EnemySpawns.Remove(EnemySpawn);
             }
 
