@@ -1110,7 +1110,11 @@ PrefabInstance:
       objectReference: {fileID: 437401628416300744}
     - target: {fileID: 769572321, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 769572321, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Gamepad
       objectReference: {fileID: 0}
     - target: {fileID: 2319609585025541107, guid: 2f2407ee5d1a8964ca49c2ac37740927,
         type: 3}
