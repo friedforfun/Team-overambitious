@@ -97,7 +97,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         float zModifier = transform.position.z + 1f;
         foreach (Debuff d in Debuffs)
         {
-            d.iconObject.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, zModifier);
+            if(d.iconObject != null) d.iconObject.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, zModifier);
             zModifier -= 0.65f;
         }
     }
@@ -175,11 +175,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         {
             Kill();
         }
-        else
-        {
-            DamageUpdate();
-        }
-        
+        DamageUpdate();      
     }
 
     /// <summary>
@@ -241,7 +237,12 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         for (; ; )
         {
             if (isDead)
+            {
+                for (int i = 0; i < Debuffs.Count; i++)
+                    if(Debuffs.ElementAt(i).iconObject != null) Destroy(Debuffs.ElementAt(i).iconObject);
                 break;
+            }
+
 
             if (Debuffs != null)
             {
