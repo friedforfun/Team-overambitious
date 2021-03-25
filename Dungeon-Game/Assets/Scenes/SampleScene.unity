@@ -700,6 +700,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &923084440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4940750537699588385, guid: c7a5030364eb2524db134ff8c206945b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2676492612727315996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1078980636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1301,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeTrap
       objectReference: {fileID: 0}
+    - target: {fileID: 4940750537699588387, guid: c7a5030364eb2524db134ff8c206945b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080179027444750928, guid: c7a5030364eb2524db134ff8c206945b,
+        type: 3}
+      propertyPath: spikePieces
+      value: 
+      objectReference: {fileID: 923084440}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7a5030364eb2524db134ff8c206945b, type: 3}
 --- !u!1001 &7340790333704731419
