@@ -4,6 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEditor;
+using Unity.Jobs;
+using Unity.Collections;
+using System;
 
 public class ContextSteering : MonoBehaviour
 {
@@ -24,7 +27,7 @@ public class ContextSteering : MonoBehaviour
     private float[] chaseMap = new float[contextMapResolution];
     private float[] avoidMap = new float[contextMapResolution];
     private float[] evadeMap = new float[contextMapResolution];
-    private float resolutionAngle = 360 / (float) contextMapResolution; // Each point is separeted by a some degrees rotation (360/len(chaseMap))
+    private static float resolutionAngle = 360 / (float) contextMapResolution; // Each point is separeted by a some degrees rotation (360/len(chaseMap))
     private float dangerThreshold = 0.1f; // Allow steering towards a small degree of danger
 
 
@@ -39,7 +42,7 @@ public class ContextSteering : MonoBehaviour
     private List<string> avoidTags = new List<string>();
     private LayerMask avoidLayers;
 
-    private GameObject Waypoint = null;
+    private GameObject WaypointRef = null;
     private int lastDirection = -1;
 
     void Start()
@@ -54,13 +57,11 @@ public class ContextSteering : MonoBehaviour
 
     void Update()
     {
-        //if (!UseNavMesh)
-        //{
-            chaseMap = buildChaseMap();
-            avoidMap = buildAvoidMap();
-            evadeMap = buildEvadeMap();
-            contextMap = combineContext(chaseMap, avoidMap, evadeMap);
-        //}
+        chaseMap = buildChaseMap();
+        avoidMap = buildAvoidMap();
+        evadeMap = buildEvadeMap();
+
+        contextMap = combineContext(chaseMap, avoidMap, evadeMap);
     }
 
     /// <summary>
@@ -73,7 +74,7 @@ public class ContextSteering : MonoBehaviour
         {
             SetWaypoint(agent.steeringTarget);
             agent.velocity = controller.velocity;
-            /*if (Waypoint != null)
+            /*if (WaypointRef != null)
             {
                 agent.speed = moveSpeedModifier;
                 agent.SetDestination(Waypoint.transform.position);
@@ -115,19 +116,16 @@ public class ContextSteering : MonoBehaviour
     /// <param name="position"></param>
     public void SetWaypoint(Vector3 position)
     {
-        if (Waypoint == null)
-            Waypoint = Instantiate(WaypointObject, position, Quaternion.identity);
+        if (WaypointRef == null)
+        {
+            WaypointRef = Instantiate(WaypointObject, position, Quaternion.identity);
+        }
         else
-            Waypoint.transform.position = position;
-    }
+        {
+            ClearWaypoint();
+            WaypointRef = Instantiate(WaypointObject, position, Quaternion.identity);
+        }
 
-    /// <summary>
-    /// Set a waypoint on a target gameObject (could move)
-    /// </summary>
-    /// <param name="targetObject"></param>
-    public void SetWaypoint(GameObject targetObject)
-    {
-        Waypoint = targetObject;
     }
 
     /// <summary>
@@ -135,7 +133,8 @@ public class ContextSteering : MonoBehaviour
     /// </summary>
     public void ClearWaypoint()
     {
-        Waypoint = null;
+        Destroy(WaypointRef);
+        WaypointRef = null;
     }
 
     /// <summary>
@@ -296,7 +295,7 @@ public class ContextSteering : MonoBehaviour
             {
                 foreach (GameObject target in GameObject.FindGameObjectsWithTag(tag))
                 {
-                    Vector3 direction = targetDirection(target);
+                    Vector3 direction = targetDirection(gameObject, target);
                     contextMap = computeWeights(contextMap, direction, ChaseDistance);
                 }
             }
@@ -312,12 +311,12 @@ public class ContextSteering : MonoBehaviour
             }
         }
 
-        if (Waypoint != null) // may need to check if no other chase data is set
+        if (WaypointRef != null) // may need to check if no other chase data is set
         {
-            Vector3 direction = targetDirection(Waypoint);
+            Vector3 direction = targetDirection(gameObject, WaypointRef);
             contextMap = computeWeights(contextMap, direction, ChaseDistance);
             if (direction.magnitude < 1f) // do this inside waypoint prefab
-                Waypoint = null;
+                WaypointRef = null;
         }
 
         return contextMap;
@@ -342,7 +341,7 @@ public class ContextSteering : MonoBehaviour
             {
                 foreach (GameObject target in GameObject.FindGameObjectsWithTag(tag))
                 {
-                    Vector3 direction = targetDirection(target);
+                    Vector3 direction = targetDirection(gameObject, target);
                     contextMap = computeWeights(contextMap, direction, EvadeDistance);
                 }
             }
@@ -381,7 +380,7 @@ public class ContextSteering : MonoBehaviour
             {
                 foreach (GameObject target in GameObject.FindGameObjectsWithTag(tag))
                 {
-                    Vector3 direction = targetDirection(target);
+                    Vector3 direction = targetDirection(gameObject, target);
                     
                     contextMap = computeWeights(contextMap, direction, AvoidDistance);
                     
@@ -456,7 +455,7 @@ public class ContextSteering : MonoBehaviour
         return normMap;
     }
 
-    private float[] computeWeights(float[] contextMap, Vector3 direction, float range)
+    private static float[] computeWeights(float[] contextMap, Vector3 direction, float range)
     {
         float distance = direction.magnitude;
 
@@ -475,9 +474,14 @@ public class ContextSteering : MonoBehaviour
         return contextMap;
     }
 
-    private Vector3 targetDirection(GameObject target)
+    private static Vector3 targetDirection(GameObject self, GameObject target)
     {
-        return target.transform.position - transform.position;
+        return target.transform.position - self.transform.position;
+    }
+
+    private static Vector3 targetDirection(Vector3 selfPosition, Vector3 targetPosition)
+    {
+        return targetPosition - selfPosition;
     }
 
     void OnDrawGizmos()
@@ -523,7 +527,7 @@ public class ContextSteering : MonoBehaviour
 
         
     }
-
 }
+
 
 
