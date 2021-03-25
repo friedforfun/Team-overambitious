@@ -6,24 +6,11 @@ public class BuffPickup : MonoBehaviour
 {
 
     private CapsuleCollider myCollider;
-    private Buff thisBuff;
     public int buffType;
 
     void Start()
     {
         myCollider = GetComponent<CapsuleCollider>();
-        switch (buffType)
-        {
-            case 0:
-                thisBuff = new DamageUpStatus(100000f);
-                break;
-            case 1:
-                thisBuff = new DefenseUpStatus(100000f);
-                break;
-            case 2:
-                thisBuff = new SpeedUpStatus(100000f);
-                break;
-        }
     }
 
     void OnTriggerEnter(Collider col)
@@ -36,8 +23,21 @@ public class BuffPickup : MonoBehaviour
 
         IHealable applyHeal = col.gameObject.GetComponent<IHealable>();
         if (applyHeal != null)
-            applyHeal.AddBuff(thisBuff);
-        Destroy(gameObject);
+        {
+            switch (buffType)
+            {
+                case 0:
+                    applyHeal.AddBuff(new DamageUpStatus(100000f));
+                    break;
+                case 1:
+                    applyHeal.AddBuff(new DefenseUpStatus(100000f));
+                    break;
+                case 2:
+                    applyHeal.AddBuff(new SpeedUpStatus(100000f));
+                    break;
+            }
+            Destroy(gameObject);
+        }
     }
 
 }
