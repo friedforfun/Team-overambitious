@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public delegate void DamageTakenEvent();
+public delegate void OnDeathEvent();
 
 public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
@@ -15,6 +16,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public int MaxHp = 100; // max hp
 
     protected DamageTakenEvent OnDamageTaken;
+    public OnDeathEvent OnDeath;
 
     public int MoveSpeed // Movement speed stat points
     {
@@ -64,9 +66,11 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public List<Debuff> Debuffs = new List<Debuff>();
     public List<Buff> Buffs = new List<Buff>();
 
-    private bool isDead = false;
+    public bool isDead { get; private set;  }
+
     void Start()
     {
+        isDead = false;
         StartCoroutine(checkStatusEffects());
         StartCoroutine(applyContinousEffects());
         HP = MaxHp;
@@ -145,6 +149,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     /// <param name="damageTaken"></param>
     public void Damage(int damageTaken)
     {
+        if (isDead)
+            return;
+
         float modifiedDamage = damageTaken * (1 - (defPointValue * Defense));
         if (modifiedDamage < 0)
             modifiedDamage = 0f;
@@ -191,7 +198,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public void Kill()
     {
         isDead = true;
-        Debug.Log("TODO: Kill this unit");
+        OnDeath();
+        //Debug.Log("TODO: Kill this unit");
     }
 
     /// <summary>

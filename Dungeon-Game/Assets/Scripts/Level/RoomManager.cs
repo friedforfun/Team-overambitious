@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+
+
     private float spawnAreaSize = 5f;
     [SerializeField] bool AllowSpawn = true;
 

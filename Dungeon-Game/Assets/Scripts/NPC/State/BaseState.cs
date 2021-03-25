@@ -45,7 +45,7 @@ public abstract class NPCBaseState : BaseState
 
 
     /// <summary>
-    /// Check if other is in line of sight
+    /// Check if other is in line of sight, uses layer mask for ground and wall check only (other hostiles will not block LoS with this check)
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
@@ -63,14 +63,7 @@ public abstract class NPCBaseState : BaseState
             //Debug.Log($"Other name: {other.transform.name}");
             if (hit.transform.name == other.transform.name)
                 return true;
-            /*IHaveState state = hit.collider.gameObject.GetComponent<IHaveState>();
-            if (state != null)
-            {
-                if (typeof(NPCBaseState).IsAssignableFrom(state.GetState().GetType())) 
-                {
-                    return true;
-                }
-            }*/
+
         }
         return false;
     }

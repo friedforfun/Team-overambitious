@@ -11,7 +11,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     private float AttackRange = 8f;
    [SerializeField] CapsuleAttack CA;
 
-
+    private bool UpdateLimiter = true;
 
     public BaseState GetState()
     {
@@ -28,26 +28,24 @@ public class CapsuleState : MonoBehaviour, IHaveState
         CurrentState = (NPCBaseState) state;
 
         if (CurrentState != null)
-        {
+        {   
             CurrentState.OnStateEnter();
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         CurrentState = new CapsuleIdle(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
+        gameObject.GetComponent<NPCStatus>().OnDeath += () => { SetState(new NPCDead(gameObject)); StartCoroutine(death()); };
     }
 
     void FixedUpdate()
     {
-        CurrentState.UpdateState();
+        if (UpdateLimiter)
+            CurrentState.UpdateState();
+
+        UpdateLimiter = UpdateLimiter ? false : true;
+        
     }
 
     public float GetDetectRange()
@@ -73,6 +71,12 @@ public class CapsuleState : MonoBehaviour, IHaveState
     public void GetAnimationState(bool active)
     {
         throw new System.NotImplementedException();
+    }
+
+    IEnumerator death()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 }
 
