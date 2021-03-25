@@ -142,3 +142,51 @@ public class WeakenStatus : Debuff
         throw new System.NotImplementedException();
     }
 }
+
+public class DamageUpStatus : Buff
+{
+
+    public DamageUpStatus(float duration) : base(duration, true) { }
+
+    public override void ApplyStatus(BaseStatus status)
+    {
+        status.AttackPower += 1;
+    }
+
+    public override void ClearStatus(BaseStatus status)
+    {
+        status.AttackPower -= 1;
+    }
+}
+
+public class DefenseUpStatus : Buff
+{
+
+    public DefenseUpStatus(float duration) : base(duration, true) { }
+
+    public override void ApplyStatus(BaseStatus status)
+    {
+        status.Defense += 1;
+    }
+
+    public override void ClearStatus(BaseStatus status)
+    {
+        status.Defense -= 1;
+    }
+}
+
+public class SpeedUpStatus : Buff
+{
+
+    public SpeedUpStatus(float duration) : base(duration, true) { }
+
+    public override void ApplyStatus(BaseStatus status)
+    {
+        status.MoveSpeed += 1;
+    }
+
+    public override void ClearStatus(BaseStatus status)
+    {
+        status.MoveSpeed -= 1;
+    }
+}
