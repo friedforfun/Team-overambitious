@@ -15,6 +15,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public int HP; // current hp
     public int MaxHp = 100; // max hp
 
+    public OnDeathEvent OnDeath;
+
     public int MoveSpeed // Movement speed stat points
     {
         get
