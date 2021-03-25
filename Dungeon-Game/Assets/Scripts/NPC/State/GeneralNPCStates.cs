@@ -98,7 +98,7 @@ public abstract class NPCOutOfCombat : NPCBaseState
         if (distance < detectRange) // player in range
         {
             //Debug.Log("Player in range");
-            if (Mathf.Abs(angle) > 80 && LineOfSightCheck(target))
+            if (Mathf.Abs(angle) > 80 && LineOfSightCheck(target)) // Player in front and in line of sight
             {
                 return true;
             }
@@ -119,7 +119,7 @@ public class NPCWander : NPCOutOfCombat
     public NPCWander(GameObject npc) : base(npc)
     {
         WanderPosition = Random.insideUnitSphere * WanderDistance;
-        WanderPosition = new Vector3(WanderPosition.x, 0f, WanderPosition.z);
+        WanderPosition = new Vector3(npc.transform.position.x + WanderPosition.x, 0f, npc.transform.position.z + WanderPosition.z);
         steer.SetWaypoint(WanderPosition);
     }
 
@@ -169,51 +169,41 @@ public abstract class NPCInCombat : NPCBaseState
     public NPCInCombat(GameObject npc, GameObject player) : base(npc)
     {
         this.player = player;
-        steer.AddTargetTag("Player");
+        //steer.AddTargetTag("Player");
     }
 
     public override void OnStateEnter()
     {
         base.OnStateEnter();
-        steer.SetWaypoint(player);
+        steer.ClearWaypoint();
+        //steer.SetWaypoint(player);
     }
 
     public override void OnStateLeave()
     {
         base.OnStateLeave();
-        steer.RemoveTargetTag("Player");
+        //steer.RemoveTargetTag("Player");
     }
 
     protected bool CloseToPlayer()
     {
-        if (directionToTarget(player).magnitude < 1)
+        if (directionToTarget(player).magnitude < stateController.GetAttackRange())
             return true;
         else
             return false;
     }
 }
+
 public class NPCMoveToPlayer : NPCInCombat
 {
     public NPCMoveToPlayer(GameObject npc, GameObject player) : base(npc, player)
     {
-        steer.StopChaseDistance = stateController.GetAttackRange();
+        steer.EvadeDistance = stateController.GetAttackRange();
     }
 
     public override void UpdateState()
     {
-        if (LineOfSightCheck(player))
-        {
-            steer.UseNavMesh = false;
-            steer.SetWaypoint(null);
-        }
-        else
-        {
-            steer.UseNavMesh = true;
-            steer.SetWaypoint(player);
-        }
-
         steer.Move(stateController.GetMoveSpeedModifier());
-
     }
 
 }

@@ -8,7 +8,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
-    private float AttackRange = 3f;
+    private float AttackRange = 8f;
    [SerializeField] CapsuleAttack CA;
 
 
@@ -42,7 +42,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
     void FixedUpdate()
@@ -81,44 +81,67 @@ public class CapsuleIdle : NPCIdle
 {
     public CapsuleIdle(GameObject npc) : base(npc)
     {
-        CombatTransition = (GameObject capsule, GameObject player) => { return new NPCMoveToShootingRange(capsule, player); };
+        CombatTransition = (GameObject capsule, GameObject player) => { return new CapsuleMoveToShootingRange(capsule, player); };
 
         OOCTransition = (GameObject capsule) => { return new CapsuleIdle(capsule); };
         OOCTransition += (GameObject capsule) => { return new CapsuleWander(capsule); };
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-    }
 }
 
 public class CapsuleWander : NPCWander
 {
     public CapsuleWander(GameObject npc) : base(npc)
     {
-        CombatTransition = (GameObject capsule, GameObject player) => { return new NPCMoveToShootingRange(capsule, player); };
+        CombatTransition = (GameObject capsule, GameObject player) => { return new CapsuleMoveToShootingRange(capsule, player); };
 
         OOCTransition = (GameObject capsule) => { return new CapsuleIdle(capsule); };
         OOCTransition += (GameObject capsule) => { return new CapsuleWander(capsule); };
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-    }
 }
 
-public class NPCMoveToShootingRange : NPCMoveToPlayer
+public class CapsuleMoveToShootingRange : NPCInCombat
 {
-    public NPCMoveToShootingRange(GameObject npc, GameObject player) : base(npc, player)
+    public CapsuleMoveToShootingRange(GameObject npc, GameObject player) : base(npc, player)
     {
+
     }
+
+    public override void OnStateEnter()
+    {
+        base.OnStateEnter();
+        steer.AddTargetTag("Player");
+    }
+
+    public override void OnStateLeave()
+    {
+        base.OnStateLeave();
+        steer.RemoveTargetTag("Player");
+        steer.ClearNavMeshTarget();
+        steer.UseNavMesh = false;
+    }
+
     public override void UpdateState()
     {
-        base.UpdateState();
+        if (!LineOfSightCheck(player)) // When player line of sight blocked
+        {
+            steer.SetNavMeshTarget(player);
+            steer.UseNavMesh = true;
+        }
+        else
+        {
+            steer.ClearNavMeshTarget();
+            steer.UseNavMesh = false;
+            steer.transform.LookAt(player.transform);
+
+        }
+        steer.Move(stateController.GetMoveSpeedModifier());
         if (CloseToPlayer())
+        {
             stateController.SetState(new RangedAttack(npc, player));
+        }
+            
     }
 }
 
@@ -127,12 +150,27 @@ public class RangedAttack : NPCInCombat
     public RangedAttack(GameObject npc, GameObject player) : base(npc, player)
     {
     }
+
+    public override void OnStateEnter()
+    {
+        base.OnStateEnter();
+        steer.AddEvadeTag("Player");
+    }
+
+    public override void OnStateLeave()
+    {
+        base.OnStateLeave();
+        steer.RemoveEvadeTag("Player");
+    }
+
     public override void UpdateState()
     {
+        steer.Move(stateController.GetMoveSpeedModifier());
         stateController.CallAttack(player);
+        steer.transform.LookAt(player.transform);
         if (!CloseToPlayer())
         {
-            stateController.SetState(new NPCMoveToShootingRange(npc, player));
+            stateController.SetState(new CapsuleMoveToShootingRange(npc, player));
         }
     }
 }

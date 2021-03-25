@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,9 +20,13 @@ public abstract class BaseState
 /// </summary>
 public abstract class NPCBaseState : BaseState
 {
-    protected GameObject npc;
     public ContextSteering steer;
+    protected GameObject npc;
     protected IHaveState stateController;
+
+    // Line of sight layermask
+    // 8 is Ground layer, 9 is Wall layer
+    private LayerMask losMask = (1 << 8) | (1 << 9); 
 
     public NPCBaseState(GameObject npc)
     {
@@ -53,12 +57,20 @@ public abstract class NPCBaseState : BaseState
         Debug.DrawRay(losCheckPoint, directionToOther, Color.cyan);
         RaycastHit hit;
         Ray los = new Ray(losCheckPoint, directionToOther);
-        if (Physics.Raycast(los, out hit))
+        if (Physics.Raycast(los, out hit, losMask))
         {
             //Debug.Log($"Hit name: {hit.transform.name}");
             //Debug.Log($"Other name: {other.transform.name}");
             if (hit.transform.name == other.transform.name)
                 return true;
+            /*IHaveState state = hit.collider.gameObject.GetComponent<IHaveState>();
+            if (state != null)
+            {
+                if (typeof(NPCBaseState).IsAssignableFrom(state.GetState().GetType())) 
+                {
+                    return true;
+                }
+            }*/
         }
         return false;
     }

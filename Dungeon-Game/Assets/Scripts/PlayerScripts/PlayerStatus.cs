@@ -5,4 +5,5 @@ using UnityEngine;
 public class PlayerStatus : BaseStatus
 {
     // Status stuff unique to player here
+    //public GenerateRoom room = null;
 }

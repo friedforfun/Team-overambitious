@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class TrapAttack : BasicAttack
 {
-    private GameObject spike;
-    public bool active;
-
+    private SpikeCollided spikeCollider;
     public override void PerformAttack(Vector3 direction, float attackPower)
     {
+        spikeCollider.MeleeAttack(attackPower, null);
         
     }
 

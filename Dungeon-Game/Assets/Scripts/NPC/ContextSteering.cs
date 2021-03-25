@@ -12,7 +12,7 @@ public class ContextSteering : MonoBehaviour
 
     [SerializeField] public bool UseNavMesh;
     [SerializeField] private float ChaseDistance;
-    [SerializeField] public float StopChaseDistance;
+    [SerializeField] public float EvadeDistance;
     [SerializeField] private float AvoidDistance;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private GameObject WaypointObject;
@@ -23,19 +23,24 @@ public class ContextSteering : MonoBehaviour
     private float[] contextMap = new float[contextMapResolution];
     private float[] chaseMap = new float[contextMapResolution];
     private float[] avoidMap = new float[contextMapResolution];
-    private float resolutionAngle = 360 / (float) contextMapResolution; // Each point is separeted by a 45 degrees rotation (360/len(chaseMap))
-    private float dangerThreshold = 0.1f; // Allow steering towards a small amount of danger
+    private float[] evadeMap = new float[contextMapResolution];
+    private float resolutionAngle = 360 / (float) contextMapResolution; // Each point is separeted by a some degrees rotation (360/len(chaseMap))
+    private float dangerThreshold = 0.1f; // Allow steering towards a small degree of danger
 
 
     // Move towards things with these tags/layers
-    private List<string> targetTags = new List<string>();
+    public List<string> targetTags = new List<string>();
     private LayerMask targetLayers;
+
+    private List<string> evadeTags = new List<string>();
+    private LayerMask evadeLayers;
 
     // Avoid things with these tags/layers, tags avoid by transform center point, layer by closest point on collider
     private List<string> avoidTags = new List<string>();
     private LayerMask avoidLayers;
 
     private GameObject Waypoint = null;
+    private int lastDirection = -1;
 
     void Start()
     {
@@ -43,18 +48,19 @@ public class ContextSteering : MonoBehaviour
         avoidTags.Add("Projectile");
         avoidTags.Add("Hostile");
         targetLayers = LayerMask.GetMask("NPCmoveTarget");
-        avoidLayers = LayerMask.GetMask("Wall");
+        avoidLayers = LayerMask.GetMask("Wall", "Hostile");
     }
 
 
     void Update()
     {
-        if (!UseNavMesh)
-        {
+        //if (!UseNavMesh)
+        //{
             chaseMap = buildChaseMap();
             avoidMap = buildAvoidMap();
-            contextMap = combineContext(chaseMap, avoidMap);
-        }
+            evadeMap = buildEvadeMap();
+            contextMap = combineContext(chaseMap, avoidMap, evadeMap);
+        //}
     }
 
     /// <summary>
@@ -65,28 +71,43 @@ public class ContextSteering : MonoBehaviour
     {
         if (UseNavMesh)
         {
-            //SetWaypoint(agent.steeringTarget);
-            //agent.velocity = controller.velocity;
-            if (Waypoint != null)
+            SetWaypoint(agent.steeringTarget);
+            agent.velocity = controller.velocity;
+            /*if (Waypoint != null)
             {
                 agent.speed = moveSpeedModifier;
                 agent.SetDestination(Waypoint.transform.position);
-            }
+            }*/
         } 
-        else
+        
+        Vector3 moveDir = GetMoveDirection().normalized;
+        //Vector3 lookDir = new Vector3(0, moveDir.y, 0);
+        if (moveDir != Vector3.zero)
         {
-            Vector3 moveDir = GetMoveDirection().normalized;
-            //Vector3 lookDir = new Vector3(0, moveDir.y, 0);
-            Quaternion rotationToDirection = Quaternion.LookRotation(moveDir, Vector3.up);
+            //Quaternion rotationToDirection = Quaternion.LookRotation(moveDir, Vector3.up);
 
             moveDir = new Vector3(moveDir.x, 0, moveDir.z); // Remove any movement in y axis
             controller.SimpleMove(moveDir * moveSpeedModifier);
-            float rate = rotationSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.RotateTowards(rotationToDirection, transform.rotation, rate);
-
+            //float rate = rotationSpeed * Time.deltaTime;
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationToDirection, rate);
         }
+          
     }
 
+    public void SetNavMeshTarget(GameObject target) 
+    {
+        agent.SetDestination(target.transform.position);
+    }
+
+    public void SetNavMeshTarget(Vector3 position)
+    {
+        agent.SetDestination(position);
+    }
+
+    public void ClearNavMeshTarget()
+    {
+        agent.ResetPath();
+    }
 
     /// <summary>
     /// Set a waypoint with a position in world space
@@ -118,7 +139,7 @@ public class ContextSteering : MonoBehaviour
     }
 
     /// <summary>
-    /// Add a tag to the list
+    /// Add a tag to chase targets
     /// </summary>
     /// <param name="tag"></param>
     public void AddTargetTag(string tag)
@@ -126,9 +147,77 @@ public class ContextSteering : MonoBehaviour
         targetTags.Add(tag);
     }
 
+    /// <summary>
+    /// Remove a tag from chase targets
+    /// </summary>
+    /// <param name="tag"></param>
     public void RemoveTargetTag(string tag)
     {
         targetTags.Remove(tag);
+    }
+
+    /// <summary>
+    /// Add a layer to target layers
+    /// </summary>
+    /// <param name="layer"></param>
+    public void AddTargetLayer(string layer)
+    {
+        int newLayer = LayerMask.NameToLayer(layer);
+        targetLayers = targetLayers | (1 << newLayer);
+    }
+
+    /// <summary>
+    /// Remove layer from target layers
+    /// </summary>
+    /// <param name="layer"></param>
+    public void RemoveTargetLayer(string layer)
+    {
+        int removeLayer = LayerMask.NameToLayer(layer);
+        targetLayers = targetLayers & ~(1 << removeLayer);
+    }
+
+    public void AddEvadeTag(string tag)
+    {
+        evadeTags.Add(tag);
+    }
+
+    public void RemoveEvadeTag(string tag)
+    {
+        evadeTags.Remove(tag);
+    }
+
+    public void AddEvadeLayer(string layer)
+    {
+        int newLayer = LayerMask.NameToLayer(layer);
+        evadeLayers = evadeLayers | (1 << newLayer);
+    }
+
+    public void RemoveEvadeLayer(string layer)
+    {
+        int removeLayer = LayerMask.NameToLayer(layer);
+        evadeLayers = evadeLayers & ~(1 << removeLayer);
+    }
+
+    public void AddAvoidTag(string tag)
+    {
+        avoidTags.Add(tag);
+    }
+
+    public void RemoveAvoidTag(string tag)
+    {
+        avoidTags.Remove(tag);
+    }
+
+    public void AddAvoidLayer(string layer)
+    {
+        int newLayer = LayerMask.NameToLayer(layer);
+        avoidLayers = avoidLayers | (1 << newLayer);
+    }
+
+    public void RemoveAvoidLayer(string layer)
+    {
+        int removeLayer = LayerMask.NameToLayer(layer);
+        avoidLayers = avoidLayers & ~(1 << removeLayer);
     }
 
     /// <summary>
@@ -149,11 +238,15 @@ public class ContextSteering : MonoBehaviour
                 maxIndex = i;
             }
         }
+
+        Vector3 direction = Vector3.forward * maxValue;
+
         if (maxValue == 0f)
         {
-            return Vector3.zero; // Dont move if all directions are 0
+            return Quaternion.Euler(0, resolutionAngle * lastDirection, 0) * direction; // Keep last direction if no better direction is found
         }
-        Vector3 direction = Vector3.forward;
+
+        lastDirection = maxIndex;
         return Quaternion.Euler(0, resolutionAngle * maxIndex, 0) * direction;
     }
 
@@ -163,10 +256,11 @@ public class ContextSteering : MonoBehaviour
     /// <param name="chaseMap"></param>
     /// <param name="avoidMap"></param>
     /// <returns>A context map of valid vector paths to take</returns>
-    private float[] combineContext(float[] chaseMap, float[] avoidMap)
+    private float[] combineContext(float[] chaseMap, float[] avoidMap, float[] evadeMap)
     {
         // select all lowest danger vectors from avoidMap apply as mask to chaseMap
-        float[] mask = normalizeMap(chaseMap);
+
+        float[] mask = new float[chaseMap.Length];
         float lowestDanger = avoidMap.Min();
         for (int i = 0; i < avoidMap.Length; i++)
         {
@@ -176,13 +270,17 @@ public class ContextSteering : MonoBehaviour
             }
             else
             {
-                mask[i] = chaseMap[i];
+                mask[i] = chaseMap[i] + evadeMap[i];
             }
         }
 
-        return mask;
+        return normalizeMap(mask);
     }
 
+    /// <summary>
+    /// Builds a context map of directions towards the target
+    /// </summary>
+    /// <returns></returns>
     private float[] buildChaseMap()
     {
         float[] contextMap = new float[contextMapResolution];
@@ -199,8 +297,7 @@ public class ContextSteering : MonoBehaviour
                 foreach (GameObject target in GameObject.FindGameObjectsWithTag(tag))
                 {
                     Vector3 direction = targetDirection(target);
-                    if (direction.magnitude > StopChaseDistance)
-                        contextMap = computeWeights(contextMap, direction, ChaseDistance);
+                    contextMap = computeWeights(contextMap, direction, ChaseDistance);
                 }
             }
         }
@@ -211,8 +308,7 @@ public class ContextSteering : MonoBehaviour
             foreach (Collider collision in checkLayers)
             {
                 Vector3 direction = collision.ClosestPoint(transform.position) - transform.position;
-                if (direction.magnitude > StopChaseDistance)
-                    contextMap = computeWeights(contextMap, direction, ChaseDistance);
+                contextMap = computeWeights(contextMap, direction, ChaseDistance);
             }
         }
 
@@ -220,13 +316,57 @@ public class ContextSteering : MonoBehaviour
         {
             Vector3 direction = targetDirection(Waypoint);
             contextMap = computeWeights(contextMap, direction, ChaseDistance);
-            //if (direction.magnitude < 1f) // do this inside waypoint prefab
-                //Destroy(Waypoint);
+            if (direction.magnitude < 1f) // do this inside waypoint prefab
+                Waypoint = null;
         }
 
         return contextMap;
     }
 
+    /// <summary>
+    /// Evade map creates a context map of directions away from the target
+    /// </summary>
+    /// <returns></returns>
+    private float[] buildEvadeMap()
+    {
+        float[] contextMap = new float[contextMapResolution];
+        for (int i = 0; i < contextMapResolution; i++)
+        {
+            contextMap[i] = 0f;
+        }
+
+        // loop over target tags and layers, find the direction and distance to each target, assign corresponding weights
+        if (evadeTags != null)
+        {
+            foreach (string tag in evadeTags)
+            {
+                foreach (GameObject target in GameObject.FindGameObjectsWithTag(tag))
+                {
+                    Vector3 direction = targetDirection(target);
+                    contextMap = computeWeights(contextMap, direction, EvadeDistance);
+                }
+            }
+        }
+
+        Collider[] checkLayers = Physics.OverlapSphere(transform.position, EvadeDistance, evadeLayers);
+        if (checkLayers != null)
+        {
+            foreach (Collider collision in checkLayers)
+            {
+                Vector3 direction = collision.ClosestPoint(transform.position) - transform.position;
+                contextMap = computeWeights(contextMap, direction, EvadeDistance);
+            }
+        }
+
+        // Return the reversed map, since we want to move away from the computed vectors
+        return reverseMap(contextMap);
+    }
+
+
+    /// <summary>
+    /// Avoid map creates a mask of directions not to move towards
+    /// </summary>
+    /// <returns></returns>
     private float[] buildAvoidMap()
     {
         float[] contextMap = new float[contextMapResolution];
@@ -271,16 +411,49 @@ public class ContextSteering : MonoBehaviour
         return contextMap;
     }
 
+    /// <summary>
+    /// Reverse a context maps magnitudes, so it points in the opposite directions as input
+    /// </summary>
+    /// <param name="contextMap"></param>
+    /// <returns></returns>
+    private float[] reverseMap(float[] contextMap)
+    {
+        int clen = contextMap.Length;
+        int half_clen = clen / 2;
+
+        float[] reverseMap = new float[contextMap.Length];
+        for (int i = 0; i < contextMap.Length; i++)
+        {
+
+
+            if (i < half_clen)
+            {
+                reverseMap[i + (half_clen)] = contextMap[i];
+            }
+            else if (i == half_clen)
+            {
+                reverseMap[0] = contextMap[i];
+            }
+            else if (i > half_clen)
+            {
+                reverseMap[i - (half_clen)] = 0;
+            }
+        }
+
+        return reverseMap;
+    }
+
+
     private float[] normalizeMap(float[] contextMap)
     {
-        //float[] normMap = new float[contextMapResolution];
+        float[] normMap = new float[contextMapResolution];
         float minVal = contextMap.Min();
         float maxVal = contextMap.Max();
         for (int i = 0; i < contextMap.Length; i++)
         {
-            contextMap[i] = (contextMap[i] - minVal) / (maxVal - minVal); 
+            normMap[i] = (contextMap[i] - minVal) / (maxVal - minVal); 
         }
-        return contextMap;
+        return normMap;
     }
 
     private float[] computeWeights(float[] contextMap, Vector3 direction, float range)
@@ -309,18 +482,35 @@ public class ContextSteering : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        /*
+        
         Vector3 mapVector = Vector3.forward;
+        /*
         foreach (float weight in chaseMap)
         {
-            
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, mapVector * weight);
+            mapVector = Quaternion.Euler(0f, resolutionAngle, 0) * mapVector;
+        }
+
+        mapVector = Vector3.forward;
+        foreach (float weight in evadeMap)
+        {
+            Gizmos.color = Color.yellow;
             Gizmos.DrawRay(transform.position, mapVector * weight);
             mapVector = Quaternion.Euler(0f, resolutionAngle, 0) * mapVector;
         }
         */
+        mapVector = Vector3.forward;
+        foreach (float weight in contextMap)
+        {
 
-        Vector3 mapVector = Vector3.forward;
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(transform.position, mapVector * weight);
+            mapVector = Quaternion.Euler(0f, resolutionAngle, 0) * mapVector;
+        }
+
+        //Vector3 mapVector = Vector3.forward;
+        mapVector = Vector3.forward;
         foreach (float weight in avoidMap)
         {
             
@@ -329,15 +519,9 @@ public class ContextSteering : MonoBehaviour
             mapVector = Quaternion.Euler(0f, resolutionAngle, 0) * mapVector;
         }
 
-        mapVector = Vector3.forward;
-        foreach (float weight in contextMap)
-        {
-            
-            Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, mapVector * weight);
-            mapVector = Quaternion.Euler(0f, resolutionAngle, 0) * mapVector;
-        }
+        
 
+        
     }
 
 }
