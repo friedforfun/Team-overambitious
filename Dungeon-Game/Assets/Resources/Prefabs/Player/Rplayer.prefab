@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 8828382582153869361}
   - component: {fileID: 8309821417443475686}
   - component: {fileID: 1928731077333094059}
+  - component: {fileID: 610791788}
   m_Layer: 5
   m_Name: DefenseValue
   m_TagString: Untagged
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -216,6 +217,21 @@ MonoBehaviour:
   m_Text: ':
 
 '
+--- !u!114 &610791788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3169350374824959591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -2, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &2005087703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +588,7 @@ GameObject:
   - component: {fileID: 4669530601912464471}
   - component: {fileID: 3621624510751245438}
   - component: {fileID: 4991931454637723526}
+  - component: {fileID: 514464069}
   m_Layer: 5
   m_Name: DamageValue
   m_TagString: Untagged
@@ -619,7 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -641,6 +658,21 @@ MonoBehaviour:
   m_Text: ':
 
 '
+--- !u!114 &514464069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7527797118132721349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -2, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &7667013727923942869
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +758,7 @@ GameObject:
   - component: {fileID: 1798769657277420092}
   - component: {fileID: 5893444622420122742}
   - component: {fileID: 7640394829035608466}
+  - component: {fileID: 317021353}
   m_Layer: 5
   m_Name: SpeedValue
   m_TagString: Untagged
@@ -773,7 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -795,6 +828,21 @@ MonoBehaviour:
   m_Text: ':
 
 '
+--- !u!114 &317021353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292986943492938190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: -2, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8922547280698330180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,12 +1081,7 @@ PrefabInstance:
     - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 1792
-      objectReference: {fileID: 0}
-    - target: {fileID: 4218505519576263871, guid: c317589ec06558e469c3476d607f3488,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 1792
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c317589ec06558e469c3476d607f3488, type: 3}
@@ -1146,15 +1189,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
---- !u!1 &172588799627847989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2319609585193303818, guid: 2f2407ee5d1a8964ca49c2ac37740927,
-    type: 3}
-  m_PrefabInstance: {fileID: 2474094925399905855}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &172588799627847946 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2319609585193303861, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+    type: 3}
+  m_PrefabInstance: {fileID: 2474094925399905855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &172588799627847989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2319609585193303818, guid: 2f2407ee5d1a8964ca49c2ac37740927,
     type: 3}
   m_PrefabInstance: {fileID: 2474094925399905855}
   m_PrefabAsset: {fileID: 0}
@@ -1228,7 +1271,7 @@ PrefabInstance:
     - target: {fileID: 3758589088692577243, guid: 7d97acb7fdd2e42468d9485c07fb3a12,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 823
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3758589088692577245, guid: 7d97acb7fdd2e42468d9485c07fb3a12,
         type: 3}
@@ -1242,15 +1285,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d97acb7fdd2e42468d9485c07fb3a12, type: 3}
---- !u!20 &437401628416300744 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3758589088692577243, guid: 7d97acb7fdd2e42468d9485c07fb3a12,
-    type: 3}
-  m_PrefabInstance: {fileID: 3618860735880262931}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &437401628416300745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3758589088692577242, guid: 7d97acb7fdd2e42468d9485c07fb3a12,
+    type: 3}
+  m_PrefabInstance: {fileID: 3618860735880262931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &437401628416300744 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3758589088692577243, guid: 7d97acb7fdd2e42468d9485c07fb3a12,
     type: 3}
   m_PrefabInstance: {fileID: 3618860735880262931}
   m_PrefabAsset: {fileID: 0}
@@ -1384,7 +1427,7 @@ PrefabInstance:
     - target: {fileID: 1652275704470740651, guid: ada9f0e36e820e94193f083b606d933b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -197.61002
+      value: -197.60999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ada9f0e36e820e94193f083b606d933b, type: 3}
