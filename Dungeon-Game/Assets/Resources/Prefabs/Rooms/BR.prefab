@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7600942378833341813}
   - component: {fileID: 3565139165056615164}
-  - component: {fileID: 7711189842987184392}
   m_Layer: 0
   m_Name: BR
   m_TagString: Room
@@ -52,44 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllowSpawn: 1
---- !u!114 &7711189842987184392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115519537063677404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc17157203c37cb43b2d90d01e340628, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyPoints: 0
-  EnemySpawns:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Enemies: []
-  EnemyCosts: 
-  ObstacleSpawns:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Obstacles: []
-  EnemyRoomMax: 0
-  ObsticalRoomMax: 0
 --- !u!1001 &55048823490478677
 PrefabInstance:
   m_ObjectHideFlags: 0
