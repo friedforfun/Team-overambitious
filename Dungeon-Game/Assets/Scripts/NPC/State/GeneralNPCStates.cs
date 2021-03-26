@@ -221,7 +221,7 @@ public class NPCMoveToPlayer : NPCInCombat
 
 public class NPCDead : NPCBaseState
 {
-    private float sinkSpeed = 1f;
+    private float sinkSpeed = 10f;
 
     public NPCDead(GameObject npc) : base(npc)
     {
@@ -236,6 +236,6 @@ public class NPCDead : NPCBaseState
 
     public override void UpdateState()
     {
-        npc.transform.Translate(Vector3.down * Time.fixedDeltaTime * sinkSpeed);
+        npc.transform.Translate(Vector3.down * (Time.fixedDeltaTime/2) * sinkSpeed);
     }
 }

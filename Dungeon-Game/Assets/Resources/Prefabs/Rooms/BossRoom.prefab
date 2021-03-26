@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3391802043101756880}
   - component: {fileID: 446334942435291533}
+  - component: {fileID: 7282148803585061130}
+  - component: {fileID: 3909376578765276806}
   m_Layer: 0
   m_Name: BossRoom
   m_TagString: Room
@@ -49,6 +51,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllowSpawn: 0
+--- !u!65 &7282148803585061130
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554237721992658913}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &3909376578765276806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554237721992658913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a42570942b2d0f47ac40eae5ee4b5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2771668515829132488
 GameObject:
   m_ObjectHideFlags: 0

@@ -1112,6 +1112,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 6990281324440941511}
+    - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
+      propertyPath: playerId
+      value: player1end
+      objectReference: {fileID: 0}
+    - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
+      propertyPath: playerEndgame
+      value: player1end
+      objectReference: {fileID: 0}
     - target: {fileID: 2319609585193303818, guid: 2f2407ee5d1a8964ca49c2ac37740927,
         type: 3}
       propertyPath: m_Name

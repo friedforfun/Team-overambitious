@@ -34,7 +34,7 @@ public class RoomSpawn : MonoBehaviour
             {
                 rand = Random.Range(0, Templates.BottomRooms.Length);
                 Instantiate(Templates.BottomRooms[rand], transform.position, Quaternion.identity, Scene.transform);      //Quaternion.Identity could be changed to allow for different rotations of rooms.
-        }
+            }
             else if (openingDirection == 2)
             {
                 rand = Random.Range(0, Templates.FrontRooms.Length);
