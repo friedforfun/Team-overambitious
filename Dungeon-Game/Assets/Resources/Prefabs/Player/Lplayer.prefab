@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 6785592393912979224}
   - component: {fileID: 8217236816399013831}
   - component: {fileID: 14771801567239089}
+  - component: {fileID: 5530143766899956695}
   m_Layer: 5
   m_Name: DefenseValue
   m_TagString: Untagged
@@ -167,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -189,6 +190,21 @@ MonoBehaviour:
   m_Text: ':
 
 '
+--- !u!114 &5530143766899956695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236455835250576125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &1192344454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +230,7 @@ GameObject:
   - component: {fileID: 3824707057102501815}
   - component: {fileID: 1286393582286861842}
   - component: {fileID: 6069500516899331119}
+  - component: {fileID: 4628606823821543426}
   m_Layer: 5
   m_Name: DamageValue
   m_TagString: Untagged
@@ -261,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -283,6 +300,21 @@ MonoBehaviour:
   m_Text: ':
 
 '
+--- !u!114 &4628606823821543426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458096112753979982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &3859119022312674531
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +435,7 @@ GameObject:
   - component: {fileID: 1315724070939004921}
   - component: {fileID: 2808250899050691275}
   - component: {fileID: 6878659019855402047}
+  - component: {fileID: 1311137918733895489}
   m_Layer: 5
   m_Name: SpeedValue
   m_TagString: Untagged
@@ -450,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -472,6 +505,21 @@ MonoBehaviour:
   m_Text: ':
 
 '
+--- !u!114 &1311137918733895489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4227278397637147093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4771529996971532822
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +1002,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 6990281324440941511}
+    - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
+      propertyPath: playerId
+      value: player1end
+      objectReference: {fileID: 0}
+    - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
+      propertyPath: playerEndgame
+      value: player1end
+      objectReference: {fileID: 0}
     - target: {fileID: 2319609585193303818, guid: 2f2407ee5d1a8964ca49c2ac37740927,
         type: 3}
       propertyPath: m_Name
@@ -1016,15 +1072,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
---- !u!1 &172588799627847989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2319609585193303818, guid: 2f2407ee5d1a8964ca49c2ac37740927,
-    type: 3}
-  m_PrefabInstance: {fileID: 2474094925399905855}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &172588799627847946 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2319609585193303861, guid: 2f2407ee5d1a8964ca49c2ac37740927,
+    type: 3}
+  m_PrefabInstance: {fileID: 2474094925399905855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &172588799627847989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2319609585193303818, guid: 2f2407ee5d1a8964ca49c2ac37740927,
     type: 3}
   m_PrefabInstance: {fileID: 2474094925399905855}
   m_PrefabAsset: {fileID: 0}
@@ -1253,7 +1309,7 @@ PrefabInstance:
     - target: {fileID: 7540616592442687309, guid: 61a05648278c0bf4d95c42c89aba6bfe,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 1792
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61a05648278c0bf4d95c42c89aba6bfe, type: 3}
@@ -1345,6 +1401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221592706284294843, guid: 89ed043bb4f0fe7439e0bfcd0689edd8,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89ed043bb4f0fe7439e0bfcd0689edd8, type: 3}

@@ -10,6 +10,7 @@ TagManager:
   - Hostile
   - Wall
   - Spikes
+  - Room
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Ground
   - Wall
   - Minimap
-  - 
+  - Hostile
   - 
   - 
   - 

@@ -5,16 +5,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public delegate void DamageTakenEvent();
+public delegate void OnDeathEvent();
 
 public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
 {
     // Upper/lower bound on stats, value needs tuning/removing
     private int _statLimiter = 8;
-    protected GameObject damageText, miniBar, statusIcon, myMiniBar = null;
+    protected GameObject damageText, statusIcon;
     public int HP; // current hp
     public int MaxHp = 100; // max hp
 
-    protected DamageTakenEvent OnDamageTaken;
+    public OnDeathEvent OnDeath;
 
     public int MoveSpeed // Movement speed stat points
     {
@@ -64,24 +65,39 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public List<Debuff> Debuffs = new List<Debuff>();
     public List<Buff> Buffs = new List<Buff>();
 
-    private bool isDead = false;
+    public bool isDead { get; private set;  }
+
     void Start()
     {
+        isDead = false;
         StartCoroutine(checkStatusEffects());
         StartCoroutine(applyContinousEffects());
         HP = MaxHp;
+        SetUp();
+    }
+
+    protected virtual void SetUp()
+    {
         damageText = (GameObject)Resources.Load("Prefabs/DamageText", typeof(GameObject));
-        miniBar = (GameObject)Resources.Load("Prefabs/MiniHealthBar", typeof(GameObject));
         statusIcon = (GameObject)Resources.Load("Prefabs/StatusIcon", typeof(GameObject));
+    }
+
+    protected virtual void DamageUpdate()
+    {
+
     }
 
     void Update()
     {
+        UIUpdate();
+    }
+
+    protected virtual void UIUpdate()
+    {
         float zModifier = transform.position.z + 1f;
-        if (myMiniBar != null) myMiniBar.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, zModifier);
         foreach (Debuff d in Debuffs)
         {
-            d.iconObject.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, zModifier);
+            if(d.iconObject != null) d.iconObject.transform.position = new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, zModifier);
             zModifier -= 0.65f;
         }
     }
@@ -145,6 +161,9 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     /// <param name="damageTaken"></param>
     public void Damage(int damageTaken)
     {
+        if (isDead)
+            return;
+
         float modifiedDamage = damageTaken * (1 - (defPointValue * Defense));
         if (modifiedDamage < 0)
             modifiedDamage = 0f;
@@ -156,17 +175,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         {
             Kill();
         }
-        else
-        {
-            if (OnDamageTaken != null)
-                OnDamageTaken();
-            /*
-            if (myMiniBar != null) Destroy(myMiniBar);
-            myMiniBar = Instantiate(miniBar, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
-            myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
-            */
-        }
-        
+        DamageUpdate();      
     }
 
     /// <summary>
@@ -180,9 +189,6 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         newHealText.GetComponent<TextMesh>().text = "+" + healAmount.ToString();
         if (HP > MaxHp)
             HP = MaxHp;
-        if (myMiniBar != null) Destroy(myMiniBar);
-        myMiniBar = Instantiate(miniBar, transform.position, Quaternion.identity);
-        myMiniBar.GetComponent<MiniBar>().multiplier = (float)HP / MaxHp;
     }
 
     /// <summary>
@@ -191,7 +197,8 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public void Kill()
     {
         isDead = true;
-        Debug.Log("TODO: Kill this unit");
+        OnDeath();
+        //Debug.Log("TODO: Kill this unit");
     }
 
     /// <summary>
@@ -230,7 +237,12 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         for (; ; )
         {
             if (isDead)
+            {
+                for (int i = 0; i < Debuffs.Count; i++)
+                    if(Debuffs.ElementAt(i).iconObject != null) Destroy(Debuffs.ElementAt(i).iconObject);
                 break;
+            }
+
 
             if (Debuffs != null)
             {
