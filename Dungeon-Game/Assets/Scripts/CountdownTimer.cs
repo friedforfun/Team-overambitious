@@ -7,12 +7,14 @@ public class CountdownTimer : MonoBehaviour
 {
 
     private Text thisText;
-    private float startTime, duration = 60f;
+    private float startTime, duration = 5f;
     private bool startClock = false;
     private PlayerStatus playerStatus;
     public GameObject player;
     public string eventListen;
 
+
+    private bool endTriggered = false;
     void Start()
     {
         playerStatus = player.GetComponent<PlayerStatus>();
@@ -24,11 +26,12 @@ public class CountdownTimer : MonoBehaviour
     {
         if (!startClock) return;
         float currentTime = duration + (startTime - Time.time);
-        if (currentTime <= 0f) // || playerStatus.IsInBossRoom)
+        if (currentTime <= 0f || playerStatus.IsInBossRoom)
         {
             startClock = false;
             thisText.enabled = false;
-            //if(!playerStatus.IsInBossRoom) playerStatus.StartCoroutine(playerStatus.Warp);
+            if (!playerStatus.IsInBossRoom)
+                StartCoroutine(TryWarp());
             return;
         }
         thisText.text = (currentTime % 60).ToString("f2");
@@ -46,8 +49,25 @@ public class CountdownTimer : MonoBehaviour
 
     void StartCountdown()
     {
-        startTime = Time.time;
-        thisText.enabled = true;
-        startClock = true;
+        if (!endTriggered)
+        {
+            startTime = Time.time;
+            thisText.enabled = true;
+            startClock = true;
+            endTriggered = true;
+        }
+    }
+
+    private IEnumerator TryWarp()
+    {
+        for (; ; )
+        {
+            yield return new WaitForSeconds(0.1f);
+            playerStatus.StartCoroutine(playerStatus.Warp());
+            if (playerStatus.IsInBossRoom)
+            {
+                break;
+            }
+        }
     }
 }

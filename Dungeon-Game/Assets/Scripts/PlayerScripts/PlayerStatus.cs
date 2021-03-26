@@ -22,19 +22,26 @@ public class PlayerStatus : BaseStatus
 
     public void TriggerEndGame()
     {
-        FinaleSpawnPoint = FindObjectOfType<FinaleRoom>().GetPlayerSpawn(team);
-        
+        EventManager.TriggerEvent(playerEndgame);
         StartCoroutine(Warp());
+    }
+
+    protected override void SetUp()
+    {
+        base.SetUp();
+        FinaleSpawnPoint = FindObjectOfType<FinaleRoom>().GetPlayerSpawn(team);
     }
 
     public IEnumerator Warp()
     {
-        yield return new WaitForSeconds(0.2f);
-        goTransform.position = new Vector3(FinaleSpawnPoint.position.x, FinaleSpawnPoint.position.y + 0.5f, FinaleSpawnPoint.position.z);
-        if (goTransform.position.x > FinaleSpawnPoint.position.x - 5f || goTransform.position.x < FinaleSpawnPoint.position.x + 5f)
+        
+        yield return new WaitForSeconds(0.1f);
+        if (!IsInBossRoom)
         {
-            if (!IsInBossRoom)
-                EventManager.TriggerEvent(playerEndgame);
+            goTransform.position = new Vector3(FinaleSpawnPoint.position.x, FinaleSpawnPoint.position.y + 0.5f, FinaleSpawnPoint.position.z);
+        }
+        if (goTransform.position.x > FinaleSpawnPoint.position.x - 5f || goTransform.position.x < FinaleSpawnPoint.position.x + 5f)
+        {                
             IsInBossRoom = true;
         }
             
