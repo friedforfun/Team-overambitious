@@ -78,17 +78,6 @@ public class Trap_SpikeState : MonoBehaviour, IHaveState
         target = other;
     }
 
-    public void GetAnimationState(bool active)
-    {
-        if (active == true)
-        {
-            animator.SetBool("Active", true);
-        }
-        if (active == false)
-        {
-            animator.SetBool("Active", false);
-        }
-    }
 
     public void GetAnimationState(bool active, string animStateName)
     {
@@ -113,6 +102,7 @@ public class SpikeInactive : NPCInCombat
     }
     public override void UpdateState()
     {
+        stateController.GetAnimationState(false, "Active");
         if (CloseToPlayer())
         {
             stateController.SetState(new SpikeActive(npc, player));
@@ -132,7 +122,7 @@ public class SpikeActive : NPCInCombat
     }
     public override void OnStateEnter()
     {
-        stateController.GetAnimationState(true, "Active");
+        
     }
 
     public override void OnStateLeave()
@@ -141,9 +131,11 @@ public class SpikeActive : NPCInCombat
     }
     public override void UpdateState()
     {
+        stateController.GetAnimationState(true, "Active");
         stateController.CallAttack(player);
         if (!CloseToPlayer())
         {
+            
             stateController.SetState(new SpikeInactive(npc, player));
         }
     }

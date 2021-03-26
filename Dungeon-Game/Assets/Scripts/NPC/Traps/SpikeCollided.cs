@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpikeCollided : MonoBehaviour, IMeleeHit
 {
-    GameObject target;
+   
     public Trap_SpikeState spike;
     [SerializeField] private int damage;
     

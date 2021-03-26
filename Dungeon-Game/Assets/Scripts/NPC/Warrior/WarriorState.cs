@@ -12,7 +12,7 @@ public class WarriorState : MonoBehaviour, IHaveState
     [SerializeField] WarriorAttack WA;
     public Animator animator;
 
-
+    private bool UpdateLimiter = true;
 
     public BaseState GetState()
     {
@@ -38,6 +38,7 @@ public class WarriorState : MonoBehaviour, IHaveState
     void Start()
     {
         CurrentState = new WarriorIdle(gameObject);
+        gameObject.GetComponent<NPCStatus>().OnDeath += () => { SetState(new NPCDead(gameObject)); StartCoroutine(death()); };
     }
 
     // Update is called once per frame
@@ -48,7 +49,11 @@ public class WarriorState : MonoBehaviour, IHaveState
 
     void FixedUpdate()
     {
-        CurrentState.UpdateState();
+        if (UpdateLimiter)
+            CurrentState.UpdateState();
+
+        UpdateLimiter = UpdateLimiter ? false : true;
+
     }
 
     public float GetDetectRange()
@@ -75,6 +80,12 @@ public class WarriorState : MonoBehaviour, IHaveState
     {
         animator.SetBool(animStateName, active);
 
+    }
+
+    IEnumerator death()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 
     // Check if player collided with the warrior's hitpoint
@@ -133,11 +144,40 @@ public class NPCMoveToAttackingRange : NPCMoveToPlayer
     {
         stateController.GetAnimationState(true, "Chasing");
     }
+
+    public override void OnStateEnter()
+    {
+        base.OnStateEnter();
+        steer.AddTargetTag("Player");
+    }
+
+    public override void OnStateLeave()
+    {
+        base.OnStateLeave();
+        steer.RemoveTargetTag("Player");
+        steer.ClearNavMeshTarget();
+        steer.UseNavMesh = false;
+    }
+
     public override void UpdateState()
     {
-        base.UpdateState();
+        if (!LineOfSightCheck(player)) // When player line of sight blocked
+        {
+            steer.SetNavMeshTarget(player);
+            steer.UseNavMesh = true;
+        }
+        else
+        {
+            steer.ClearNavMeshTarget();
+            steer.UseNavMesh = false;
+            steer.transform.LookAt(player.transform);
+
+        }
+        steer.Move(stateController.GetMoveSpeedModifier());
         if (CloseToPlayer())
+        {
             stateController.SetState(new MeleeAttack(npc, player));
+        }
     }
 }
 
@@ -146,12 +186,27 @@ public class MeleeAttack : NPCInCombat
     public MeleeAttack(GameObject npc, GameObject player) : base(npc, player)
     {
     }
+    public override void OnStateEnter()
+    {
+        base.OnStateEnter();
+        steer.AddEvadeTag("Player");
+    }
+    public override void OnStateLeave()
+    {
+        base.OnStateLeave();
+        steer.RemoveEvadeTag("Player");
+    }
     public override void UpdateState()
     {
+        //animations
         stateController.GetAnimationState(false, "Chasing");
         stateController.GetAnimationState(true, "Attack");
         stateController.CallAttack(player);
         stateController.GetAnimationState(false, "Attack");
+
+        steer.Move(stateController.GetMoveSpeedModifier());
+        stateController.CallAttack(player);
+        steer.transform.LookAt(player.transform);
         if (!CloseToPlayer())
         {
             stateController.SetState(new NPCMoveToAttackingRange(npc, player));
