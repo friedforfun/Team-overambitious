@@ -9,7 +9,8 @@ public class CheckForWall : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
-            Destroy(other.gameObject);
+            Debug.Log(other.gameObject.transform.parent.name);
+            Destroy(other.gameObject.transform.parent.gameObject);
         }
         }
     }
