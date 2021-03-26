@@ -1,0 +1,49 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CountdownTimer : MonoBehaviour
+{
+
+    private Text thisText;
+    private float startTime, duration = 60f;
+    private bool startClock = false;
+    public string eventListen;
+
+    void Start()
+    {
+        thisText = GetComponent<Text>();
+        thisText.enabled = false;
+    }
+
+    void Update()
+    {
+        if (!startClock) return;
+        float currentTime = duration + (startTime - Time.time);
+        if (currentTime <= 0f)
+        {
+            startClock = false;
+            thisText.enabled = false;
+            return;
+        }
+        thisText.text = (currentTime % 60).ToString("f2");
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening(eventListen, StartCountdown);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening(eventListen, StartCountdown);
+    }
+
+    void StartCountdown()
+    {
+        startTime = Time.time;
+        thisText.enabled = true;
+        startClock = true;
+    }
+}
