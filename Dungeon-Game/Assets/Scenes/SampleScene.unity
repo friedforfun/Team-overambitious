@@ -880,7 +880,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &903310404
 MeshCollider:
@@ -1237,7 +1237,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1212600527
 Transform:
@@ -1406,15 +1406,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5474772588620890401, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
+        type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5474772588620890409, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
         type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5474772588620890409, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hostile
+      objectReference: {fileID: 0}
     - target: {fileID: 5474772588620890410, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
         type: 3}
       propertyPath: m_Center.y
-      value: 1.02
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5474772588620890411, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
+        type: 3}
+      propertyPath: m_Speed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5474772588620890411, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
         type: 3}
@@ -1426,10 +1441,20 @@ PrefabInstance:
       propertyPath: m_BaseOffset
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5474772588620890413, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
+        type: 3}
+      propertyPath: _MoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5474772588620890414, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
+        type: 3}
+      propertyPath: ChaseDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5474772588620890414, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
         type: 3}
       propertyPath: EvadeDistance
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5474772588620890414, guid: 543c44c04f91d1346bdfb5b8ef4a02f8,
         type: 3}

@@ -8,6 +8,7 @@ public class TrapAttack : BasicAttack
     private SpikeCollided spikeCollider;
     public GameObject spikePieces;
     [SerializeField] private int damage;
+
     public override void PerformAttack(Vector3 direction, float attackPower)
     {
         spikeCollider.MeleeAttack(attackPower, null);

@@ -142,13 +142,15 @@ public class NPCMoveToAttackingRange : NPCMoveToPlayer
 {
     public NPCMoveToAttackingRange(GameObject npc, GameObject player) : base(npc, player)
     {
-        stateController.GetAnimationState(true, "Chasing");
+       
     }
 
     public override void OnStateEnter()
     {
+        stateController.GetAnimationState(true, "Chasing");
         base.OnStateEnter();
         steer.AddTargetTag("Player");
+        steer.AddEvadeTag("Projectile");
     }
 
     public override void OnStateLeave()
@@ -157,6 +159,7 @@ public class NPCMoveToAttackingRange : NPCMoveToPlayer
         steer.RemoveTargetTag("Player");
         steer.ClearNavMeshTarget();
         steer.UseNavMesh = false;
+        steer.RemoveEvadeTag("Projectile");
     }
 
     public override void UpdateState()
@@ -189,12 +192,12 @@ public class MeleeAttack : NPCInCombat
     public override void OnStateEnter()
     {
         base.OnStateEnter();
-        steer.AddEvadeTag("Player");
+        /*steer.AddEvadeTag("Player");*/
     }
     public override void OnStateLeave()
     {
         base.OnStateLeave();
-        steer.RemoveEvadeTag("Player");
+       /* steer.RemoveEvadeTag("Player");*/
     }
     public override void UpdateState()
     {
