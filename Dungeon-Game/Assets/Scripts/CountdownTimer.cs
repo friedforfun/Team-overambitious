@@ -24,10 +24,11 @@ public class CountdownTimer : MonoBehaviour
     {
         if (!startClock) return;
         float currentTime = duration + (startTime - Time.time);
-        if (currentTime <= 0f)
+        if (currentTime <= 0f) // || playerStatus.IsInBossRoom)
         {
             startClock = false;
             thisText.enabled = false;
+            //if(!playerStatus.IsInBossRoom) playerStatus.StartCoroutine(playerStatus.Warp);
             return;
         }
         thisText.text = (currentTime % 60).ToString("f2");
