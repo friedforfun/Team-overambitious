@@ -13,6 +13,7 @@ public class ContextSteering : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private NavMeshAgent agent;
 
+    [SerializeField] private float BaseMovespeed = 1f;
     [SerializeField] public bool UseNavMesh;
     [SerializeField] private float ChaseDistance;
     [SerializeField] public float EvadeDistance;
@@ -88,7 +89,7 @@ public class ContextSteering : MonoBehaviour
             //Quaternion rotationToDirection = Quaternion.LookRotation(moveDir, Vector3.up);
 
             moveDir = new Vector3(moveDir.x, 0, moveDir.z); // Remove any movement in y axis
-            controller.SimpleMove(moveDir * moveSpeedModifier);
+            controller.SimpleMove(moveDir * BaseMovespeed * moveSpeedModifier);
             //float rate = rotationSpeed * Time.deltaTime;
             //transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationToDirection, rate);
         }
