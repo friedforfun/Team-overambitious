@@ -9,10 +9,13 @@ public class CountdownTimer : MonoBehaviour
     private Text thisText;
     private float startTime, duration = 60f;
     private bool startClock = false;
+    private PlayerStatus playerStatus;
+    public GameObject player;
     public string eventListen;
 
     void Start()
     {
+        playerStatus = player.GetComponent<PlayerStatus>();
         thisText = GetComponent<Text>();
         thisText.enabled = false;
     }
