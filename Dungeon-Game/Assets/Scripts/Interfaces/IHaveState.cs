@@ -17,5 +17,5 @@ public interface IHaveState
 
     void CallAttack(GameObject target);
 
-    void GetAnimationState(bool active, string animStateName);
+    Animator GetAnimationState();
 }

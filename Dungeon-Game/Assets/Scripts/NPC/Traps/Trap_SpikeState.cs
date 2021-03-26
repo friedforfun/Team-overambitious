@@ -79,30 +79,28 @@ public class Trap_SpikeState : MonoBehaviour, IHaveState
     }
 
 
-    public void GetAnimationState(bool active, string animStateName)
+    public Animator GetAnimationState()
     {
-        animator.SetBool(animStateName, active);
+        return animator;
     }
 }
 
 public class SpikeInactive : NPCInCombat
 {
+    Animator animator;
     public SpikeInactive(GameObject npc, GameObject player) : base(npc, player)
     {
-        
+        animator = stateController.GetAnimationState();
     }
 
     public override void OnStateEnter()
     {
-        stateController.GetAnimationState(false, "Active");
-    }
-    public override void OnStateLeave()
-    {
-       
+        base.OnStateEnter();
+        animator.SetBool("Active", false);
     }
     public override void UpdateState()
+
     {
-        stateController.GetAnimationState(false, "Active");
         if (CloseToPlayer())
         {
             stateController.SetState(new SpikeActive(npc, player));
@@ -116,22 +114,22 @@ public class SpikeInactive : NPCInCombat
 
 public class SpikeActive : NPCInCombat
 {
+    Animator animator;
    
     public SpikeActive(GameObject npc, GameObject player) : base(npc, player)
     {
-    }
-    public override void OnStateEnter()
-    {
-        
+        animator = stateController.GetAnimationState();
     }
 
-    public override void OnStateLeave()
+    public override void OnStateEnter()
     {
+        base.OnStateEnter();
+        animator.SetBool("Active", true);
 
     }
     public override void UpdateState()
     {
-        stateController.GetAnimationState(true, "Active");
+        
         stateController.CallAttack(player);
         if (!CloseToPlayer())
         {

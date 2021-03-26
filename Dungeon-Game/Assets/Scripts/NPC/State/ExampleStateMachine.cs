@@ -54,12 +54,7 @@ public class ExampleStateMachine : MonoBehaviour, IHaveState
         throw new System.NotImplementedException();
     }
 
-    public void GetAnimationState(bool active)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void GetAnimationState(bool active, string animStateName)
+    public Animator GetAnimationState()
     {
         throw new System.NotImplementedException();
     }

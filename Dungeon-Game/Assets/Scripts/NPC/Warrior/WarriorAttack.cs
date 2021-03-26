@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class WarriorAttack : BasicAttack
 {
-    [SerializeField] private GameObject Hitpoint;
-    [SerializeField] private int damage;
-    WarriorState WS;
+    [SerializeField] Animator animator;
 
     public override void PerformAttack(Vector3 direction, float attackPower)
     {
-
-        MeleeAttack(attackPower, null);
+        animator.SetTrigger("Attack");
 
     }
 
-    public void MeleeAttack(float AttackPower, AttackDebuffs debuffs)
-    {
-        this.debuffs = debuffs;
-        damage = (int)(damage * AttackPower);
-    }
+
 
 }

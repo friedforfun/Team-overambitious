@@ -74,7 +74,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
         Destroy(gameObject);
     }
 
-    public void GetAnimationState(bool active, string animStateName)
+    public Animator GetAnimationState()
     {
         throw new System.NotImplementedException();
     }

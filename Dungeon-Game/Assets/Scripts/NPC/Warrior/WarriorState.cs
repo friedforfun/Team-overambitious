@@ -8,7 +8,7 @@ public class WarriorState : MonoBehaviour, IHaveState
 
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
-    private float AttackRange = 3f;
+    private float AttackRange = 1f;
     [SerializeField] WarriorAttack WA;
     public Animator animator;
 
@@ -76,9 +76,9 @@ public class WarriorState : MonoBehaviour, IHaveState
         WA.Attack(target.transform.position - transform.position);
     }
 
-    public void GetAnimationState(bool active, string animStateName)
+    public Animator GetAnimationState()
     {
-        animator.SetBool(animStateName, active);
+        return animator;
 
     }
 
@@ -99,6 +99,11 @@ public class WarriorState : MonoBehaviour, IHaveState
         {
             animator.SetBool("Attack", false);
         }
+    }
+
+    public void GetAnimationState(bool active, string animStateName)
+    {
+        throw new System.NotImplementedException();
     }
 }
 
@@ -132,10 +137,6 @@ public class WarriorWander : NPCWander
         OOCTransition += (GameObject warrior) => { return new CapsuleWander(warrior); };
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-    }
 }
 
 public class NPCMoveToAttackingRange : NPCMoveToPlayer
@@ -147,7 +148,7 @@ public class NPCMoveToAttackingRange : NPCMoveToPlayer
 
     public override void OnStateEnter()
     {
-        stateController.GetAnimationState(true, "Chasing");
+        stateController.GetAnimationState();
         base.OnStateEnter();
         steer.AddTargetTag("Player");
         steer.AddEvadeTag("Projectile");
@@ -186,6 +187,7 @@ public class NPCMoveToAttackingRange : NPCMoveToPlayer
 
 public class MeleeAttack : NPCInCombat
 {
+    Animator anim;
     public MeleeAttack(GameObject npc, GameObject player) : base(npc, player)
     {
     }
@@ -201,14 +203,8 @@ public class MeleeAttack : NPCInCombat
     }
     public override void UpdateState()
     {
-        //animations
-        stateController.GetAnimationState(false, "Chasing");
-        stateController.GetAnimationState(true, "Attack");
         stateController.CallAttack(player);
-        stateController.GetAnimationState(false, "Attack");
-
         steer.Move(stateController.GetMoveSpeedModifier());
-        stateController.CallAttack(player);
         steer.transform.LookAt(player.transform);
         if (!CloseToPlayer())
         {
