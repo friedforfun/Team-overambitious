@@ -959,7 +959,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyPoints: 0
   EnemySpawns:
-  - {fileID: 0}
   - {fileID: 2190027367177740435}
   - {fileID: 5434186341909672477}
   - {fileID: 5568008461893342784}
@@ -1008,7 +1007,6 @@ MonoBehaviour:
   - {fileID: 8861993284237290161, guid: 88de5bcc8e7d98e4c96c10ba86eb553f, type: 3}
   - {fileID: 672425659812932668, guid: 68d989df5c119bd4f94c662512d38509, type: 3}
   EnemyRoomMax: 0
-  ObsticalRoomMax: 6
 --- !u!1 &6690401914464073584
 GameObject:
   m_ObjectHideFlags: 0
