@@ -27,7 +27,7 @@ public class GenerateContents : MonoBehaviour
         framecount = 0;
         Templates = GameObject.Find("ScriptHolder").GetComponent<RoomTemplates>();
         EnemyRoomMax = (int) Mathf.Ceil(Templates.AverageRoomScore * Random.Range(0.6f, 1.4f));
-        ObsticalRoomMax = (ObstacleSpawns.Count)/Random.Range(2,5);
+        ObsticalRoomMax = (ObstacleSpawns.Count)/Random.Range(3,6);
     }
 
     // Update is called once per frame
