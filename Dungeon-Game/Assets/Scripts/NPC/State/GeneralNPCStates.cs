@@ -123,6 +123,17 @@ public class NPCWander : NPCOutOfCombat
         steer.SetWaypoint(WanderPosition);
     }
 
+    public override void OnStateEnter()
+    {
+        base.OnStateEnter();
+    }
+
+    public override void OnStateLeave()
+    {
+        base.OnStateLeave();
+        steer.ClearWaypoint();
+    }
+
     public override void UpdateState()
     {
         base.UpdateState();
@@ -187,7 +198,7 @@ public abstract class NPCInCombat : NPCBaseState
 
     protected bool CloseToPlayer()
     {
-        if (directionToTarget(player).magnitude < stateController.GetAttackRange())
+        if (directionToTarget(player).magnitude < stateController.GetAttackRange() && LineOfSightCheck(player))
             return true;
         else
             return false;
@@ -208,3 +219,23 @@ public class NPCMoveToPlayer : NPCInCombat
 
 }
 
+public class NPCDead : NPCBaseState
+{
+    private float sinkSpeed = 10f;
+
+    public NPCDead(GameObject npc) : base(npc)
+    {
+        Debug.Log("Entered Death state");
+    }
+
+    public override void OnStateEnter()
+    {
+        base.OnStateEnter();
+        steer.ClearWaypoint();
+    }
+
+    public override void UpdateState()
+    {
+        npc.transform.Translate(Vector3.down * (Time.fixedDeltaTime/2) * sinkSpeed);
+    }
+}

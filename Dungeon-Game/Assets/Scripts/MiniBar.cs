@@ -14,7 +14,10 @@ public class MiniBar : MonoBehaviour
         bar.transform.localScale = new Vector3(multiplier*0.4f, 0.1f, 1.0f);
         bar.transform.position = new Vector3(bar.transform.position.x - ((1f-multiplier)*0.95f), bar.transform.position.y, bar.transform.position.z);
         transform.Rotate(90, 0, 0);
-        Invoke("Remove", 1f);
+        if(multiplier == 0f) 
+            Invoke("Remove", 3f);
+        else
+            Invoke("Remove", 1f);
     }
 
     void Remove()

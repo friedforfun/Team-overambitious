@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3391802043101756880}
   - component: {fileID: 446334942435291533}
+  - component: {fileID: 7282148803585061130}
+  - component: {fileID: 3909376578765276806}
   m_Layer: 0
   m_Name: BossRoom
   m_TagString: Room
@@ -46,6 +48,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 735fbf5ddd0de9743815e18607e8c996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllowSpawn: 0
+--- !u!65 &7282148803585061130
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554237721992658913}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 5, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &3909376578765276806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554237721992658913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a42570942b2d0f47ac40eae5ee4b5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2771668515829132488
@@ -166,7 +194,7 @@ PrefabInstance:
     - target: {fileID: 2721820488311608161, guid: 8074c20c839d26149af0511d7da50360,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 2721820488311608161, guid: 8074c20c839d26149af0511d7da50360,
         type: 3}
@@ -236,7 +264,7 @@ PrefabInstance:
     - target: {fileID: 5695683855565248605, guid: b44452ab273ba9f4ab8663f81b46f122,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 5695683855565248605, guid: b44452ab273ba9f4ab8663f81b46f122,
         type: 3}
@@ -311,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 235264626834513850, guid: 0f0b4c40ee8785a42965012684a2417c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 235264626834513850, guid: 0f0b4c40ee8785a42965012684a2417c,
         type: 3}
@@ -386,7 +414,7 @@ PrefabInstance:
     - target: {fileID: 3740579300005531616, guid: 7abbe98a64aa73b4a92e2bb0ab9b92bf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 3740579300005531616, guid: 7abbe98a64aa73b4a92e2bb0ab9b92bf,
         type: 3}

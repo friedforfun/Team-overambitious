@@ -84,7 +84,7 @@ public class Trap_SpikeState : MonoBehaviour, IHaveState
         {
             animator.SetBool("Active", true);
         }
-        else
+        if (active == false)
         {
             animator.SetBool("Active", false);
         }
