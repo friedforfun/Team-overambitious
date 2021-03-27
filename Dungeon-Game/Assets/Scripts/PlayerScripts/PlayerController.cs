@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("ForwardSpeed", 0f);
             animator.SetFloat("strafeSpeed", 0f);
             animator.SetTrigger("Death");
-            animator.ResetTrigger("Death");
+            StartCoroutine(ResetDeath());
+            return;
         }
 
         orientCharacter();
@@ -115,6 +116,12 @@ public class PlayerController : MonoBehaviour
         Handles.ArrowHandleCap(0, this.transform.position + this.transform.forward * 0.4f, this.transform.rotation, 0.5f, EventType.Repaint);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, 0.4f);
+    }
+
+    IEnumerator ResetDeath()
+    {
+        yield return new WaitForSeconds(3f);
+        animator.ResetTrigger("Death");
     }
 
 }

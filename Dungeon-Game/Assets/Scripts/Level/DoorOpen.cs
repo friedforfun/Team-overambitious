@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class DoorOpen : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    bool DoorIsOpen = false;
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="Player")
+        if (DoorIsOpen)
         {
-            animator.SetBool("DoorOpen", true);
+            return;
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            LeanTween.moveLocalY(gameObject, -5f, 0.5f).setEaseOutQuad();
             Debug.Log("open plsss");
+            DoorIsOpen = true;
         }
         else
         {
@@ -21,10 +28,18 @@ public class DoorOpen : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!DoorIsOpen)
+        {
+            return;
+        }
         if (other.CompareTag("Player"))
         {
-            animator.SetBool("DoorOpen", false);
+            Debug.Log("Why is this fireing?");
+            LeanTween.moveLocalY(gameObject, 0f, 0.5f).setEaseOutQuad();
+            DoorIsOpen = false;
         }
         
     }
+
+
 }
