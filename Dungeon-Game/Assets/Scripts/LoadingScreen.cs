@@ -26,7 +26,7 @@ public class LoadingScreen : MonoBehaviour
     {
         screenText = loadingPanel.transform.GetChild(0).gameObject.GetComponent<Text>();
         loadingCircle = loadingPanel.transform.GetChild(1).gameObject;
-        replayButton = loadingPanel.transform.GetChild(1).gameObject;
+        replayButton = loadingPanel.transform.GetChild(2).gameObject;
         replayButton.SetActive(false);
     }
 
