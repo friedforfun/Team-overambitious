@@ -5,21 +5,14 @@ using UnityEngine;
 
 public class TrapAttack : BasicAttack
 {
-    private SpikeCollided spikeCollider;
-    public GameObject spikePieces;
-    [SerializeField] private int damage;
+    [SerializeField] Animator animator;
 
     public override void PerformAttack(Vector3 direction, float attackPower)
     {
-        spikeCollider.MeleeAttack(attackPower, null);
+        animator.SetBool("Active", true);
         
     }
 
-    public void MeleeAttack(float AttackPower, AttackDebuffs debuffs)
-    {
-        this.debuffs = debuffs;
-        damage = (int)(damage * AttackPower);
-    }
 
 
 }

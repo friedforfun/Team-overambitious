@@ -89,17 +89,7 @@ public class WarriorState : MonoBehaviour, IHaveState
     }
 
     // Check if player collided with the warrior's hitpoint
-    public void Detected(bool collidedWithHitpoint)
-    {
-        if(collidedWithHitpoint == true)
-        {
-            animator.SetBool("Attack", true);
-        }
-        else
-        {
-            animator.SetBool("Attack", false);
-        }
-    }
+
 
     public void GetAnimationState(bool active, string animStateName)
     {
@@ -141,6 +131,7 @@ public class WarriorWander : NPCWander
 
 public class NPCMoveToAttackingRange : NPCMoveToPlayer
 {
+    
     public NPCMoveToAttackingRange(GameObject npc, GameObject player) : base(npc, player)
     {
        
@@ -148,7 +139,7 @@ public class NPCMoveToAttackingRange : NPCMoveToPlayer
 
     public override void OnStateEnter()
     {
-        stateController.GetAnimationState();
+        stateController.GetAnimationState().SetBool("Chasing", true);
         base.OnStateEnter();
         steer.AddTargetTag("Player");
         steer.AddEvadeTag("Projectile");
@@ -193,6 +184,7 @@ public class MeleeAttack : NPCInCombat
     }
     public override void OnStateEnter()
     {
+        stateController.GetAnimationState().SetBool("Chasing", false);
         base.OnStateEnter();
         /*steer.AddEvadeTag("Player");*/
     }

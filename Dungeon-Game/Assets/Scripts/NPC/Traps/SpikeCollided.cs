@@ -2,74 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeCollided : MonoBehaviour, IMeleeHit
+public class SpikeCollided : MonoBehaviour
 {
-   
-    public Trap_SpikeState spike;
-    [SerializeField] private int damage;
-    
-    private AttackDebuffs debuffs;
 
-    // Start is called before the first frame update
+    [SerializeField] SpikeTrapStatus stats;
 
-    void Start()
+
+    private void OnTriggerEnter(Collider collision)
     {
-        
-    }
-
-    void OnTriggerEnter(Collider collision)
-    {
-
-        Debug.Log("HIT THE PLAYER");
-        IDamagable applyDamage = collision.gameObject.GetComponent<IDamagable>();
-        if (applyDamage != null)
+        IDamagable damageable = collision.gameObject.GetComponent<IDamagable>();
+        if (damageable != null)
         {
-            applyDamage.Damage(damage);
-            if (debuffs != null)
-            {
-                //applyDamage.AddDebuff(debuffs());
-                foreach (AttackDebuffs debuff in debuffs.GetInvocationList())
-                {
-                    Debuff d = debuff();
-                    applyDamage.AddDebuff(d);
-                    Debug.Log($"Added Debuff {d}");
-                }
-            }
-        }
-
-    }
-
-    private void OnTriggerStay(Collider collision)
-    {
-        Debug.Log("HIT THE PLAYER");
-        IDamagable applyDamage = collision.gameObject.GetComponent<IDamagable>();
-        if (applyDamage != null)
-        {
-            applyDamage.Damage(damage);
-            if (debuffs != null)
-            {
-                //applyDamage.AddDebuff(debuffs());
-                foreach (AttackDebuffs debuff in debuffs.GetInvocationList())
-                {
-                    Debuff d = debuff();
-                    applyDamage.AddDebuff(d);
-                    Debug.Log($"Added Debuff {d}");
-                }
-            }
+            damageable.Damage((int)(stats.BaseDamage * stats.DamageModifier()));
         }
     }
-    
 
-
-    public void MeleeAttack(float AttackPower, AttackDebuffs debuffs)
+/*    private void OnTriggerStay(Collider collision)
     {
-        this.debuffs = debuffs;
-        damage = (int)(damage * AttackPower);
-    }
-
-    /*        if (collision.tag == "Player")
+        IDamagable damageable = collision.gameObject.GetComponent<IDamagable>();
+        if (damageable != null)
         {
-            spike.PlayerSpiked(true, collision.gameObject);
-            target = collision.gameObject; 
-        }*/
+            damageable.Damage((int)(stats.BaseDamage * stats.DamageModifier()));
+        }
+    }*/
+
+
 }
