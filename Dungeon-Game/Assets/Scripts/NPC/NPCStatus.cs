@@ -27,3 +27,4 @@ public class NPCStatus : BaseStatus
         else myMiniBar.GetComponent<MiniBar>().multiplier = 0f;
     }
 }
+

@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class TrapAttack : BasicAttack
 {
-    private SpikeCollided spikeCollider;
+    [SerializeField] Animator animator;
+
     public override void PerformAttack(Vector3 direction, float attackPower)
     {
-        spikeCollider.MeleeAttack(attackPower, null);
+        animator.SetBool("Active", true);
         
     }
+
 
 
 }
