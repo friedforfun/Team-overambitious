@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9111405978599535650}
   - component: {fileID: 9111405978599535661}
   - component: {fileID: 9111405978599535660}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GunBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +739,7 @@ GameObject:
   - component: {fileID: 9111405978622543401}
   - component: {fileID: 9111405978622543400}
   - component: {fileID: 9111405978622543405}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3234,7 +3234,7 @@ GameObject:
   - component: {fileID: 9111405978721393751}
   - component: {fileID: 9111405978721393750}
   - component: {fileID: 9111405978721393745}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GunCase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
