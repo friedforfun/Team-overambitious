@@ -45,7 +45,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 0.05, z: 0.01}
+  m_Size: {x: 0.05, y: 0.05, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0.01}
 --- !u!114 &2260707768575676519
 MonoBehaviour:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117f06818953038418359926e326b737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 7317446119878104955, guid: c7a5030364eb2524db134ff8c206945b, type: 3}
+  stats: {fileID: 9145253981319258360}
   animator: {fileID: 9145253981893668257}
 --- !u!65 &9145253981319258361
 BoxCollider:
@@ -319,7 +319,7 @@ MonoBehaviour:
   _AttackPower: 0
   AttackSpeed: 1
   _Defense: 0
-  BaseDamage: 10
+  BaseDamage: 15
 --- !u!114 &9145253981319258362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 9145253981319258360}
-  TrapAttack: {fileID: 0}
+  TrapAttack: {fileID: 3164948415694762772}
   anim: {fileID: 9145253981893668257}
 --- !u!1 &8459479215971324446
 GameObject:
