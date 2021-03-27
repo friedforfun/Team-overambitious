@@ -1121,10 +1121,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8285043080221385172}
     - target: {fileID: 769572322, guid: 6d4245675e44fc34cac3ced6a3cb960d, type: 3}
-      propertyPath: playerEndgame
-      value: player1end
-      objectReference: {fileID: 0}
-    - target: {fileID: 769572322, guid: 6d4245675e44fc34cac3ced6a3cb960d, type: 3}
       propertyPath: EntirePlayerPrefab
       value: 
       objectReference: {fileID: 540286054409116470}

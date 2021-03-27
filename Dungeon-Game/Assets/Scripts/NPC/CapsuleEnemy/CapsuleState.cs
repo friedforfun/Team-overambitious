@@ -44,8 +44,8 @@ public class CapsuleState : MonoBehaviour, IHaveState
         if (UpdateLimiter)
             CurrentState.UpdateState();
 
-        UpdateLimiter = UpdateLimiter ? false : true;
-
+        //UpdateLimiter = UpdateLimiter ? false : true;
+        
     }
 
     public float GetDetectRange()

@@ -23,6 +23,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerStats.isDead)
+        {
+            animator.SetFloat("ForwardSpeed", 0f);
+            animator.SetFloat("strafeSpeed", 0f);
+            animator.SetTrigger("Death");
+            animator.ResetTrigger("Death");
+        }
+
         orientCharacter();
         applyMove();
         if (AttackButtonDown)
