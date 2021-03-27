@@ -11,6 +11,7 @@ public class BuffPickup : MonoBehaviour
     void Start()
     {
         myCollider = GetComponent<CapsuleCollider>();
+        transform.Rotate(90,0,0);
     }
 
     void OnTriggerEnter(Collider col)

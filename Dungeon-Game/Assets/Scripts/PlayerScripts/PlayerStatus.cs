@@ -14,7 +14,8 @@ public class PlayerStatus : BaseStatus
 
     [SerializeField] private Team team;
     [SerializeField] private string playerEndgame;
-    [SerializeField] private Transform goTransform;
+    [SerializeField] public Transform goTransform;
+    [SerializeField] private GameObject EntirePlayerPrefab;
 
     private Transform FinaleSpawnPoint;
 
@@ -25,11 +26,25 @@ public class PlayerStatus : BaseStatus
         EventManager.TriggerEvent(playerEndgame);
         StartCoroutine(Warp());
     }
+    
+    private void PlayerDeath()
+    {
+        if (IsInBossRoom)
+        {
+            EventManager.TriggerEvent($"GameOver{team}"); // Loss team sends game over event
+        }
+        else
+        {
+            // Freeze player controls
+            StartCoroutine(RespawnDelay());
+        }
+    }
 
     protected override void SetUp()
     {
         base.SetUp();
         FinaleSpawnPoint = FindObjectOfType<FinaleRoom>().GetPlayerSpawn(team);
+        OnDeath += PlayerDeath;
     }
 
     public IEnumerator Warp()
@@ -44,7 +59,12 @@ public class PlayerStatus : BaseStatus
         {                
             IsInBossRoom = true;
         }
-            
+    }
+
+    private IEnumerator RespawnDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        EventManager.TriggerEvent($"Respawn{team}"); // Trigger respawn event for this team
     }
 
 }
