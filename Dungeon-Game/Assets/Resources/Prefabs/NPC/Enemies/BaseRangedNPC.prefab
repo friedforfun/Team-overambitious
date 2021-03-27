@@ -4613,7 +4613,7 @@ GameObject:
   - component: {fileID: 8238197393792252237}
   m_Layer: 0
   m_Name: BaseRangedNPC
-  m_TagString: Player
+  m_TagString: Hostile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4703,7 +4703,7 @@ MonoBehaviour:
   ChaseDistance: 50
   EvadeDistance: 3
   AvoidDistance: 1.5
-  rotationSpeed: 0.1
+  rotationSpeed: 10
   WaypointObject: {fileID: 4959129530293713088, guid: 821e368745a21f646a9ff1b6a2d2de3c,
     type: 3}
   targetTags: []

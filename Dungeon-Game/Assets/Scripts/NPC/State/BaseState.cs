@@ -51,9 +51,9 @@ public abstract class NPCBaseState : BaseState
     /// <returns></returns>
     protected bool LineOfSightCheck(GameObject other)
     {
-        Vector3 losCheckPoint = new Vector3(npc.transform.position.x, npc.transform.position.y + 1, npc.transform.position.z); // point to check line of sight from
-
-        Vector3 directionToOther = other.transform.position - losCheckPoint;
+        Vector3 losCheckPoint = new Vector3(npc.transform.position.x, npc.transform.position.y + 1.8f, npc.transform.position.z); // point to check line of sight from
+        Vector3 otherOffset = new Vector3(other.transform.position.x, other.transform.position.y + 0.9f, other.transform.position.z);
+        Vector3 directionToOther = otherOffset - losCheckPoint;
         Debug.DrawRay(losCheckPoint, directionToOther, Color.cyan);
         RaycastHit hit;
         Ray los = new Ray(losCheckPoint, directionToOther);
