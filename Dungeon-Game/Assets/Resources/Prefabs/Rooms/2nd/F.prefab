@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3738690711443405902
 Transform:
@@ -76,6 +76,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386038661368528911, guid: b6ff2430326664d4f9914b94bccdaae1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5605698474359115713, guid: b6ff2430326664d4f9914b94bccdaae1,
         type: 3}
@@ -297,6 +302,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3738690711443405902}
     m_Modifications:
+    - target: {fileID: 629283624504421784, guid: 10811151e2c1c8a458f156ec8d03e036,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2575994350311070966, guid: 10811151e2c1c8a458f156ec8d03e036,
         type: 3}
       propertyPath: m_RootOrder
@@ -352,10 +362,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3351308226772937526, guid: 10811151e2c1c8a458f156ec8d03e036,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4463320898011341833, guid: 10811151e2c1c8a458f156ec8d03e036,
         type: 3}
       propertyPath: m_Name
       value: ForwardDoor Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4463320898011341833, guid: 10811151e2c1c8a458f156ec8d03e036,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10811151e2c1c8a458f156ec8d03e036, type: 3}
@@ -506,6 +526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnPointForward
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846267937964170257, guid: ea0b0f24929024148b8e311947ce646d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea0b0f24929024148b8e311947ce646d, type: 3}
