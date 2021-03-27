@@ -24,8 +24,12 @@ public class MirrorRoom : MonoBehaviour
         {
             Templates.MaximumRooms = Templates.MaximumRooms * 2;
             GameObject SceneRight = Instantiate(SceneLeft, spawnPoint, Quaternion.identity);
-            GameObject playerR = Instantiate(PlayerR, spawnPoint, Quaternion.identity);
+            GameObject playerR = Instantiate(PlayerR, new Vector3(spawnPoint.x, spawnPoint.y + 0.5f, spawnPoint.z), Quaternion.identity);
             SceneFlipped = true;
+
+            DungeonManager dm = SceneRight.GetComponent<DungeonManager>();
+            dm.AssignPlayer(playerR);
+            dm.AssignTeam(Team.RIGHT);
 
             // Emit procedural gen finished event
             EventManager.TriggerEvent("GenerationComplete");

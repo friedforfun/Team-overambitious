@@ -4799,7 +4799,7 @@ Transform:
   m_GameObject: {fileID: 2319609585193303818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.23819725, y: 0.45, z: -1.0032763}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children:
   - {fileID: 2319609585025541105}
   - {fileID: 7065197077615929906}
@@ -4969,6 +4969,11 @@ MonoBehaviour:
   _AttackPower: 0
   AttackSpeed: 1
   _Defense: 0
+  team: 0
+  playerEndgame: 
+  goTransform: {fileID: 0}
+  EntirePlayerPrefab: {fileID: 0}
+  IsInBossRoom: 0
 --- !u!114 &4065376206464920371
 MonoBehaviour:
   m_ObjectHideFlags: 0

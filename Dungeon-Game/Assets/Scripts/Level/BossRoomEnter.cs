@@ -13,4 +13,13 @@ public class BossRoomEnter : MonoBehaviour
             player.TriggerEndGame();
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        PlayerStatus player = other.gameObject.GetComponent<PlayerStatus>();
+        if (player != null)
+        {
+            player.TriggerEndGame();
+        }
+    }
 }

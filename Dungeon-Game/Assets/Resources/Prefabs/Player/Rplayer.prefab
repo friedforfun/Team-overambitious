@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 172588799627847989}
-  eventListen: player1End
+  eventListen: player1end
 --- !u!1 &540286054409116470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1231,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
+      propertyPath: goTransform
+      value: 
+      objectReference: {fileID: 172588799627847946}
+    - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
       propertyPath: playerEndgame
       value: player2end
       objectReference: {fileID: 0}
@@ -1549,7 +1553,7 @@ PrefabInstance:
     - target: {fileID: 1652275704470740651, guid: ada9f0e36e820e94193f083b606d933b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -197.60999
+      value: -197.61
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ada9f0e36e820e94193f083b606d933b, type: 3}

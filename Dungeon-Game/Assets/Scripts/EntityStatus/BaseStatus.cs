@@ -74,6 +74,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         StartCoroutine(applyContinousEffects());
         HP = MaxHp;
         SetUp();
+
     }
 
     protected virtual void SetUp()
@@ -132,6 +133,22 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
         debuff.iconObject = Instantiate(statusIcon, new Vector3(transform.position.x - 1.5f, transform.position.y + 1f, transform.position.z + 1f), Quaternion.identity);
         debuff.iconObject.GetComponent<SpriteRenderer>().sprite = debuff.icon;
         debuff.iconObject.transform.Rotate(90, 0, 0);
+    }
+
+    public void ClearDebuffs()
+    {
+        if (isDead)
+            return;
+
+        Debuffs = new List<Debuff>();
+    }
+
+    public void ClearBuffs()
+    {
+        if (isDead)
+            return;
+
+        Buffs = new List<Buff>();
     }
 
     /// <summary>
@@ -197,8 +214,17 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
     public void Kill()
     {
         isDead = true;
-        OnDeath();
+        if (OnDeath != null)
+            OnDeath();
         //Debug.Log("TODO: Kill this unit");
+    }
+
+    public void Resurrect()
+    {
+        ClearBuffs();
+        ClearDebuffs();
+        Heal(10000);
+        isDead = false;
     }
 
     /// <summary>
