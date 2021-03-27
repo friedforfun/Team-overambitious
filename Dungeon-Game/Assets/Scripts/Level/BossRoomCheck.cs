@@ -40,8 +40,8 @@ public class BossRoomCheck : MonoBehaviour
             if ((Templates.BossRoomX == transform.position.x) && (Templates.BossRoomZ == transform.position.z))
             {
                 Instantiate(BossRoom, transform.position, Quaternion.identity, Scene.transform);
-                Debug.Log("run");
-                Debug.Log(gameObject.name);
+                //Debug.Log("run");
+                //Debug.Log(gameObject.name);
                 //Destroy(gameObject);
                 Templates.BossSpawned = true;
             }

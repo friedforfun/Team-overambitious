@@ -453,6 +453,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6060874470386297806}
     m_Modifications:
+    - target: {fileID: 2637962775626657610, guid: 46004b4aca96cac4981e8df994e2abb1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2703279614209656169, guid: 46004b4aca96cac4981e8df994e2abb1,
         type: 3}
       propertyPath: m_RootOrder
@@ -518,10 +523,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3191971850255203320, guid: 46004b4aca96cac4981e8df994e2abb1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3312752362026456818, guid: 46004b4aca96cac4981e8df994e2abb1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068533380723328668, guid: 46004b4aca96cac4981e8df994e2abb1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157153566077480953, guid: 46004b4aca96cac4981e8df994e2abb1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747903921273715531, guid: 46004b4aca96cac4981e8df994e2abb1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7166000773317314855, guid: 46004b4aca96cac4981e8df994e2abb1,
         type: 3}
       propertyPath: m_Name
       value: RightWall 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166000773317314855, guid: 46004b4aca96cac4981e8df994e2abb1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46004b4aca96cac4981e8df994e2abb1, type: 3}

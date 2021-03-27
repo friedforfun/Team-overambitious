@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8781907264183072594}
   - component: {fileID: -1648470890237122036}
   m_Layer: 0
-  m_Name: FBLR 1
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
