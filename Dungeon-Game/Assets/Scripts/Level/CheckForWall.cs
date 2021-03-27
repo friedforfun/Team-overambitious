@@ -7,9 +7,9 @@ public class CheckForWall : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
+            
         }
         }
     }

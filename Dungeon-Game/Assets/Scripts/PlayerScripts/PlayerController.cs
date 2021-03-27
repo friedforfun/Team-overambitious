@@ -12,16 +12,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private PlayerStatus playerStats;
     [SerializeField] private PlayerAttack playerAttack;
+    [SerializeField] private Animator animator;
 
     private Vector2 orientDirection;
     private Vector2 moveInput;
     private bool AttackButtonDown = false;
     private bool AbilityButtonDown = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -76,6 +73,11 @@ public class PlayerController : MonoBehaviour
     private void applyMove()
     {
         controller.SimpleMove((new Vector3(moveInput.x, 0, moveInput.y) /* * Time.deltaTime */ * baseMoveSpeed) * Mathf.Abs(playerStats.MoveSpeedModifier()));
+        Vector3 relativeVelocity = transform.InverseTransformVector(controller.velocity);
+        animator.SetFloat("ForwardSpeed", relativeVelocity.z);
+        animator.SetFloat("StrafeSpeed", relativeVelocity.x);
+
+        //Debug.Log($"Velocity: {transform.InverseTransformVector(controller.velocity)}");
     }
 
     /// <summary>
