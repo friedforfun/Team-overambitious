@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 954028029487324487}
   - component: {fileID: 5867510609111337214}
   - component: {fileID: 5921411887247179693}
-  - component: {fileID: 4476525503541086646}
   m_Layer: 0
   m_Name: DoorLower
   m_TagString: Untagged
@@ -95,7 +94,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.6873004, z: 4}
+  m_Size: {x: 10, y: 13.14, z: 4}
   m_Center: {x: 0, y: 1.3436502, z: 0.000000014901161}
 --- !u!114 &5867510609111337214
 MonoBehaviour:
@@ -109,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9791808be913a0f44a5799c3801c4adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 4476525503541086646}
 --- !u!65 &5921411887247179693
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123,25 +121,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.889957, y: 2.6873004, z: 0.3936343}
   m_Center: {x: 0, y: 1.3436502, z: 0.000000014901161}
---- !u!95 &4476525503541086646
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5070481472478210170}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 85c5fc4218d5e6f489936dd3f1c4e0e3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6945798588541185748
 GameObject:
   m_ObjectHideFlags: 0
