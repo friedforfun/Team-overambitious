@@ -5,11 +5,11 @@ using UnityEngine;
 public class CapsuleState : MonoBehaviour, IHaveState
 {
     [SerializeField] private NPCStatus stats;
-    
+
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
     private float AttackRange = 8f;
-   [SerializeField] CapsuleAttack CA;
+    [SerializeField] CapsuleAttack CA;
 
     private bool UpdateLimiter = true;
 
@@ -25,10 +25,10 @@ public class CapsuleState : MonoBehaviour, IHaveState
             CurrentState.OnStateLeave();
         }
 
-        CurrentState = (NPCBaseState) state;
+        CurrentState = (NPCBaseState)state;
 
         if (CurrentState != null)
-        {   
+        {
             CurrentState.OnStateEnter();
         }
     }
@@ -45,7 +45,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
             CurrentState.UpdateState();
 
         UpdateLimiter = UpdateLimiter ? false : true;
-        
+
     }
 
     public float GetDetectRange()
@@ -65,18 +65,18 @@ public class CapsuleState : MonoBehaviour, IHaveState
 
     public void CallAttack(GameObject target)
     {
-        CA.Attack(target.transform.position-transform.position);
-    }
-
-    public void GetAnimationState(bool active)
-    {
-        throw new System.NotImplementedException();
+        CA.Attack(target.transform.position - transform.position);
     }
 
     IEnumerator death()
     {
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
+    }
+
+    public Animator GetAnimationState()
+    {
+        throw new System.NotImplementedException();
     }
 }
 
@@ -145,7 +145,7 @@ public class CapsuleMoveToShootingRange : NPCInCombat
         {
             stateController.SetState(new RangedAttack(npc, player));
         }
-            
+
     }
 }
 
@@ -178,4 +178,3 @@ public class RangedAttack : NPCInCombat
         }
     }
 }
-

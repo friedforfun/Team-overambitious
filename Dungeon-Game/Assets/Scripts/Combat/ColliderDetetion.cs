@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ColliderDetetion : MonoBehaviour
 {
-    public BasicAttackShooter b;
+    public BasicAttackShooter BAS;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             // transition to enterCombat
-            b.SetDetected(true, other.gameObject);
+            BAS.SetDetected(true, other.gameObject);
         }
     }
 }
