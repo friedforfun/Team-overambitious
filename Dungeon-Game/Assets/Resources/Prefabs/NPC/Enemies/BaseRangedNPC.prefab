@@ -4665,6 +4665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 9025842656822981559}
+  animator: {fileID: 580851084789508182}
   CA: {fileID: 9060886588831653188}
 --- !u!114 &9025842656822981559
 MonoBehaviour:

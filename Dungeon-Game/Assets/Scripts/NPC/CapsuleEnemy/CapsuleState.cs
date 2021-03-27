@@ -5,6 +5,7 @@ using UnityEngine;
 public class CapsuleState : MonoBehaviour, IHaveState
 {
     [SerializeField] private NPCStatus stats;
+    [SerializeField] private Animator animator;
 
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
@@ -76,7 +77,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
 
     public Animator GetAnimationState()
     {
-        throw new System.NotImplementedException();
+        return animator;
     }
 }
 

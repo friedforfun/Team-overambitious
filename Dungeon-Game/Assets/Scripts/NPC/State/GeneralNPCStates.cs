@@ -222,16 +222,22 @@ public class NPCMoveToPlayer : NPCInCombat
 public class NPCDead : NPCBaseState
 {
     private float sinkSpeed = 10f;
-
+    Animator anim;
     public NPCDead(GameObject npc) : base(npc)
     {
-        Debug.Log("Entered Death state");
+        //Debug.Log("Entered Death state");
     }
 
     public override void OnStateEnter()
     {
         base.OnStateEnter();
         steer.ClearWaypoint();
+        
+        anim = stateController.GetAnimationState();
+        if (anim != null)
+        {
+            anim.SetTrigger("Death");
+        }
     }
 
     public override void UpdateState()
