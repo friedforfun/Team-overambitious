@@ -1455,6 +1455,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 437401628416300744}
     - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
+      propertyPath: goTransform
+      value: 
+      objectReference: {fileID: 6423208654496042334}
+    - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
       propertyPath: playerEndgame
       value: player2end
       objectReference: {fileID: 0}
