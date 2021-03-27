@@ -1190,6 +1190,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 172588799627847947, guid: fec78edd0fdb72e49977498b24e1fb3e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 540286054409116470, guid: fec78edd0fdb72e49977498b24e1fb3e,
         type: 3}
       propertyPath: m_Name
@@ -1209,6 +1214,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -60.599976
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474094925060271068, guid: fec78edd0fdb72e49977498b24e1fb3e,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474094925060271068, guid: fec78edd0fdb72e49977498b24e1fb3e,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474094925060271068, guid: fec78edd0fdb72e49977498b24e1fb3e,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 2474094925060271069, guid: fec78edd0fdb72e49977498b24e1fb3e,
         type: 3}
@@ -1285,7 +1305,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 172588799627847947, guid: fec78edd0fdb72e49977498b24e1fb3e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fec78edd0fdb72e49977498b24e1fb3e, type: 3}
 --- !u!43 &486610739
 Mesh:
@@ -2976,6 +2997,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemies:
   - {fileID: 2330715081895640723, guid: ed602352e015e5d4996d0c4d3ad01d1f, type: 3}
+  Buffs: []
+  SpawnPoint: {fileID: 0}
+  player: {fileID: 0}
+  team: 0
 --- !u!43 &1261195476
 Mesh:
   m_ObjectHideFlags: 0
