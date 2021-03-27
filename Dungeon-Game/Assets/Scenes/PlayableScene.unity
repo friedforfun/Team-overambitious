@@ -221,7 +221,7 @@ PrefabInstance:
         type: 3}
       propertyPath: goTransform
       value: 
-      objectReference: {fileID: 720316028}
+      objectReference: {fileID: 0}
     - target: {fileID: 2474094925060271070, guid: fec78edd0fdb72e49977498b24e1fb3e,
         type: 3}
       propertyPath: m_DefaultControlScheme
@@ -299,12 +299,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8781907264183072594, guid: 5494de650cd8e6849866ec9793722218,
     type: 3}
   m_PrefabInstance: {fileID: 1863389174}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &720316028 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 172588799627847946, guid: fec78edd0fdb72e49977498b24e1fb3e,
-    type: 3}
-  m_PrefabInstance: {fileID: 283908860}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1248317615
 GameObject:
@@ -776,7 +770,7 @@ PrefabInstance:
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: MinimumRooms
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
