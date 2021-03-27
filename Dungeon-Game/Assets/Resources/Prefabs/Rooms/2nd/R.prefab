@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5782531252146263957}
-  - component: {fileID: -5219392989362161950}
   - component: {fileID: -1188589871429583098}
+  - component: {fileID: -6342746692384571851}
   m_Layer: 0
   m_Name: R
   m_TagString: Untagged
@@ -37,20 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5219392989362161950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5782531252146263962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b0e9cb9836d3743abc01809885acc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBossRoom: 0
-  BossRoom: {fileID: 0}
 --- !u!114 &-1188589871429583098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +51,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBossRoom: 0
   BossRoom: {fileID: 554237721992658913, guid: 17d4fa27cceac2e44872a33ab402b260, type: 3}
+--- !u!114 &-6342746692384571851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5782531252146263962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735fbf5ddd0de9743815e18607e8c996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllowSpawn: 1
 --- !u!1001 &5782531250671397201
 PrefabInstance:
   m_ObjectHideFlags: 0

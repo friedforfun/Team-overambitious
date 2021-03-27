@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386316e03fe858144bd7fe970ea75e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8285043080221385195}
   eventListen: player2End
 --- !u!1 &8737314098535191579
 GameObject:

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 769572322}
   - component: {fileID: 4065376206464920371}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerR
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3080,7 +3080,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06d40dc2e1401784eb420a0d2d5d7235, type: 2}
+  - {fileID: 2100000, guid: a91b27c6e898a024abd20f74e9c70c4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4958,6 +4958,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 11.635
       objectReference: {fileID: 0}
+    - target: {fileID: 23260715190813498, guid: 32ba3ed6691c8c04392a66ea113f42c1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a91b27c6e898a024abd20f74e9c70c4f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ba3ed6691c8c04392a66ea113f42c1, type: 3}
 --- !u!1 &9030033128962550054 stripped

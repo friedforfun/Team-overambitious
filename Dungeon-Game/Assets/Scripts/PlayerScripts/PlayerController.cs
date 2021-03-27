@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("ForwardSpeed", relativeVelocity.z);
         animator.SetFloat("StrafeSpeed", relativeVelocity.x);
 
-        Debug.Log($"Velocity: {transform.InverseTransformVector(controller.velocity)}");
+        //Debug.Log($"Velocity: {transform.InverseTransformVector(controller.velocity)}");
     }
 
     /// <summary>
