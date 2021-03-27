@@ -45,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 0.05, z: 0.03}
-  m_Center: {x: 0, y: 0, z: 0.01}
+  m_Size: {x: 0.05, y: 0.05, z: 0.02}
+  m_Center: {x: 0, y: 0, z: 0.03}
 --- !u!114 &2260707768575676519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 9145253981319258361}
   - component: {fileID: 9145253981319258360}
   - component: {fileID: 9145253981319258362}
+  - component: {fileID: -59737775565240671}
   m_Layer: 0
   m_Name: SpikeTrap
   m_TagString: Hostile
@@ -247,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8226688777511918891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1368725, y: 0.12500003, z: 3.29}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5553334051454524660}
@@ -335,6 +336,19 @@ MonoBehaviour:
   stats: {fileID: 9145253981319258360}
   TrapAttack: {fileID: 3164948415694762772}
   anim: {fileID: 9145253981893668257}
+--- !u!114 &-59737775565240671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226688777511918891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df06462e83f2cf14e8f1c2926ee9cdee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 500
 --- !u!1 &8459479215971324446
 GameObject:
   m_ObjectHideFlags: 0
