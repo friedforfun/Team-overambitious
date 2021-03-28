@@ -29,12 +29,18 @@ public class TurretAttack : BasicAttack
     {
         foreach (GameObject player in players)
         {
-            if (LineOfSightCheck(player))
+            if ((player.transform.position - gameObject.transform.position).magnitude < 10f)
             {
-                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, player.transform.position - transform.position, 0.8f * Time.deltaTime, 0.0f));
-                if (Vector3.Dot(transform.forward, (player.transform.position - transform.position).normalized) >= 0.9f)
-                    Attack(player.transform.position - gameObject.transform.position);
-            }
+                if (LineOfSightCheck(player))
+                {
+                    //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, player.transform.position - transform.position, 0.8f * Time.deltaTime, 0.0f));
+                    transform.LookAt(player.transform);
+                    
+                    if (Vector3.Dot(transform.forward, (player.transform.position - transform.position).normalized) >= 0.9f)
+                        Attack(player.transform.position - gameObject.transform.position);
+                }
+            } 
+            
         }
     }
 

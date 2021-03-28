@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8547297787050938158}
   - component: {fileID: 8555615587302661468}
   - component: {fileID: 8506547373007928722}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Bank_Booth_Pillar_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

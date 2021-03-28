@@ -1433,7 +1433,7 @@ PrefabInstance:
     - target: {fileID: 1652275704470740651, guid: ada9f0e36e820e94193f083b606d933b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -197.60999
+      value: -197.60997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ada9f0e36e820e94193f083b606d933b, type: 3}
@@ -1454,6 +1454,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 437401628416300744}
+    - target: {fileID: 769572321, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Gamepad
+      objectReference: {fileID: 0}
     - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
       propertyPath: EntirePlayerPrefab
       value: 
