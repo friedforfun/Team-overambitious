@@ -35,6 +35,7 @@ public class GenerateContents : MonoBehaviour
         if (framecount == 1 && Templates.GenerationComplete == false)
         {
             SpawnEnemies();
+
             SpawnObsticals();
         }
 
