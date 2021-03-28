@@ -149,7 +149,7 @@ MonoBehaviour:
   - {fileID: 6022105537240653429}
   Enemies:
   - {fileID: 8464600073626945413, guid: afd8d916fba7e994ba0af617e3510ecd, type: 3}
-  - {fileID: 437789505107773629, guid: 72f3e799ce115d74da25b9ca7a80ca1b, type: 3}
+  - {fileID: 9111405978622543403, guid: 03c35d601ab135c43aec7a11b5959c5f, type: 3}
   EnemyCosts: 0100000001000000
   ObstacleSpawns:
   - {fileID: 5235479576040948884}

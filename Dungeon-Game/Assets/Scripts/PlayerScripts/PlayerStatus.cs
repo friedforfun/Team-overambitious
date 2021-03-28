@@ -17,6 +17,7 @@ public class PlayerStatus : BaseStatus
     [SerializeField] public Transform goTransform;
     [SerializeField] private GameObject EntirePlayerPrefab;
 
+    private float FinaleRoomCheckRange = 50f;
     private Transform FinaleSpawnPoint;
 
     public bool IsInBossRoom = false;
@@ -45,6 +46,20 @@ public class PlayerStatus : BaseStatus
         base.SetUp();
         FinaleSpawnPoint = FindObjectOfType<FinaleRoom>().GetPlayerSpawn(team);
         OnDeath += PlayerDeath;
+    }
+
+    protected override void UIUpdate()
+    {
+        base.UIUpdate();
+        if ((goTransform.position.x > FinaleSpawnPoint.position.x - FinaleRoomCheckRange && goTransform.position.x < FinaleSpawnPoint.position.x + FinaleRoomCheckRange) && (goTransform.position.z > FinaleSpawnPoint.position.z - FinaleRoomCheckRange && goTransform.position.z < FinaleSpawnPoint.position.z + FinaleRoomCheckRange))
+        {
+            Debug.Log("In boss room");
+            IsInBossRoom = true;
+        }
+        else
+        {
+            IsInBossRoom = false;
+        }
     }
 
     public IEnumerator Warp()
