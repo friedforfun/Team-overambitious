@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.05
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientIntensity: 0.18
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.13296545, g: 0.19145328, b: 0.33962262, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 0ffaa0b7117ba8c47a9d05ae701d4b4d, type: 2}
   m_HaloStrength: 0.5
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20749143, g: 0.21147497, b: 0.14576834, a: 1}
+  m_IndirectSpecularColor: {r: 0.012594558, g: 0.018689523, b: 0.031135574, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2283,10 +2283,65 @@ PrefabInstance:
       propertyPath: m_Name
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 392994432356969789, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 392994432356969789, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 19.333332
+      objectReference: {fileID: 0}
+    - target: {fileID: 392994432356969789, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 11.333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054911317120109311, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054911317120109311, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 4e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054911317120109311, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 20.666666
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054911317120109311, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 11.333333
+      objectReference: {fileID: 0}
     - target: {fileID: 1638441702697635387, guid: 5494de650cd8e6849866ec9793722218,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4904017549175656462, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.w
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4904017549175656462, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4904017549175656462, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 41.333332
+      objectReference: {fileID: 0}
+    - target: {fileID: 4904017549175656462, guid: 5494de650cd8e6849866ec9793722218,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 11.333333
       objectReference: {fileID: 0}
     - target: {fileID: 8781907264183072594, guid: 5494de650cd8e6849866ec9793722218,
         type: 3}
@@ -5185,7 +5240,7 @@ PrefabInstance:
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
       propertyPath: AverageRoomScore
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1973085342617645453, guid: 40bf149804f5db845a467d1701657c7d,
         type: 3}
