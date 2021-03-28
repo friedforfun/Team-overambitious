@@ -16,8 +16,8 @@ public class GameplayManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.StartListening("GenerationComplete", regenerateNavMesh);
-        EventManager.StartListening("player1end", () => { Debug.Log("Player 1 ended game!"); });
-        EventManager.StartListening("player2end", () => { Debug.Log("Player 2 ended game!"); });
+        EventManager.StartListening("player1end", () => { Debug.Log("Player 1 reached boss room!"); });
+        EventManager.StartListening("player2end", () => { Debug.Log("Player 2 reached boss room!"); });
 
         EventManager.StartListening($"Gameover{Team.LEFT}", () => { Debug.Log("Left player has lost the game"); });
         EventManager.StartListening($"Gameover{Team.RIGHT}", () => { Debug.Log("Right player has lost the game"); });
@@ -27,8 +27,8 @@ public class GameplayManager : MonoBehaviour
     private void OnDisable()
     {
         EventManager.StopListening("GenerationComplete", regenerateNavMesh);
-        EventManager.StopListening("player1end", () => { Debug.Log("Player 1 ended game!"); });
-        EventManager.StopListening("player2end", () => { Debug.Log("Player 2 ended game!"); });
+        EventManager.StopListening("player1end", () => { Debug.Log("Player 1 reached boss room!"); });
+        EventManager.StopListening("player2end", () => { Debug.Log("Player 2 reached boss room!"); });
 
         EventManager.StopListening($"Gameover{Team.LEFT}", () => { Debug.Log("Left player has lost the game"); });
         EventManager.StopListening($"Gameover{Team.RIGHT}", () => { Debug.Log("Right player has lost the game"); });

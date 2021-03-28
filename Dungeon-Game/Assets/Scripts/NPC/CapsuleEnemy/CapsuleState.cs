@@ -123,7 +123,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
                 {
                     Color oldColor = Color.grey;
                     Color newColor = new Color(oldColor.r - 0.2f, oldColor.g - 0.2f, oldColor.b - 0.2f, 0.2f);
-                    m.color = newColor;
+                    m.SetColor("_Color", newColor);
                 }
             }
         }

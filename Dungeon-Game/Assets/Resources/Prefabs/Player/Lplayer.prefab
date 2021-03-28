@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8285043080221385195}
-  eventListen: player2End
+  eventListen: player2end
 --- !u!1 &8737314098535191579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1112,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 6990281324440941511}
+    - target: {fileID: 769572322, guid: 6d4245675e44fc34cac3ced6a3cb960d, type: 3}
+      propertyPath: playerEndgame
+      value: player1end
+      objectReference: {fileID: 0}
     - target: {fileID: 769572322, guid: 6d4245675e44fc34cac3ced6a3cb960d, type: 3}
       propertyPath: EntirePlayerPrefab
       value: 
