@@ -108,15 +108,27 @@ public class CapsuleState : MonoBehaviour, IHaveState
 
     }
 
-    public void Ghostify()
+    public void Ghostify(int varient)
     {
+        mp.SelectByIndex(varient);
         Debug.Log("Ghostifying");
         isGhost = true;
         ghostEmmision.Play();
-        Material mat = gameObject.GetComponent<Renderer>().material;
-        Color oldColor = mat.color;
-        Color newColor = new Color(oldColor.r, oldColor.g, oldColor.b, 0.5f);
-        mat.color = newColor;
+        foreach (Renderer r in gameObject.GetComponentsInChildren<Renderer>())
+        {
+            foreach (Material m in r.materials)
+            {
+                //Debug.Log($"Material name: {m.name}");
+                if (m.HasProperty("_Color"))
+                {
+                    Color oldColor = Color.grey;
+                    Color newColor = new Color(oldColor.r - 0.2f, oldColor.g - 0.2f, oldColor.b - 0.2f, 0.2f);
+                    m.color = newColor;
+                }
+            }
+        }
+        
+
         stats.MaxHp = stats.MaxHp / 2;
     }
 

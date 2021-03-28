@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,15 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
-        RoomID = int.Parse(gameObject.name);
+        
+        if (int.TryParse(gameObject.name, out RoomID))
+        {
+            //Debug.Log($"Sucess registering ROOM ID: {gameObject.name}");
+        } 
+        else
+        {
+            Debug.Log($"Failed registering ROOM ID: {gameObject.name}");
+        }
     }
 
 
@@ -50,7 +59,7 @@ public class RoomManager : MonoBehaviour
         {
             GameObject ghost = Instantiate(minion, spawnPosition, spawnRotation);
             CapsuleState gc = ghost.GetComponent<CapsuleState>();
-            gc.Ghostify();
+            gc.Ghostify(varient);
         }
     }
 

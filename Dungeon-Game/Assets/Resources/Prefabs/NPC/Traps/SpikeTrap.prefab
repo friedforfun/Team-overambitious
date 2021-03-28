@@ -320,7 +320,7 @@ MonoBehaviour:
   _AttackPower: 0
   AttackSpeed: 1
   _Defense: 0
-  BaseDamage: 15
+  BaseDamage: 45
 --- !u!114 &9145253981319258362
 MonoBehaviour:
   m_ObjectHideFlags: 0

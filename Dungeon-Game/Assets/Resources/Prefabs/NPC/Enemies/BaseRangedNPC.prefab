@@ -4687,7 +4687,7 @@ MonoBehaviour:
   MaxHp: 100
   _MoveSpeed: 0
   _AttackPower: 0
-  AttackSpeed: 1
+  AttackSpeed: 0.5
   _Defense: 0
 --- !u!114 &7206264036819349198
 MonoBehaviour:

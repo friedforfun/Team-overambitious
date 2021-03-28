@@ -273,7 +273,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             if (Debuffs != null)
             {
                 List<Debuff> debuffsToRemove = new List<Debuff>();
-                for(int i=0; i<Debuffs.Count; i++)
+                for (int i = 0; i < Debuffs.Count; i++)
                 {
                     if (Debuffs.ElementAt(i).Expired())
                     {
@@ -286,6 +286,10 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
                 {
                     Debuffs.Remove(debuff);
                 }
+            }
+
+            if (Buffs != null)
+            { 
                 List<Buff> buffsToRemove = new List<Buff>();
                 for (int i = 0; i < Buffs.Count; i++)
                 {
@@ -300,6 +304,7 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
                     Buffs.Remove(buff);
                 }
             }
+
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -315,15 +320,17 @@ public class BaseStatus : MonoBehaviour, IDamagable, IHealable, IKillable
             if (isDead)
                 break;
 
+
+
             if (Buffs != null)
             {
-                foreach (Buff buff in Buffs)
+                foreach (Buff buff in Buffs.ToList())
                 {
                     buff.ContinuousEffect(this);
                 }
 
 
-                foreach (Debuff debuff in Debuffs)
+                foreach (Debuff debuff in Debuffs.ToList())
                 {
                     debuff.ContinuousEffect(this);
                 }
