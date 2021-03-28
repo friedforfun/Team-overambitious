@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6060874470386297806}
   - component: {fileID: 435472158089381056}
+  - component: {fileID: 7093295386627818260}
+  - component: {fileID: 6014231811389915454}
   m_Layer: 0
   m_Name: FB
   m_TagString: Untagged
@@ -50,7 +52,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735fbf5ddd0de9743815e18607e8c996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomID: 0
+  team: 0
   AllowSpawn: 1
+--- !u!65 &7093295386627818260
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060874470386297807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 9}
+--- !u!65 &6014231811389915454
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060874470386297807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: -9}
 --- !u!1001 &1022627284128418941
 PrefabInstance:
   m_ObjectHideFlags: 0

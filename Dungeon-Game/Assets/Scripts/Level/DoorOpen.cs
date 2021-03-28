@@ -19,6 +19,7 @@ public class DoorOpen : MonoBehaviour
             LeanTween.moveLocalY(gameObject, -5f, 0.5f).setEaseOutQuad();
             //Debug.Log("open plsss");
             DoorIsOpen = true;
+           
         }
     }
 

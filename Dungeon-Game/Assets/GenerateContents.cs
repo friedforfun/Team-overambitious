@@ -18,6 +18,7 @@ public class GenerateContents : MonoBehaviour
     public int ObsticalRoomMax;
 
     private RoomTemplates Templates;
+    private bool RoomSpawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,20 +28,21 @@ public class GenerateContents : MonoBehaviour
         EnemyRoomMax = (int) Mathf.Ceil(Templates.AverageRoomScore * Random.Range(0.6f, 1.4f));
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && RoomSpawned==false)
+        {
+            SpawnEnemies();
+            SpawnObsticals();
+            RoomSpawned = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         
 
-        if (framecount == 1 && Templates.GenerationComplete == false)
-        {
-            SpawnEnemies();
-
-            SpawnObsticals();
-        }
-
-
-        framecount += 1;
     }
 
     void SpawnEnemies()
