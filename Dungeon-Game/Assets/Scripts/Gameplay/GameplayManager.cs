@@ -7,6 +7,10 @@ public class GameplayManager : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface surface;
 
+
+    private DungeonManager Left;
+    private DungeonManager Right;
+
     bool GameReady = false; // will set to true when all generation and spawning is complete
 
     private void OnEnable()
@@ -34,11 +38,41 @@ public class GameplayManager : MonoBehaviour
     {
         Debug.Log("Generating navmesh");
         surface.BuildNavMesh();
+        TrackRooms();
         EventManager.TriggerEvent("NavMeshReady");
         GameReady = true;
         EventManager.TriggerEvent("GameReady");
     }
 
+    void TrackRooms()
+    {
+        DungeonManager[] dm = FindObjectsOfType<DungeonManager>();
+        foreach (DungeonManager d in dm)
+        {
+            if (d.team == Team.LEFT)
+            {
+                Left = d;
+            }
 
+            if (d.team == Team.RIGHT)
+            {
+                Right = d;
+            }
+        }
+    }
+
+    public void HandleGhost(RoomManager room, int varient)
+    {
+        if (room.team == Team.LEFT)
+        {
+            Right.SpawnGhost(room, varient);
+        }
+
+        if (room.team == Team.RIGHT)
+        {
+            Left.SpawnGhost(room, varient);
+        }
+
+    }
 
 }

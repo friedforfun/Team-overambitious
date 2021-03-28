@@ -23,7 +23,7 @@ public class CheckForWall : MonoBehaviour
             
            if (int.Parse(other.transform.parent.name) > int.Parse(gameObject.transform.parent.name))
             {
-                Debug.Log(other.name);
+                //Debug.Log(other.name);
                 Destroy(other.gameObject);
             }
         }

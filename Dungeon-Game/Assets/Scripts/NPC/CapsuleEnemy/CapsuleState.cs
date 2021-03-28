@@ -6,6 +6,8 @@ public class CapsuleState : MonoBehaviour, IHaveState
 {
     [SerializeField] private NPCStatus stats;
     [SerializeField] private Animator animator;
+    [SerializeField] private ModelPicker mp;
+    [SerializeField] private ParticleSystem ghostEmmision;
 
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
@@ -13,6 +15,8 @@ public class CapsuleState : MonoBehaviour, IHaveState
     [SerializeField] CapsuleAttack CA;
 
     private bool UpdateLimiter = true;
+
+    private bool isGhost = false;
 
     public BaseState GetState()
     {
@@ -37,7 +41,9 @@ public class CapsuleState : MonoBehaviour, IHaveState
     void Start()
     {
         CurrentState = new CapsuleIdle(gameObject);
-        gameObject.GetComponent<NPCStatus>().OnDeath += () => { SetState(new NPCDead(gameObject)); StartCoroutine(death()); };
+        gameObject.GetComponent<NPCStatus>().OnDeath += DeathActions;
+        if (!isGhost)
+            ghostEmmision.Stop();
     }
 
     void FixedUpdate()
@@ -67,6 +73,51 @@ public class CapsuleState : MonoBehaviour, IHaveState
     public void CallAttack(GameObject target)
     {
         CA.Attack(target.transform.position - transform.position);
+    }
+
+
+    private void DeathActions()
+    {
+        SetState(new NPCDead(gameObject)); 
+        StartCoroutine(death());
+
+        if (!isGhost)
+        {
+            // Find dungeon manager
+            // Tell dungeon manager to spawn a new version of this npc in this room
+            RaycastHit hit;
+            Ray ray = new Ray(gameObject.transform.position, Vector3.down * 10);
+            if (Physics.Raycast(ray, out hit, (1 << 8)))
+            {
+                RoomManager room = hit.collider.gameObject.GetComponentInParent<RoomManager>();
+                GameplayManager gm = FindObjectOfType<GameplayManager>();
+
+                if (gm != null && room != null)
+                {
+                    gm.HandleGhost(room, mp.ModelIndex);
+                }
+                else
+                {
+                    throw new UnassignedReferenceException("GameplayManager or RoomManager not found");
+                }
+
+            }
+            
+
+        }
+
+    }
+
+    public void Ghostify()
+    {
+        Debug.Log("Ghostifying");
+        isGhost = true;
+        ghostEmmision.Play();
+        Material mat = gameObject.GetComponent<Renderer>().material;
+        Color oldColor = mat.color;
+        Color newColor = new Color(oldColor.r, oldColor.g, oldColor.b, 0.5f);
+        mat.color = newColor;
+        stats.MaxHp = stats.MaxHp / 2;
     }
 
     IEnumerator death()

@@ -1112,14 +1112,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 6990281324440941511}
-    - target: {fileID: 769572321, guid: 6d4245675e44fc34cac3ced6a3cb960d, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Gamepad
-      objectReference: {fileID: 0}
-    - target: {fileID: 769572322, guid: 6d4245675e44fc34cac3ced6a3cb960d, type: 3}
-      propertyPath: goTransform
-      value: 
-      objectReference: {fileID: 8285043080221385172}
     - target: {fileID: 769572322, guid: 6d4245675e44fc34cac3ced6a3cb960d, type: 3}
       propertyPath: EntirePlayerPrefab
       value: 

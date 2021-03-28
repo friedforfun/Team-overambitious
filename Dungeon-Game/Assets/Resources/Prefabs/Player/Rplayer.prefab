@@ -1455,14 +1455,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 437401628416300744}
     - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
-      propertyPath: goTransform
-      value: 
-      objectReference: {fileID: 6423208654496042334}
-    - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
-      propertyPath: playerEndgame
-      value: player2end
-      objectReference: {fileID: 0}
-    - target: {fileID: 769572322, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}
       propertyPath: EntirePlayerPrefab
       value: 
       objectReference: {fileID: 540286054409116470}
@@ -1525,16 +1517,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634290531807680425, guid: 2f2407ee5d1a8964ca49c2ac37740927,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634614081263486867, guid: 2f2407ee5d1a8964ca49c2ac37740927,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f2407ee5d1a8964ca49c2ac37740927, type: 3}

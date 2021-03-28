@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         if (playerStats.isDead)
         {
             animator.SetFloat("ForwardSpeed", 0f);
-            animator.SetFloat("strafeSpeed", 0f);
+            animator.SetFloat("StrafeSpeed", 0f);
             animator.SetTrigger("Death");
             StartCoroutine(ResetDeath());
             return;

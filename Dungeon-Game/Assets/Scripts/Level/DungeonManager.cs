@@ -10,7 +10,7 @@ public class DungeonManager : MonoBehaviour
 
     [SerializeField] Transform SpawnPoint;
     [SerializeField] GameObject player;
-    [SerializeField] Team team;
+    [SerializeField] public Team team;
 
     RoomManager[] rooms; // Each room on this dungeon (for a given player)
 
@@ -63,8 +63,20 @@ public class DungeonManager : MonoBehaviour
         // test spawn some enemies
         foreach (RoomManager room in rooms)
         {
+            room.SetTeam(team);
             spawnNPC(room);
             spawnBuff(room);
+        }
+    }
+
+    public void SpawnGhost(RoomManager room, int varient)
+    {
+        foreach (RoomManager r in rooms)
+        {
+            if (r.RoomID == room.RoomID)
+            {
+                r.SpawnGhost(Enemies[0], varient);
+            }
         }
     }
 
@@ -79,6 +91,10 @@ public class DungeonManager : MonoBehaviour
         EventManager.StopListening($"Respawn{this.team}", Respawn);
         this.team = team;
         EventManager.StartListening($"Respawn{this.team}", Respawn);
+        /*foreach (RoomManager room in rooms)
+        {
+            room.team = team;
+        }*/
         
     }
 

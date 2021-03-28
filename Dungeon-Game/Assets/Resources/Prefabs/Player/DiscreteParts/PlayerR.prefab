@@ -176,7 +176,7 @@ MonoBehaviour:
     m_ActionId: d0a89fcb-de01-42df-97e8-1661bb9a1b6c
     m_ActionName: Gameplay/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard and Mouse
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -215,11 +215,11 @@ MonoBehaviour:
   MaxHp: 100
   _MoveSpeed: 0
   _AttackPower: 0
-  AttackSpeed: 1
+  AttackSpeed: 2
   _Defense: 0
-  team: 0
-  playerEndgame: 
-  goTransform: {fileID: 0}
+  team: 1
+  playerEndgame: player2end
+  goTransform: {fileID: 2319609585193303861}
   EntirePlayerPrefab: {fileID: 0}
   IsInBossRoom: 0
 --- !u!114 &4065376206464920371

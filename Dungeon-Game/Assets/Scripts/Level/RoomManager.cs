@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-
-
+    public int RoomID;
+    public Team team;
     private float spawnAreaSize = 5f;
     [SerializeField] bool AllowSpawn = true;
+
+    private void Start()
+    {
+        RoomID = int.Parse(gameObject.name);
+    }
+
 
     /// <summary>
     /// Spawn (spawnCount) minions in this room, with an offset on the y axis
@@ -34,6 +40,20 @@ public class RoomManager : MonoBehaviour
         
     }
 
+    public void SpawnGhost(GameObject minion, int varient)
+    {
+        Vector3 spawnPosition = GetSpawnPosition(1f);
+
+        Quaternion spawnRotation = new Quaternion();
+        spawnRotation.eulerAngles = new Vector3(0.0f, Random.Range(0.0f, 360.0f));
+        if (spawnPosition != Vector3.zero)
+        {
+            GameObject ghost = Instantiate(minion, spawnPosition, spawnRotation);
+            CapsuleState gc = ghost.GetComponent<CapsuleState>();
+            gc.Ghostify();
+        }
+    }
+
     Vector3 GetSpawnPosition(float minionOffset)
     {
         Vector3 spawnPosition = transform.position;
@@ -51,6 +71,11 @@ public class RoomManager : MonoBehaviour
             }
         }
         return spawnPosition;
+    }
+
+    public void SetTeam(Team team)
+    {
+        this.team = team;
     }
 }
 

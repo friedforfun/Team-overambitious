@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4534195717100760033}
   - component: {fileID: 840482279680967526}
   m_Layer: 0
-  m_Name: BasicProjectile
+  m_Name: LBasicProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   ImpactEffect: {fileID: 198000013440722320, guid: 944bdaf6061b74b498fad5632861e67f,
     type: 3}
   liveTime: 3
-  damage: 25
+  damage: 30
   rbody: {fileID: 840482279680967527}
   launchForce: 10
 --- !u!96 &840482279680967526

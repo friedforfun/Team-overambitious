@@ -3046,7 +3046,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e20be2033f8ad24e858d64fbaa75935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies: []
+  Enemies:
+  - {fileID: 8464600073626945413, guid: afd8d916fba7e994ba0af617e3510ecd, type: 3}
+  - {fileID: 8226688777511918891, guid: 1a905187cc5e3d74cbde179c25825f93, type: 3}
   Buffs:
   - {fileID: 5694271350856676925, guid: b50acdb7bff9da5449a30803239209bc, type: 3}
   - {fileID: 2945615265016275042, guid: 2da8edbed4e8e2d478f0db58ca9b1287, type: 3}
