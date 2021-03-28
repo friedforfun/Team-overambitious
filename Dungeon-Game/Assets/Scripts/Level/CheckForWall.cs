@@ -27,8 +27,9 @@ public class CheckForWall : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-        else
+        else if(other.CompareTag("Player"))
         {
+            Debug.Log(gameObject.transform.parent.name);
             //Debug.Log(other.tag);
         }
         }
