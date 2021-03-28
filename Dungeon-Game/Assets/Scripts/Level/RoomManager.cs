@@ -7,7 +7,7 @@ public class RoomManager : MonoBehaviour
 {
     public int RoomID;
     public Team team;
-    private float spawnAreaSize = 5f;
+    private float spawnAreaSize = 3f;
     [SerializeField] bool AllowSpawn = true;
 
     private void Start()

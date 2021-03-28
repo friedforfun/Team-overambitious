@@ -721,8 +721,8 @@ GameObject:
   - component: {fileID: 9111405978622543404}
   - component: {fileID: 9111405978622543407}
   - component: {fileID: 9111405978622543406}
+  - component: {fileID: 276454639082546678}
   - component: {fileID: 9111405978622543401}
-  - component: {fileID: 9111405978622543405}
   - component: {fileID: 4884523200378276911}
   - component: {fileID: 8218436334957342929}
   m_Layer: 11
@@ -3167,15 +3167,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &9111405978622543401
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9111405978622543403}
-  m_Mesh: {fileID: 0}
---- !u!114 &9111405978622543405
+--- !u!114 &276454639082546678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3184,7 +3176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9111405978622543403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83129b9baa6a09947930decc97776a3a, type: 3}
+  m_Script: {fileID: 11500000, guid: ee6d59f4591547e4d974935db6e06126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
@@ -3192,7 +3184,15 @@ MonoBehaviour:
   _MoveSpeed: 0
   _AttackPower: 0
   AttackSpeed: 3
-  _Defense: 0
+  _Defense: -1
+--- !u!33 &9111405978622543401
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9111405978622543403}
+  m_Mesh: {fileID: 0}
 --- !u!114 &4884523200378276911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11939,7 +11939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d1514a97de6264689d677096ba60e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 9111405978622543405}
+  stats: {fileID: 276454639082546678}
   projectile: {fileID: 840482279680967525, guid: aaf0825a0713ede42bf2d19acad88b27,
     type: 3}
   launchPoint: {fileID: 9111405979059109521}

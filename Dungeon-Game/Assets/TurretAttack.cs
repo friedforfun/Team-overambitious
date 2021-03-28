@@ -10,6 +10,8 @@ public class TurretAttack : BasicAttack
 
     private GameObject[] players;
 
+
+
     // Line of sight layermask
     // 8 is Ground layer, 9 is Wall layer, 11 is enemy layers
     private LayerMask losMask = (1 << 8) | (1 << 9) | (1 << 11);
@@ -27,21 +29,25 @@ public class TurretAttack : BasicAttack
 
     private void Update()
     {
-        foreach (GameObject player in players)
+        if (!stats.isDead)
         {
-            if ((player.transform.position - gameObject.transform.position).magnitude < 10f)
+            foreach (GameObject player in players)
             {
-                if (LineOfSightCheck(player))
+                if ((player.transform.position - gameObject.transform.position).magnitude < 10f)
                 {
-                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, player.transform.position - transform.position, 0.8f * Time.deltaTime, 0.0f));
-                    //transform.LookAt(player.transform);
-                    
-                    if (Vector3.Dot(transform.forward, (player.transform.position - transform.position).normalized) >= 0.6f)
-                        Attack(player.transform.position - gameObject.transform.position);
+                    if (LineOfSightCheck(player))
+                    {
+                        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, player.transform.position - transform.position, 0.8f * Time.deltaTime, 0.0f));
+                        //transform.LookAt(player.transform);
+
+                        if (Vector3.Dot(transform.forward, (player.transform.position - transform.position).normalized) >= 0.6f)
+                            Attack(player.transform.position - gameObject.transform.position);
+                    }
                 }
-            } 
-            
+
+            }
         }
+        
     }
 
     /// <summary>
