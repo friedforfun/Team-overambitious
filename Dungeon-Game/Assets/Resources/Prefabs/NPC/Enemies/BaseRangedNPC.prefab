@@ -4704,7 +4704,7 @@ MonoBehaviour:
   controller: {fileID: 6145342337746765164}
   agent: {fileID: 8272896842003750401}
   BaseMovespeed: 1
-  UseNavMesh: 0
+  UseNavMesh: 1
   ChaseDistance: 50
   EvadeDistance: 3
   AvoidDistance: 1.5
