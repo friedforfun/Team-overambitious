@@ -5,13 +5,18 @@ using UnityEngine;
 public class CapsuleState : MonoBehaviour, IHaveState
 {
     [SerializeField] private NPCStatus stats;
-    
+    [SerializeField] private Animator animator;
+    [SerializeField] private ModelPicker mp;
+    [SerializeField] private ParticleSystem ghostEmmision;
+
     private NPCBaseState CurrentState;
     private float DetectRange = 10f;
     private float AttackRange = 8f;
-   [SerializeField] CapsuleAttack CA;
+    [SerializeField] CapsuleAttack CA;
 
     private bool UpdateLimiter = true;
+
+    private bool isGhost = false;
 
     public BaseState GetState()
     {
@@ -25,10 +30,10 @@ public class CapsuleState : MonoBehaviour, IHaveState
             CurrentState.OnStateLeave();
         }
 
-        CurrentState = (NPCBaseState) state;
+        CurrentState = (NPCBaseState)state;
 
         if (CurrentState != null)
-        {   
+        {
             CurrentState.OnStateEnter();
         }
     }
@@ -36,7 +41,9 @@ public class CapsuleState : MonoBehaviour, IHaveState
     void Start()
     {
         CurrentState = new CapsuleIdle(gameObject);
-        gameObject.GetComponent<NPCStatus>().OnDeath += () => { SetState(new NPCDead(gameObject)); StartCoroutine(death()); };
+        gameObject.GetComponent<NPCStatus>().OnDeath += DeathActions;
+        if (!isGhost)
+            ghostEmmision.Stop();
     }
 
     void FixedUpdate()
@@ -44,7 +51,7 @@ public class CapsuleState : MonoBehaviour, IHaveState
         if (UpdateLimiter)
             CurrentState.UpdateState();
 
-        UpdateLimiter = UpdateLimiter ? false : true;
+        //UpdateLimiter = UpdateLimiter ? false : true;
         
     }
 
@@ -65,18 +72,75 @@ public class CapsuleState : MonoBehaviour, IHaveState
 
     public void CallAttack(GameObject target)
     {
-        CA.Attack(target.transform.position-transform.position);
+        CA.Attack(target.transform.position - transform.position);
     }
 
-    public void GetAnimationState(bool active)
+
+    private void DeathActions()
     {
-        throw new System.NotImplementedException();
+        SetState(new NPCDead(gameObject)); 
+        StartCoroutine(death());
+
+        if (!isGhost)
+        {
+            // Find dungeon manager
+            // Tell dungeon manager to spawn a new version of this npc in this room
+            RaycastHit hit;
+            Ray ray = new Ray(gameObject.transform.position, Vector3.down * 10);
+            if (Physics.Raycast(ray, out hit, (1 << 8)))
+            {
+                RoomManager room = hit.collider.gameObject.GetComponentInParent<RoomManager>();
+                GameplayManager gm = FindObjectOfType<GameplayManager>();
+
+                if (gm != null && room != null)
+                {
+                    gm.HandleGhost(room, mp.ModelIndex);
+                }
+                else
+                {
+                    throw new UnassignedReferenceException("GameplayManager or RoomManager not found");
+                }
+
+            }
+            
+
+        }
+
+    }
+
+    public void Ghostify(int varient)
+    {
+        mp.SelectByIndex(varient);
+        Debug.Log("Ghostifying");
+        isGhost = true;
+        ghostEmmision.Play();
+        foreach (Renderer r in gameObject.GetComponentsInChildren<Renderer>())
+        {
+            foreach (Material m in r.materials)
+            {
+                //Debug.Log($"Material name: {m.name}");
+                if (m.HasProperty("_Color"))
+                {
+                    Color oldColor = Color.grey;
+                    Color newColor = new Color(oldColor.r - 0.2f, oldColor.g - 0.2f, oldColor.b - 0.2f, 0.2f);
+                    m.SetColor("_Color", newColor);
+                }
+            }
+        }
+        
+
+        stats.MaxHp = stats.MaxHp / 2;
     }
 
     IEnumerator death()
     {
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
+    }
+
+    public Animator GetAnimationState()
+    {
+        return animator;
     }
 }
 
@@ -145,7 +209,7 @@ public class CapsuleMoveToShootingRange : NPCInCombat
         {
             stateController.SetState(new RangedAttack(npc, player));
         }
-            
+
     }
 }
 
@@ -178,4 +242,3 @@ public class RangedAttack : NPCInCombat
         }
     }
 }
-

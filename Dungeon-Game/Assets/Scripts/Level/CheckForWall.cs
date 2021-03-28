@@ -5,11 +5,32 @@ using UnityEngine;
 public class CheckForWall : MonoBehaviour
 {
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(other.name);
+
         if (other.CompareTag("Wall"))
         {
-            Destroy(other.gameObject);
+            //Debug.Log(other.transform.parent.gameObject.name);
+            Destroy(other.transform.parent.gameObject);
+        }
+        else if (other.CompareTag("Door"))
+        {
+            //Destroy(other);
+            
+            //Debug.Log((other.transform.parent.transform.parent.name));
+           
+            
+           if (int.Parse(other.transform.parent.name) > int.Parse(gameObject.transform.parent.name))
+            {
+                //Debug.Log(other.name);
+                Destroy(other.gameObject);
+            }
+        }
+        else if(other.CompareTag("Player"))
+        {
+            Debug.Log(gameObject.transform.parent.name);
+            //Debug.Log(other.tag);
         }
         }
     }

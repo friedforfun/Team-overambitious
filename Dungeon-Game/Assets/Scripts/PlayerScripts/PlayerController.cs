@@ -12,20 +12,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private PlayerStatus playerStats;
     [SerializeField] private PlayerAttack playerAttack;
+    [SerializeField] private Animator animator;
 
     private Vector2 orientDirection;
     private Vector2 moveInput;
     private bool AttackButtonDown = false;
     private bool AbilityButtonDown = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
+    private bool gameLoading = true;
     // Update is called once per frame
     void Update()
     {
+        if (gameLoading)
+        {
+            return;
+        }
+
+
+        if (playerStats.isDead)
+        {
+            animator.SetFloat("ForwardSpeed", 0f);
+            animator.SetFloat("StrafeSpeed", 0f);
+            animator.SetTrigger("Death");
+            StartCoroutine(ResetDeath());
+            return;
+        }
+
         orientCharacter();
         applyMove();
         if (AttackButtonDown)
@@ -76,6 +88,11 @@ public class PlayerController : MonoBehaviour
     private void applyMove()
     {
         controller.SimpleMove((new Vector3(moveInput.x, 0, moveInput.y) /* * Time.deltaTime */ * baseMoveSpeed) * Mathf.Abs(playerStats.MoveSpeedModifier()));
+        Vector3 relativeVelocity = transform.InverseTransformVector(controller.velocity);
+        animator.SetFloat("ForwardSpeed", relativeVelocity.z);
+        animator.SetFloat("StrafeSpeed", relativeVelocity.x);
+
+        //Debug.Log($"Velocity: {transform.InverseTransformVector(controller.velocity)}");
     }
 
     /// <summary>
@@ -96,15 +113,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Draw a gizmo to show the direction the player is facing
-    /// </summary>
-    private void OnDrawGizmos()
+    IEnumerator ResetDeath()
     {
-        Handles.color = Color.red;
-        Handles.ArrowHandleCap(0, this.transform.position + this.transform.forward * 0.4f, this.transform.rotation, 0.5f, EventType.Repaint);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, 0.4f);
+        yield return new WaitForSeconds(3f);
+        animator.ResetTrigger("Death");
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("GameReady", () => { gameLoading = false; });
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("GameReady", () => { gameLoading = false; });
     }
 
 }

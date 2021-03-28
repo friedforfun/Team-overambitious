@@ -34,14 +34,15 @@ public class BossRoomCheck : MonoBehaviour
     void Update()
     {
         //Debug.Log("SceneFlipped == " + MirrorScript.SceneFlipped);
-        if (MirrorScript.SceneFlipped == false)
+        if (MirrorScript.SceneFlipped == false && Templates.GenerationComplete == true)
         {
 
             if ((Templates.BossRoomX == transform.position.x) && (Templates.BossRoomZ == transform.position.z))
             {
                 Instantiate(BossRoom, transform.position, Quaternion.identity, Scene.transform);
-                Debug.Log("run");
-                Destroy(gameObject);
+                //Debug.Log("run");
+                //Debug.Log(gameObject.name);
+                //Destroy(gameObject);
                 Templates.BossSpawned = true;
             }
 

@@ -15,6 +15,9 @@ public class EnemyDetect : MonoBehaviour
     public float shootSpeed = 10f;
     public float timeToShoot = 1.3f;
     float originalTime;
+
+    public BasicAttackShooter BAS;
+    public BaseStatus stats;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,5 +63,6 @@ public class EnemyDetect : MonoBehaviour
         Rigidbody rig = currentBullet.GetComponent<Rigidbody>();
         rig.AddForce(transform.forward * shootSpeed, ForceMode.VelocityChange);
         Destroy(currentBullet, 5f);
+
     }
 }

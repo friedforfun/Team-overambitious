@@ -24,7 +24,7 @@ public class RoomTemplates : MonoBehaviour
     public float BossRoomX;
     public float BossRoomZ;
 
-
+    public int AverageRoomScore;
 
     // Start is called before the first frame update
     void Start()

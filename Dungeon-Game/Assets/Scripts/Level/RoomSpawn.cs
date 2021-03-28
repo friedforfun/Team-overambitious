@@ -33,22 +33,26 @@ public class RoomSpawn : MonoBehaviour
             if (openingDirection == 1)
             {
                 rand = Random.Range(0, Templates.BottomRooms.Length);
-                Instantiate(Templates.BottomRooms[rand], transform.position, Quaternion.identity, Scene.transform);      //Quaternion.Identity could be changed to allow for different rotations of rooms.
+                GameObject room = Instantiate(Templates.BottomRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                room.name = (Templates.RoomCount + 1).ToString();                                                                                                                                    //Quaternion.Identity could be changed to allow for different rotations of rooms.
             }
             else if (openingDirection == 2)
             {
                 rand = Random.Range(0, Templates.FrontRooms.Length);
-                Instantiate(Templates.FrontRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                GameObject room =  Instantiate(Templates.FrontRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                room.name = (Templates.RoomCount+1).ToString();
             }
             else if (openingDirection == 3)
             {
                 rand = Random.Range(0, Templates.LeftRooms.Length);
-                Instantiate(Templates.LeftRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                GameObject room = Instantiate(Templates.LeftRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                room.name = (Templates.RoomCount + 1).ToString();
             }
             else if (openingDirection == 4)
             {
                 rand = Random.Range(0, Templates.RightRooms.Length);
-                Instantiate(Templates.RightRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                GameObject room = Instantiate(Templates.RightRooms[rand], transform.position, Quaternion.identity, Scene.transform);
+                room.name = (Templates.RoomCount + 1).ToString();
             }
 
             Templates.RoomCount += 1;
