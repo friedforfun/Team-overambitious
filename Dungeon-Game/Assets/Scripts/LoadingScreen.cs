@@ -42,18 +42,16 @@ public class LoadingScreen : MonoBehaviour
 
     void EndScreenL()
     {
-        GetComponent<Camera>().rect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
+        
         screenText.text = "Game has ended\n Red player wins!";
-        replayButton.SetActive(true);
-        replayButton.GetComponent<Button>().onClick.AddListener(ReplayGame);
+        StartCoroutine(ShowScreen());
     }
 
     void EndScreenR()
     {
-        GetComponent<Camera>().rect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
+        
         screenText.text = "Game has ended\n Blue player wins!";
-        replayButton.SetActive(true);
-        replayButton.GetComponent<Button>().onClick.AddListener(ReplayGame);
+        StartCoroutine(ShowScreen());
     }
 
     void ReplayGame()
@@ -61,4 +59,11 @@ public class LoadingScreen : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    IEnumerator ShowScreen()
+    {
+        yield return new WaitForSeconds(3f);
+        GetComponent<Camera>().rect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
+        replayButton.SetActive(true);
+        replayButton.GetComponent<Button>().onClick.AddListener(ReplayGame);
+    }
 }
