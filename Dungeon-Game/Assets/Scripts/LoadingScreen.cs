@@ -13,13 +13,15 @@ public class LoadingScreen : MonoBehaviour
     private void OnEnable()
     {
         EventManager.StartListening("GameReady", Show);
-        //EventManager.StartListening("GameEnd", EndScreen);
+        EventManager.StartListening($"GameOver{Team.LEFT}", EndScreenL);
+        EventManager.StartListening($"GameOver{Team.RIGHT}", EndScreenR);
     }
 
     private void OnDisable()
     {
         EventManager.StopListening("GameReady", Show);
-        //EventManager.StopListening("GameEnd", EndScreen);
+        EventManager.StopListening($"GameOver{Team.LEFT}", EndScreenL);
+        EventManager.StopListening($"GameOver{Team.RIGHT}", EndScreenR);
     }
 
     void Start()
@@ -38,10 +40,18 @@ public class LoadingScreen : MonoBehaviour
     }
 
 
-    void EndScreen()
+    void EndScreenL()
     {
         GetComponent<Camera>().rect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
-        screenText.text = "Game has ended";
+        screenText.text = "Game has ended\n Red player wins!";
+        replayButton.SetActive(true);
+        replayButton.GetComponent<Button>().onClick.AddListener(ReplayGame);
+    }
+
+    void EndScreenR()
+    {
+        GetComponent<Camera>().rect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
+        screenText.text = "Game has ended\n Blue player wins!";
         replayButton.SetActive(true);
         replayButton.GetComponent<Button>().onClick.AddListener(ReplayGame);
     }
