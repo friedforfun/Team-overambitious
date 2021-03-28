@@ -19,10 +19,16 @@ public class PlayerController : MonoBehaviour
     private bool AttackButtonDown = false;
     private bool AbilityButtonDown = false;
 
-
+    private bool gameLoading = true;
     // Update is called once per frame
     void Update()
     {
+        if (gameLoading)
+        {
+            return;
+        }
+
+
         if (playerStats.isDead)
         {
             animator.SetFloat("ForwardSpeed", 0f);
@@ -107,21 +113,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Draw a gizmo to show the direction the player is facing
-    /// </summary>
-    private void OnDrawGizmos()
-    {
-        Handles.color = Color.red;
-        Handles.ArrowHandleCap(0, this.transform.position + this.transform.forward * 0.4f, this.transform.rotation, 0.5f, EventType.Repaint);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, 0.4f);
-    }
-
     IEnumerator ResetDeath()
     {
         yield return new WaitForSeconds(3f);
         animator.ResetTrigger("Death");
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("GameReady", () => { gameLoading = false; });
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("GameReady", () => { gameLoading = false; });
     }
 
 }

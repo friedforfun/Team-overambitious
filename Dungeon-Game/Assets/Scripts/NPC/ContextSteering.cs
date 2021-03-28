@@ -52,7 +52,7 @@ public class ContextSteering : MonoBehaviour
         avoidTags.Add("Projectile");
         avoidTags.Add("Hostile");
         targetLayers = LayerMask.GetMask("NPCmoveTarget");
-        avoidLayers = LayerMask.GetMask("Wall", "Hostile");
+        avoidLayers = LayerMask.GetMask("Wall", "Hostile", "Obstacle");
     }
 
 
