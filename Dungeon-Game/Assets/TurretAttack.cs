@@ -33,10 +33,10 @@ public class TurretAttack : BasicAttack
             {
                 if (LineOfSightCheck(player))
                 {
-                    //transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, player.transform.position - transform.position, 0.8f * Time.deltaTime, 0.0f));
-                    transform.LookAt(player.transform);
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, player.transform.position - transform.position, 0.8f * Time.deltaTime, 0.0f));
+                    //transform.LookAt(player.transform);
                     
-                    if (Vector3.Dot(transform.forward, (player.transform.position - transform.position).normalized) >= 0.9f)
+                    if (Vector3.Dot(transform.forward, (player.transform.position - transform.position).normalized) >= 0.6f)
                         Attack(player.transform.position - gameObject.transform.position);
                 }
             } 
@@ -52,8 +52,8 @@ public class TurretAttack : BasicAttack
     private bool LineOfSightCheck(GameObject other)
     {
         Vector3 losCheckPoint = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z); // point to check line of sight from
-
-        Vector3 directionToOther = other.transform.position - losCheckPoint;
+        Vector3 otherOffset = new Vector3(other.transform.position.x, other.transform.position.y + 0.9f, other.transform.position.z);
+        Vector3 directionToOther = otherOffset - losCheckPoint;
         Debug.DrawRay(losCheckPoint, directionToOther, Color.cyan);
         RaycastHit hit;
         Ray los = new Ray(losCheckPoint, directionToOther);

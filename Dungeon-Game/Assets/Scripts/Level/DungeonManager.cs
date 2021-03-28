@@ -64,7 +64,7 @@ public class DungeonManager : MonoBehaviour
         foreach (RoomManager room in rooms)
         {
             room.SetTeam(team);
-            //spawnNPC(room);
+            spawnNPC(room);
             spawnBuff(room);
         }
     }

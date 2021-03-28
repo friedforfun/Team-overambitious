@@ -8,14 +8,14 @@ public class BulletBehaviour : MonoBehaviour, IProjectile
     [SerializeField] private ParticleSystem ImpactEffect;
     [SerializeField] private float liveTime;
 
-
+    [SerializeField] private int maxBounces = 5;
     [SerializeField] private int damage;
     [SerializeField] private Rigidbody rbody;
     [SerializeField] private float launchForce = 10f;
 
     private AttackDebuffs debuffs;
     private Vector3 currentVelocity = Vector3.zero;
-    private int maxBounces = 5;
+
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class BulletBehaviour : MonoBehaviour, IProjectile
         this.debuffs = debuffs;
         this.owner = owner;
         damage = (int) (damage * AttackPower);
-        rbody.AddForce(Direction * launchForce, ForceMode.Impulse);
+        rbody.AddForce(Direction.normalized * launchForce, ForceMode.Impulse);
     }
 
     void OnCollisionEnter(Collision collision)
