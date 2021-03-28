@@ -7,7 +7,7 @@ public class CountdownTimer : MonoBehaviour
 {
 
     private Text thisText;
-    private float startTime, duration = 5f;
+    private float startTime, duration = 45f;
     private bool startClock = false;
     private PlayerStatus playerStatus;
     public GameObject player;
